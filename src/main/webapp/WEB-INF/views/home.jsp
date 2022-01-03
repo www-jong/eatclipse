@@ -8,7 +8,7 @@
 <h1>
 	Hello world!
 	헬로 월드!
-	헬로 월드! by Wang
+	헬로 EatClipse! ....by Wang
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
