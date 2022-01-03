@@ -16,10 +16,10 @@
 		<property name="driverClassName"
 			value="com.mysql.cj.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/spring?serverTimezone=UTC">
+			value="jdbc:mysql://localhost:3306/eclipse?serverTimezone=UTC">
 		</property>
 		<property name="username" value="root" />
-		<property name="password" value="3079" />
+		<property name="password" value="1234" />
 	</bean>
 	<!-- SqlSessionFactory 객체 주입 -->
 	<!-- SqlsessionFactory 클래스 : SqlSession을 만드는 역할을 한다. -->
