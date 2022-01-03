@@ -1,8 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	<bean id="dataSource" 
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/spring?serverTimezone=UTC">
+		</property>
+		<property name="username" value="root" />
+		<property name="password" value="3079" />
+	</bean>
+	<!-- SqlSessionFactory 객체 주입 -->
+	<!-- SqlsessionFactory 클래스 : SqlSession을 만드는 역할을 한다. -->
+	<bean id="sqlSessionFactory" 
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation"
+			value="classpath:/mybatis-config.xml" /> <!-- 직접 만들어줘야함 -->
+		<property name="mapperLocations"
+			value="classpath:mappers/**/*.xml" />  <!-- mappers라는 폴더를 만들어줘야함 -->
+			<!-- mappers/** : mappers 폴더 아래의 모든 파일이라는 의미 
+			 	     	*.xml: 확장자가 xml에 해당하는 파일
+			-->
+	</bean>
+	<!-- SqlSession 객체 주입 -->
+	<!-- SqlSession : Connection 객체라고 이해하면 된다.
+					실제 Sql쿼리를 만드늠
+	 -->
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate"
+		destroy-method="clearCache"> <!-- auto close라는의미. commit도 자동으로 해줌  -->
+		<constructor-arg name="sqlSessionFactory"
+			ref="sqlSessionFactory" />
+	</bean>
+	<!-- bean 등록하는 방법
+	id- instance 이름, class- 패키지명.클래스명
+	 -->
+
+
+
+
 </beans>
