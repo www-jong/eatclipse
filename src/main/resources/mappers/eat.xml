@@ -3,31 +3,5 @@
  
 
 <mapper namespace="eat"> 
-	<select id="list" resultType="com.example.spring03.Model.dto.MemoDTO">
-		select * from eatclipse order by idx desc<!-- 세미콜론 붙이면 안됨 -->
-	</select>
 	
-	<insert id="insert">
-		insert into memo(idx,passwd,writer,memo) values
-		(#{idx},#{passwd},#{writer},#{memo})
-	</insert>
-	
-	<select id="detail" resultType="com.example.spring03.Model.dto.MemoDTO">
-		select * from memo where idx=#{idx}
-	</select>
-	
-	<update id="update">
-		update memo set passwd=#{passwd}, writer=#{writer},memo=#{memo}
-		where idx=#{idx}
-	</update>
-	
-	<delete id="delete">
-		delete from memo where idx=#{idx}
-	</delete>
-	
-	<select id="check_passwd" resultType="int"> <!-- 얘는 return값이 0또는 1이므로 int사용 -->
-		select count(*) from memo
-		where idx=#{idx} and passwd=#{passwd}
-		<!-- count(*) : 조회된 건수를 반환해주는 함수므로 1또는 0 -->
-	</select>
 </mapper>

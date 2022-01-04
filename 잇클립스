@@ -1,0 +1,13 @@
+EATclipse
+
+member(no pk, type, name, money, location)
+
+log(no pk, order_name, shop_name, product_name, rider_name, location,status)
+
+product(no pk,shop_name,product_name, price, dd) 
+
+고객, cust      (customer)
+식당, rest      (restaurant)
+라이더, ride   (rider)
+관리자, admin
+

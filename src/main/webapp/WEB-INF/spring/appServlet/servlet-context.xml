@@ -22,6 +22,20 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.example.eatclipse" />
+		<!-- 추가한 내역들 -->
+	<!-- images 파일의 리소스를 매핑할 수 있는 코드 추가 -->
+	<resources location="/WEB-INF/views/images/" mapping="images/**"/>
+	<!-- 파일 업로드에 필요한 bean -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<!-- 파일 업로드 최대 용량(byte) -->
+	<beans:property name = "maxUploadSize" value = "10485760" />
+	</beans:bean>
+	<!-- 첨부파일을 저장할 디렉토리 설정 -->
+	<!-- String uploadPath = new String("d:/upload"); -->
+	<beans:bean id = "upload_path" class = "java.lang.String">
+	<!-- 파일이 업로드 되는 디렉토리는 d:/upload 이다. -->
+		<beans:constructor-arg value = "c:/upload" />
+	</beans:bean>
 	
 	
 	
