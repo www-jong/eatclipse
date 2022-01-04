@@ -55,12 +55,14 @@
 				<td><input type="text" id="location" name="location"></td>
 			</tr>
 			<tr>
+			<td>
 				<select name="type">
    				 <option value="">유형선택</option>
    					 <option value="0">고객</option>
    					 <option value="1">가게</option>
   					  <option value="2">라이더</option>
 				</select>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
