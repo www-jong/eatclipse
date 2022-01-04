@@ -36,15 +36,32 @@ public class CommonsController {
 	 public ModelAndView login_check(@ModelAttribute CommonsDTO dto, HttpSession session, ModelAndView mav) {
 		 String name=commonsDao.login(dto);
 		 if(name!=null) { //맞으면
+			 System.out.println("로그인 성공, type : "+name); //로그인되는지 확인용으로 넣음.
+			 if(name.equals("0")) { //고객이라면 고객페이지로
+				 System.out.println("넘어온다");
 			 	session.setAttribute("userid", dto.getUserid());
-			 	session.setAttribute("username", name);
-				mav.setViewName("/main"); // views/main.jsp
-		 }else {
+			 	session.setAttribute("name", name);
+				mav.setViewName("/customer/main"); // views/customer/main.jsp
+			 }else if(name.equals("1")) { // 가게라면 가게페이지로
+					session.setAttribute("userid", dto.getUserid());
+				 	session.setAttribute("name", name);
+					mav.setViewName("/restaurant/main"); // views/restaurant/main.jsp
+			 }else if(name.equals("2")) { //라이더라면 라이더페이지로
+				 session.setAttribute("userid", dto.getUserid());
+				 	session.setAttribute("name", name);
+					mav.setViewName("/rider/main"); // views/rider/main.jsp
+			 }else if(name.equals("3")) { // 관리자라면 관리자페이지로
+				 session.setAttribute("userid", dto.getUserid());
+				 	session.setAttribute("name", name);
+					mav.setViewName("/admin/main"); // views/rider/main.jsp
+			 }
+			 }else {
 			 	mav.setViewName("commons/login");
 			 		mav.addObject("message", "error");
 		 }
 		 return mav;
 	 }
+	 
 	 
 	 @RequestMapping("logout.do")
 	 public ModelAndView logout(HttpSession session, ModelAndView mav) {
@@ -56,7 +73,6 @@ public class CommonsController {
 	 
 	 @RequestMapping("join.do")
 	 public String join() {
-		
 		 return "commons/join_write";
 	 }
 	 

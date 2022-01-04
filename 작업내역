@@ -2,9 +2,9 @@
 
 기본틀 완성(controller,model 패키지/ 오류때문에 웹안열리는거 고침)
 + view 폴더에 admin/customer/images/restaurant/rider 폴더 추가
-로그인페이지 까지 완성
+로그인, 회원가입 구현
 공통된작업(로그인,회원가입,로그아웃 등)은 CommonsController 및 매핑값 commons로 관리
-
+로그인시, 그 계정의 type에 따라 cus, res, rider, admin의 main.jsp로 이동까지 구현
 처음 입장시 따로 메인페이지 or 바로 로그인페이지 로 할지 고민중
 
 
@@ -18,5 +18,5 @@ controller- shop
 controller-Upload
 /UploadController : 파일 업로드 작업 수행하는 컨트롤러. 따로 변경할 건 없어요 이건
 
-spring04 바탕으로 작업했습니다.
-한글처리가 안되는데 왜 안되는지 모르겠습니다. 인코딩설정 어디서 빼먹은거같은뎅
+
+

@@ -5,7 +5,7 @@
 <mapper namespace="commons">
 	
 	<select id="login" resultType="String">
-		select name from member where userid=#{userid} and passwd=#{passwd}
+		select type from member where userid=#{userid} and passwd=#{passwd}
 	</select>
 	
 		<!-- 회원가입 -->
