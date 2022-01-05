@@ -8,11 +8,17 @@
 	select * from member order by no
 	</select>
 	
-	<select id = "list" resultType="com.example.eatclipse.model.commons.CommonsDTO">
+	<select id = "shoplist" resultType="com.example.eatclipse.model.commons.CommonsDTO">
 	select * from member where type>=#{type} order by no
 	</select>
-
 	
+	<select id = "riderlist" resultType="com.example.eatclipse.model.commons.CommonsDTO">
+	select * from member where type=#{type} order by no
+	</select>
+	
+	<select id = "cuslist" resultType="com.example.eatclipse.model.commons.CommonsDTO">
+	select * from member where type=#{type} order by no
+	</select>
 	
 	<delete id="delete">
 		delete from member where no=#{no}

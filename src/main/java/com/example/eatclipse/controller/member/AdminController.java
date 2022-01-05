@@ -35,7 +35,9 @@ public class AdminController {
 	   public ModelAndView list(@PathVariable("type") int type,ModelAndView mav) {
 	 
 		mav.setViewName("/admin/mem_list");
-	      mav.addObject("list", adminDao.list(type));
+		if(type>=2)mav.addObject("list", adminDao.shoplist(type));
+		else if(type==1)mav.addObject("list", adminDao.riderlist(type));
+		else if(type==0)mav.addObject("list", adminDao.cuslist(type));
 	      mav.addObject("t",type);
 	      return mav;
 	   }

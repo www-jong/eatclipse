@@ -15,7 +15,11 @@ public interface AdminDAO {
 		//상품삭제(관리자)
 		void delete(int no);
 		
-		List<CommonsDTO> list(int type);
+		List<CommonsDTO> shoplist(int type);
+		
+		List<CommonsDTO> riderlist(int type);
+		
+		List<CommonsDTO> cuslist(int type);
 	
 
 	

@@ -23,9 +23,19 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlSession.selectList("admin.alllist");
 	}
 	@Override
-	public List<CommonsDTO> list(int type) {
+	public List<CommonsDTO> shoplist(int type) {
 		
-		return sqlSession.selectList("admin.list",type);
+		return sqlSession.selectList("admin.shoplist",type);
+	}
+	@Override
+	public List<CommonsDTO> riderlist(int type) {
+		
+		return sqlSession.selectList("admin.riderlist",type);
+	}
+	@Override
+	public List<CommonsDTO> cuslist(int type) {
+		
+		return sqlSession.selectList("admin.cuslist",type);
 	}
 	
 	@Override
