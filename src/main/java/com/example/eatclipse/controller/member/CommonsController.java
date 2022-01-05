@@ -56,7 +56,7 @@ public class CommonsController {
 					
 			 }else if(type>=2&&type<=8) { //가게들은 가게페이지로
 			
-				 mav.setViewName("/restaurant/main"); // views/restaurant/main.jsp
+				 mav.setViewName("/shop/main"); // views/restaurant/main.jsp
 			 }else if(type==-1) { // 관리자라면 관리자페이지로
 				 
 			

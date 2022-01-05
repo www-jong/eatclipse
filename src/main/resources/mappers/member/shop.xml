@@ -12,7 +12,7 @@
 
 	<!-- 가게 상세보기 -->
 	<select id="detail"
-		resultType="com.example.eatclipse.model.shop.ProductDTO">
+		resultType="com.example.eatclipse.model.shop.productDTO">
 		select * from product where shop_name=#{shop_name}
 	</select>
 
@@ -29,7 +29,7 @@
 
 	<!-- 메뉴 리스트 -->
 	<select id="menulist"
-		resultType="com.example.eatclipse.model.shop.ProductDTO">
+		resultType="com.example.eatclipse.model.shop.productDTO"><!-- 이부분 Product 이렇게 p대문자되있어서 오류떴어요 -->
 		select * from product order by shop_name=#{shop_name}
 	</select>
 
