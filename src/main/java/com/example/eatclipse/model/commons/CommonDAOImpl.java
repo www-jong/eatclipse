@@ -12,7 +12,7 @@ public class CommonDAOImpl implements CommonsDAO {
 	SqlSession sqlSession;
 	
 	@Override
-	public String login(CommonsDTO dto) {
+	public int login(CommonsDTO dto) {
 		return sqlSession.selectOne("commons.login", dto);
 	}
 
@@ -29,9 +29,8 @@ public class CommonDAOImpl implements CommonsDAO {
 	}
 
 	@Override
-	public Object view(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object view(int no) {
+		return sqlSession.selectOne("commons.view", no);
 	}
 
 	@Override

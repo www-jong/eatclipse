@@ -34,25 +34,32 @@ public class CommonsController {
 	 
 	 @RequestMapping("login_check.do")
 	 public ModelAndView login_check(@ModelAttribute CommonsDTO dto, HttpSession session, ModelAndView mav) {
-		 String name=commonsDao.login(dto);
-		 if(name!=null) { //맞으면
-			 System.out.println("로그인 성공, type : "+name); //로그인되는지 확인용으로 넣음.
-			 if(name.equals("0")) { //고객이라면 고객페이지로
+		 int no=commonsDao.login(dto);
+		 if(no!=0) { //맞으면
+			CommonsDTO dto2=(CommonsDTO) commonsDao.view(no); //no를 바탕으로 로그인정보를 다 가져옴
+			int type=dto2.getType();
+			 System.out.println("로그인 성공, type : "+no); //로그인되는지 확인용으로 넣음.
+			 session.setAttribute("type", dto2.getType());
+			 session.setAttribute("name", dto2.getName());
+			 session.setAttribute("userid", dto.getUserid());
+			 session.setAttribute("passwd", dto.getPasswd());
+		 	session.setAttribute("email", dto2.getEmail());
+		 	session.setAttribute("money", dto2.getMoney());
+		 	session.setAttribute("location", dto2.getLocation());
+		 	session.setAttribute("join_date", dto2.getJoin_date());
+			if(type==0) { //고객이라면 고객페이지로
 				 System.out.println("넘어온다");
-			 	session.setAttribute("userid", dto.getUserid());
-			 	session.setAttribute("name", name);
+			
 				mav.setViewName("/customer/main"); // views/customer/main.jsp
-			 }else if(name.equals("1")) { // 가게라면 가게페이지로
-					session.setAttribute("userid", dto.getUserid());
-				 	session.setAttribute("name", name);
-					mav.setViewName("/restaurant/main"); // views/restaurant/main.jsp
-			 }else if(name.equals("2")) { //라이더라면 라이더페이지로
-				 session.setAttribute("userid", dto.getUserid());
-				 	session.setAttribute("name", name);
-					mav.setViewName("/rider/main"); // views/rider/main.jsp
-			 }else if(name.equals("3")) { // 관리자라면 관리자페이지로
-				 session.setAttribute("userid", dto.getUserid());
-				 	session.setAttribute("name", name);
+			 }else if(type==1) { // 라이더페이지로
+				 mav.setViewName("/rider/main"); // views/rider/main.jsp
+					
+			 }else if(type>=2&&type<=8) { //가게들은 가게페이지로
+			
+				 mav.setViewName("/restaurant/main"); // views/restaurant/main.jsp
+			 }else if(type==-1) { // 관리자라면 관리자페이지로
+				 
+			
 					mav.setViewName("/admin/main"); // views/rider/main.jsp
 			 }
 			 }else {
