@@ -1,10 +1,10 @@
 EATclipse
 
-member(no pk, type, name, money, location)
+member(no , type, name, userid, passwd, email, money, location, join_date)
 
-log(no pk, order_name, shop_name, product_name, rider_name, location,status)
+log(no pk, order_name, shop_name, product_name,amount, rider_name, location,status, start_date, end_date)
 
-product(no pk,shop_name,product_name, price, dd) 
+product(no pk,shop_name,product_name, price, type) 
 
 고객, cust      (customer)
 식당, rest      (restaurant)
