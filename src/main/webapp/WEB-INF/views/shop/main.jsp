@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>잇클립스|가게</title>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
 <h2>가게 메인페이지</h2>
+<button><a href="">가게 등록</a></button>
+가게 관리
 </body>
 </html>
