@@ -59,8 +59,16 @@
 				<select name="type">
    				 <option value="">유형선택</option>
    					 <option value="0">고객</option>
-   					 <option value="1">가게</option>
-  					  <option value="2">라이더</option>
+  					  <option value="1">라이더</option>
+  					  <optgroup label="가게">
+  					   <option value="2">한식</option>
+  					   <option value="3">양식</option>
+  					   <option value="4">분식</option>
+  					   <option value="5">중식</option>
+  					   <option value="6">일식</option>
+  					   <option value="7">디저트</option>
+  					   <option value="8">패스트푸드</option>
+						</optgroup>
 				</select>
 				</td>
 			</tr>

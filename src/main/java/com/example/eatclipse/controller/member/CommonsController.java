@@ -51,13 +51,13 @@ public class CommonsController {
 				 System.out.println("넘어온다");
 			
 				mav.setViewName("/customer/main"); // views/customer/main.jsp
-			 }else if(type==1) { // 가게라면 가게페이지로
-				
-					mav.setViewName("/restaurant/main"); // views/restaurant/main.jsp
-			 }else if(type==2) { //라이더라면 라이더페이지로
+			 }else if(type==1) { // 라이더페이지로
+				 mav.setViewName("/rider/main"); // views/rider/main.jsp
+					
+			 }else if(type>=2&&type<=8) { //가게들은 가게페이지로
 			
-					mav.setViewName("/rider/main"); // views/rider/main.jsp
-			 }else if(type==3) { // 관리자라면 관리자페이지로
+				 mav.setViewName("/restaurant/main"); // views/restaurant/main.jsp
+			 }else if(type==-1) { // 관리자라면 관리자페이지로
 				 
 			
 					mav.setViewName("/admin/main"); // views/rider/main.jsp
