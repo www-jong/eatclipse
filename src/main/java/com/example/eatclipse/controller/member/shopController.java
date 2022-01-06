@@ -14,6 +14,7 @@ public class shopController {
 	@Inject
 	productDAO productdao;
 	
+	//shop/main에서 가게 등록 전달받음
 	@RequestMapping("register.do") //매핑값 /eatclipse/shop/register.do
 	public String shop_register() {
 		return "shop/shop_register"; //상품 등록 페이지
@@ -24,7 +25,7 @@ public class shopController {
 		String fileName = "-"; //첨부파일 없을 때 빈칸 대신 -기호 사용(빈칸"" -> 오류 가능성ㅇ)
 		if(!dto.getImage().isEmpty()) {
 			fileName=dto.getImage();
-		}
+		}// 이부분 잘 모르겠음 ㅜㅜ 파일명, getOriginalFileName? 은 어디다 쓰는걸까요
 		return "redirect:/shop/detail.do";
 	}
 	
