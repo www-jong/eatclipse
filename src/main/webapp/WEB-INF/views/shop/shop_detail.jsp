@@ -7,6 +7,6 @@
 <title>${dto.shop_name}</title>
 </head>
 <body>
-테스트으
+
 </body>
 </html>
