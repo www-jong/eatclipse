@@ -23,18 +23,17 @@ public class CustDAOImpl implements CustDAO {
 		sqlSession.insert("customer.insert", dto);
 	}
 	
-	// ? - DAO와 함께 파악 예정
+	// ? - 나중에 삭제...?
 	@Override
 	public String search_name(CustDTO dto) {
 		return sqlSession.selectOne("customer.search_name", dto);
 	}
 	
-	// ? - DAO와 함께 파악 예정
+	// 고객 회원 상세 정보 보여주기
 	@Override
 	public CustDTO view(String userid) {
 		return sqlSession.selectOne("customer.view", userid);
 	}
-	
 	
 	// 고객 회원 정보 수정
 	@Override
