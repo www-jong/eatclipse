@@ -20,7 +20,7 @@ public class AdminController {
 
 	@Inject
 	AdminDAO adminDao;
-	
+	//테스트입니더
 	@RequestMapping("main.do")
 	   public String main() {
 	      return "admin/main";
