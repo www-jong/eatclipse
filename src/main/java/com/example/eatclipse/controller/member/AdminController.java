@@ -24,6 +24,7 @@ public class AdminController {
 	//테테스트
 	@RequestMapping("main.do")
 	   public String main() {
+		System.out.println("테스트");
 	      return "admin/main";
 	   }
 	@RequestMapping("alllist.do")
