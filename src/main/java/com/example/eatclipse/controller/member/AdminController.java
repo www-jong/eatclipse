@@ -13,6 +13,7 @@ import com.example.eatclipse.model.member.AdminDAO;
 
 
 // 난 요기다가 커밋 & 푸시
+//테스트트
 @Controller 
 @RequestMapping("/admin/*")  // 이게 클래스 위에 담겨져있으면 클래스안의 공통된 주소를 떼온겨)
 // 클래스안에 공통으로 들어가는 /admin 을 나타냄. 즉, /admin/login.do 이렇게오면 받아들임
