@@ -18,4 +18,10 @@
 	<select id="view" resultType="com.example.eatclipse.model.commons.CommonsDTO">
 		select * from member where no=#{no}
 	</select>
+	
+	<!-- 중복된 아이디 검색 -->
+	<select id="search_id" resultType="String">
+		select userid from member where userid=#{userid}
+	</select>
+	
 </mapper>

@@ -12,31 +12,20 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.eatclipse.model.member.AdminDAO;
 
 
-// 난 요기다가 커밋 & 푸시
-//테스트트
-// ㅇㅁㄴㅇㄴㅁㅇ
-//dsadsad
+
 @Controller 
 @RequestMapping("/admin/*")  // 이게 클래스 위에 담겨져있으면 클래스안의 공통된 주소를 떼온겨)
 // 클래스안에 공통으로 들어가는 /admin 을 나타냄. 즉, /admin/login.do 이렇게오면 받아들임
-//5:27 다시 테스트
 public class AdminController {
 
 	@Inject
 	AdminDAO adminDao;
-	//테스트입니더
-	//테테스트
+	
 	@RequestMapping("main.do")
 	   public String main() {
-		System.out.println("테스트");
 	      return "admin/main";
 	   }
-	@RequestMapping("alllist.do")
-	   public ModelAndView list(ModelAndView mav) {
-	      mav.setViewName("/admin/all_list");
-	      mav.addObject("list", adminDao.alllist());
-	      return mav;
-	   }
+
 	@RequestMapping("list/{type}") //type을 전해받아 그 type의 
 	   public ModelAndView list(@PathVariable("type") int type,ModelAndView mav) {
 	 
@@ -44,17 +33,16 @@ public class AdminController {
 		if(type>=2)mav.addObject("list", adminDao.shoplist(type));
 		else if(type==1)mav.addObject("list", adminDao.riderlist(type));
 		else if(type==0)mav.addObject("list", adminDao.cuslist(type));
+		else if(type==-1)mav.addObject("list", adminDao.alllist());
 	      mav.addObject("t",type);
 	      return mav;
 	   }
 		
-	 @RequestMapping("delete/{no}")
-	   public String delete(@PathVariable("no") int no) {
+	 @RequestMapping("delete/{no}/{type}")
+	   public String delete(@PathVariable("no") int no,@PathVariable("type") int type) { // 모든 유저목록에서 삭제수행 후, 다시 그페이지로 돌아감
 	     adminDao.delete(no);
-	    
-	      return "redirect:/admin/alllist.do";
+	      return "redirect:/admin/list/{type}";
 	   }
 	
-
 	
 }

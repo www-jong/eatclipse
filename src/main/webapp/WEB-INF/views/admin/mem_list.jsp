@@ -9,7 +9,8 @@
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<h2> <c:if test="${t==0}">고객</c:if>
+<h2> <c:if test="${t==-1}">전체</c:if>
+      <c:if test="${t==0}">고객</c:if>
       <c:if test="${t==1}">라이더</c:if>
       <c:if test="${t==2}">가게</c:if>목록</h2>
  <a href="/eatclipse/admin/main.do">[메인화면]</a>
@@ -44,7 +45,7 @@
       </td>
       <td>
       <c:if test="${row.type!=-1}"><!-- 관리자가 아닐경우 -->
-      <a href="/eatclipse/admin/delete/${row.no}">삭제</a>
+      <a href="/eatclipse/admin/delete/${row.no}/${type=t}">삭제</a>
       </c:if>
   	  </td>
    </tr>

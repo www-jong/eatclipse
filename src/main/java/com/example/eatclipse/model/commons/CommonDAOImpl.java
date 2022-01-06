@@ -23,9 +23,8 @@ public class CommonDAOImpl implements CommonsDAO {
 	}
 
 	@Override
-	public String search_name(CommonsDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public String search_id(CommonsDTO dto) { // 아이디가 겹치는지 확인
+		return sqlSession.selectOne("commons.search_id", dto);
 	}
 
 	@Override

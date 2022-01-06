@@ -85,8 +85,8 @@ public class CommonsController {
 	 
 	 @RequestMapping("join_check.do")
 	 public ModelAndView join_check(@ModelAttribute CommonsDTO dto, HttpSession session, ModelAndView mav) {
-		 String name=commonsDao.search_name(dto);
-		 if(name==null) { //중복되는 이름이 없다면
+		 String id=commonsDao.search_id(dto);
+		 if(id==null) { //중복되는 이름이 없다면
 			 	commonsDao.insert(dto);  // 계정등록
 				mav.setViewName("commons/login"); 
 				mav.addObject("message", "success");

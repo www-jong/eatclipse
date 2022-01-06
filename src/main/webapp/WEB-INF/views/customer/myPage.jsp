@@ -34,26 +34,26 @@ $(function(){
 	<table border="1" width="700px">
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="userid" value="${dto.userid}" readonly></td>
+			<td>${dto.userid}</td>
 		</tr>
-		<tr>
-			<td>비밀번호</td>
-			<td><input type="password" name="passwd"></td>
-		</tr>
+
 		<tr>
 			<td>이름</td>
-			<td><input type="text" name="username"value="${dto.name}" ></td>
+			<td>${dto.name}</td>
 		</tr>
+		
 		<tr>
 			<td>이메일</td>
 			<td><input type="text" name="email" value="${dto.email}"></td>
 		</tr>
+		
 		<tr>
 			<td>가입일자</td>
 			<td>
 				<fmt:formatDate value="${dto.join_date}" pattern="yyyy-MM-dd HH:mm:s"/>
 			</td>
 		</tr>
+		
 		<tr>
 			<td colspan="2" align="center">
 				<input type="button" value="수정" id="btnUpdate">

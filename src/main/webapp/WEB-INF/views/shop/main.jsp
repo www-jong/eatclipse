@@ -9,7 +9,7 @@
 <body>
 <%@ include file="../include/menu.jsp" %>
 <h2>가게 메인페이지</h2>
-<button><a href="">가게 등록</a></button>
-가게 관리
+<button><a href="/eatclipse/shop/register.do">가게 등록</a></button><br>
+<button><a href=" eatclipse/shop/detail.do">가게 관리</a></button>
 </body>
 </html>

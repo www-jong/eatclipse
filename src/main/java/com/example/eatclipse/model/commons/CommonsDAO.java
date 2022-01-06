@@ -11,7 +11,7 @@ public interface CommonsDAO {
 	//회원가입 등록
 	void insert(CommonsDTO dto);
 
-	String search_name(CommonsDTO dto);
+	String search_id(CommonsDTO dto);
 
 	Object view(int no);
 	

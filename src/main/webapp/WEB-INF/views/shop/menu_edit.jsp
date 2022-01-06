@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메뉴 수정</title>
 </head>
 <body>
+<%@ include file="../include/menu.jsp" %>
 
 </body>
 </html>
