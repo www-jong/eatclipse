@@ -21,6 +21,7 @@ public class AdminController {
 	@Inject
 	AdminDAO adminDao;
 	//테스트입니더
+	//테테스트
 	@RequestMapping("main.do")
 	   public String main() {
 	      return "admin/main";
