@@ -12,6 +12,8 @@ public class shopController {
 	@Inject
 	productDAO productdao;
 	
+	
+	
 	@RequestMapping("register.do") //매핑값 eatclipse/
 	public String register() {
 		return "shop/shop_register"; //상품 등록 페이지
