@@ -8,17 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
 $(function(){
 	$("#btnUpdate").click(function(){
-		document.form1.action="/eatclipse/member/update.do";  // 경로가 맞나??? member???
+		document.form1.action="/eatclipse/customer/update.do";  // 경로가 맞나???
 		document.form1.submit();
 	});
 	
 	$("#btnDelete").click(function(){
 		if(confirm("삭제하시겠습니까?")){
-			document.form1.action="/eatclipse/member/delete.do";
+			document.form1.action="/eatclipse/customer/delete.do";  // 경로가 맞나???
 			document.form1.submit();
 		}
 	});
@@ -44,7 +45,7 @@ $(function(){
 		
 		<tr>
 			<td>이메일</td>
-			<td><input type="text" name="email" value="${dto.email}"></td>
+			<td>${dto.email}</td>
 		</tr>
 		
 		<tr>

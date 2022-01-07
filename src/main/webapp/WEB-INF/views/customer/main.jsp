@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>고객 메인 페이지</title>
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
 <%@ include file="../include/menu_cust.jsp" %>
-<h2>고객 메인페이지</h2>
+<h2>고객 메인 페이지</h2>
 </body>
 </html>

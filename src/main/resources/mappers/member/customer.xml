@@ -28,5 +28,12 @@
 	<!-- 계정 탈퇴 -->
 	<delete id="delete">
 		delete from member where userid=#{userid}
-	</delete>	
+	</delete>
+
+	<!-- 계정확인(비밀번호 확인) -->
+	<select id="check_passwd" resultType="int">
+		select count(*) from
+		member where userid=#{userid} and passwd=#{passwd};
+	</select>
+	
 </mapper>

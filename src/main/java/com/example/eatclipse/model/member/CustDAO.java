@@ -19,4 +19,7 @@ public interface CustDAO {
 	
 	// 고객 계정 삭제
 	void delete(String userid);
+	
+	// 계정확인(비밀번호 확인)
+	boolean check_passwd(String userid, String passwd);
 }
