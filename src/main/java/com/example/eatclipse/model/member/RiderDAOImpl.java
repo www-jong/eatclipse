@@ -21,10 +21,27 @@ public class RiderDAOImpl implements RiderDAO {
 		return sqlSession.selectList("rider.delivery_list");
 	}
 	
+	@Override
 	public List<LogDTO> accept_list(String name) {
 		
 		return sqlSession.selectList("rider.accept_list",name);
 	}
 
+	//배달수락
+	@Override
+	public void accept(LogDTO dto) {
+		sqlSession.update("rider.accept",dto);
+	}
+	
+	//배달완료
+	@Override
+	public void complete(int no) {
+		sqlSession.update("rider.complete",no);
+	}
 
+	@Override
+	public List<LogDTO> detail(int no) {
+		
+		return sqlSession.selectList("rider.detail",no);
+	}
 }

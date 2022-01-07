@@ -24,5 +24,8 @@
 		delete from member where no=#{no}
 	</delete>
 	
+	<select id = "loglist" resultType="com.example.eatclipse.model.commons.LogDTO">
+	select * from log group by no order by no desc;
+	</select>
 
 </mapper>

@@ -13,8 +13,9 @@ public interface RiderDAO {
 
 		List<LogDTO> delivery_list(); // 
 		List<LogDTO> accept_list(String name);  //  
-	
-
-	
+		
+		void accept(LogDTO dto);
+		void complete(int no);
+		List<LogDTO> detail(int no);
 	
 }

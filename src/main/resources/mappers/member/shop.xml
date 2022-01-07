@@ -2,54 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="shop">
+<mapper namespace="menu">
 
-	<!-- 가게 등록 -->
+	<!-- 메뉴 등록 -->
 	<insert id="insert">
-		insert into product(shop_name, product_name, price, image, type)
-		values(#{shop_name}, #{product_name}, #{price}, #{image}, #{type})
-	</insert>
-
-	<!-- 가게 상세보기 -->
-	<select id="detail"
-		resultType="com.example.eatclipse.model.shop.productDTO">
-		select * from product where shop_name=#{shop_name}
-	</select>
-
-	<!-- 메뉴 추가 -->
-	<insert id="menuinsert">
-		insert into product(
-		shop_name=#{shop_name},
-		product_name=#{product_name},
-		price=#{price},
-		image=#{image},
-		type=#{type})
-		where shop_name=#{shop_name}
+		insert into product(shop_name, product_name, price, image)
+		values(#{shop_name}, #{product_name}, #{price}, #{image})
 	</insert>
 
 	<!-- 메뉴 리스트 -->
-	<select id="menulist"
-		resultType="com.example.eatclipse.model.shop.productDTO"><!-- 이부분 Product 이렇게 p대문자되있어서 오류떴어요 -->
-		select * from product order by shop_name=#{shop_name}
+	<select id="list" resultType="com.example.eatclipse.model.shop.productDTO">
+		select * from product order by shop_name=#{sessionScope.name}
 	</select>
 
 	<!-- 메뉴 수정 -->
-	<update id="menuupdate">
+	<update id="update">
 		update product set
-		shop_name=#{shop_name},
 		product_name=#{product_name},
 		price=#{price},
 		image=#{image},
-		type=#{type})
-		where shop_name=#{shop_name}
+		type=#{type}
+		where no=#{no}
 	</update>
 
 	<!-- 메뉴 삭제 -->
-	<delete id="menudelete">
-		delete from product where shop_name=#{shop_name}
+	<delete id="delete">
+		delete from product where no=#{no}
 	</delete>
 
-
+	<!-- 판매 상태 변경 -->
+	<update id="typeupdate">
+		update product set
+		type=#{type}
+		where no=#{no}
+	</update>
 
 </mapper>
 

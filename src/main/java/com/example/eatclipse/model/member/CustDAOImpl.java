@@ -1,5 +1,8 @@
 package com.example.eatclipse.model.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -46,6 +49,24 @@ public class CustDAOImpl implements CustDAO {
 	public void delete(String userid) {
 		sqlSession.delete("customer.delete",userid);
 		
+	}
+	
+	// 계정확인(비밀번호 확인)
+	@Override
+	public boolean check_passwd(String userid, String passwd) {
+
+		boolean result = false;
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userid", userid);
+		map.put("passwd", passwd);
+		int count = sqlSession.selectOne("customer.check_passwd", map);
+
+		if (count == 1) {
+			result = true;
+		}
+
+		return result;
 	}
 
 }

@@ -44,5 +44,12 @@ public class AdminController {
 	      return "redirect:/admin/list/{type}";
 	   }
 	
+	 @RequestMapping("loglist.do")
+	   public ModelAndView loglist(ModelAndView mav) { //loglist페이지로 이동
+	      mav.setViewName("/admin/loglist");
+	      mav.addObject("list",adminDao.loglist());
+		 return mav;
+	   }
+	 
 	
 }

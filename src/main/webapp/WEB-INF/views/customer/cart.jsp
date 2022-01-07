@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>장바구니</title>
 </head>
 <body>
+<%@ include file="../include/menu_cust.jsp" %>
+
+<h3>장바구니!@#$%^&</h3>
 
 </body>
 </html>

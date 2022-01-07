@@ -24,4 +24,13 @@
 		select userid from member where userid=#{userid}
 	</select>
 	
+	<!-- 수정 -->
+	<update id="update">
+		update member set passwd=#{passwd}, name=#{name},email=#{email}, location=#{location}
+		where userid=#{userid}
+	</update>
+	
+		<delete id="delete">
+		delete from memberdb where userid=#{userid}
+	</delete>
 </mapper>

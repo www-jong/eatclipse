@@ -98,32 +98,24 @@ public class CommonsController {
 	 }
 	 
 	 
-		/*
-		 * //회원의 상세정보를 처리하는(보여주는) 로직
-		 * 
-		 * @RequestMapping("view.do") public String view(@RequestParam String
-		 * userid,Model model) { model.addAttribute("dto",memberDao.view(userid));
-		 * return "member/view"; }
-		 */
-		
 		//회원 정보수정하기
-		/*
-		 * @RequestMapping("member/update.do") public ModelAndView
-		 * update(@ModelAttribute MemberDTO dto, HttpSession session,ModelAndView mav) {
-		 * memberDao.update(dto); //수정처리 session.invalidate(); //세션 초기화
-		 * mav.setViewName("member/login"); // views/main.jsp mav.addObject("message",
-		 * "update_success"); return mav;
-		 * 
-		 * }
-		 */
-		/* @RequestMapping("member/delete.do") */
-/*		public ModelAndView delete(@RequestParam String userid, HttpSession session, ModelAndView mav) {
-			
-				memberDao.delete(userid);
+		
+		  @RequestMapping("update.do") 
+		  public ModelAndView update(@ModelAttribute CommonsDTO dto, HttpSession session,ModelAndView mav) {
+		  commonsDao.update(dto); //수정처리 
+		  session.invalidate(); //세션 초기화
+		 	mav.setViewName("commons/login");
+		 	mav.addObject("message", "update_success");
+		   return mav;
+		  }
+		  
+		 @RequestMapping("delete.do") 
+		public ModelAndView delete(@RequestParam String userid, HttpSession session, ModelAndView mav) {
+				commonsDao.delete(userid);
 				session.invalidate(); //세션 초기화
-				mav.setViewName("member/login"); // views/main.jsp
+				mav.setViewName("commons/login"); // views/main.jsp
 				mav.addObject("message", "delete_success");
 				return mav;
 
-		}*/
+		}
  }

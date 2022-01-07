@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.example.eatclipse.model.commons.CommonsDTO;
+import com.example.eatclipse.model.commons.LogDTO;
 
 
 
@@ -43,4 +44,10 @@ public class AdminDAOImpl implements AdminDAO {
 		sqlSession.delete("admin.delete", no);
 	}
 
+	
+	@Override
+	public List<LogDTO> loglist() {
+		
+		return sqlSession.selectList("admin.loglist");
+	}
 }

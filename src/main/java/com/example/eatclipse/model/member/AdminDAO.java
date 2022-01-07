@@ -3,6 +3,7 @@ package com.example.eatclipse.model.member;
 import java.util.List;
 
 import com.example.eatclipse.model.commons.CommonsDTO;
+import com.example.eatclipse.model.commons.LogDTO;
 
 
 
@@ -21,7 +22,7 @@ public interface AdminDAO {
 		
 		List<CommonsDTO> cuslist(int type);
 	
-
+		List<LogDTO> loglist();
 	
 	
 }
