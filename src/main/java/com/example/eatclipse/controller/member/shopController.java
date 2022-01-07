@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,6 +38,7 @@ public class shopController {
 		return "redirect:/shop/menu_list.do"; //insert 후 list로 넘김
 	}
 	
+	//메뉴 리스트
 	@RequestMapping("menu_list.do") // /eatclipse/shop/menu_list.do
 	public ModelAndView list(ModelAndView mav) {
 		mav.setViewName("/shop/menu_list");
@@ -45,9 +47,23 @@ public class shopController {
 	}
 	
 	//메뉴 수정
-	@RequestMapping("menu_edit")// /eatclipse/shop/menu_edit.do
-	public String menu_edit() {
-		return "shop/menu_edit";
+	@RequestMapping("menu_edit.do")// /eatclipse/shop/menu_edit.do
+	public String menu_edit(productDTO dto, HttpServletRequest request) {
+		productdao.menu_update(dto);
+		return "redirect:/shop/menu_list.do";
 	}
 	
+	//메뉴 판매 상태 변경(type)
+	@RequestMapping("menu_type_update.do")
+	public String type_update(productDTO dto, HttpServletRequest request) {
+		productdao.menu_type_update(dto);
+		return "redirect:/shop/menu_list.do";
+	}
+	
+	//메뉴 삭제
+	@RequestMapping("delete.do")
+	public String delete(@PathVariable int no, HttpServletRequest request) {
+		productdao.menu_delete(no);
+		return "redirect:/shop/menu_list.do";
+	}
 }

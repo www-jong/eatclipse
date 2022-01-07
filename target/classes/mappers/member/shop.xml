@@ -6,32 +6,36 @@
 
 	<!-- 메뉴 등록 -->
 	<insert id="insert">
-		insert into product(shop_name, product_name, price, image, type)
-		values(#{sessionScope.name}, #{product_name}, #{price}, #{image}, #{type})
+		insert into product(shop_name, product_name, price, image)
+		values(${sessionScope.name}, #{product_name}, #{price}, #{image})
 	</insert>
 
 	<!-- 메뉴 리스트 -->
 	<select id="list" resultType="com.example.eatclipse.model.shop.productDTO">
-		select * from product order by shop_name=#{name}
+		select * from product order by shop_name=#{sessionScope.name}
 	</select>
 
 	<!-- 메뉴 수정 -->
 	<update id="update">
 		update product set
-		shop_name=#{sessionScope.name},
 		product_name=#{product_name},
 		price=#{price},
 		image=#{image},
 		type=#{type}
-		where shop_name=#{sessionScope.name}
+		where no=#{no}
 	</update>
 
 	<!-- 메뉴 삭제 -->
 	<delete id="delete">
-		delete from product where shop_name=#{sessionScope.name}
+		delete from product where no=#{no}
 	</delete>
 
-	<!--  -->
+	<!-- 판매 상태 변경 -->
+	<update id="typeupdate">
+		update product set
+		type=#{type}
+		where no=#{no}
+	</update>
 
 </mapper>
 

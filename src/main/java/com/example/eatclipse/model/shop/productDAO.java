@@ -14,8 +14,8 @@ public interface productDAO {
 	void menu_update(productDTO dto);
 
 	// 메뉴 삭제
-	void menu_delete(productDTO dto);
+	void menu_delete(int no);
 
 	// 판매 상태 변경
-
+	void menu_type_update(productDTO dto);
 }

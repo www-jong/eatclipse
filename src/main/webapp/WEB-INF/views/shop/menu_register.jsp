@@ -8,7 +8,6 @@
 <title>메뉴 등록</title>
 <!-- 메뉴 등록 후 가게 관리 페이지로 넘어가는 작업 -->
 <!-- 메뉴 등록 취소 버튼 -->
-<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 function menu_register(){
 	var shop_name = session.getAttribute.shop_name;

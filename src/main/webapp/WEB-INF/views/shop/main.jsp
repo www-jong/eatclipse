@@ -15,17 +15,22 @@
 	h4{
 	text-align: center;
 	}
-	
-
 </style>
+<script>
+function menu_type_update(){
+	var type = document.menu.type.value;
+	document.menu.action="/eatclipse/shop/menu_type_update.do"
+}
+</script>
 </head>
+
 <body>
 	<%@ include file="../include/menu_shop.jsp"%>
-	<h3>${sessionScope.name}관리 페이지</h3>
+	<h3>[${sessionScope.name}]관리 페이지</h3>
 
-	<section id="menu"> <!-- 가게 메뉴 section -->
-	<h4>가게 메뉴</h4>
-	<button><a href="/eatclipse/shop/menu_register.do">메뉴 등록</a></button> 
+	<section id="menu" name="menu"> <!-- 가게 메뉴 section -->
+		<h4>가게 메뉴</h4>
+		<a href="/eatclipse/shop/menu_register.do">메뉴 등록</a>
 		<table border="solid">
 			<tr>
 				<th>이미지</th>
@@ -40,16 +45,16 @@
 				<td>${row.product_name}</td>
 				<td>${row.price}</td>
 				<td>
-					${row.type}
+				<c:if test="${row.type == 0}">판매중</c:if>
+				<c:if test="${row.type == 1}">품절</c:if>
 					<select>
 						<option>판매</option>
 						<option>품절</option>
 					</select>
-					<input type="button" value="변경">
+					<input type="button" value="변경" onclick="menu_type_update()">
 				</td>
 				<td>
-				<button>수정</button>
-				<button>삭제</button>
+				<a href="/eatclipse/shop/menu_edit.do">수정하기</a>
 				</td>
 			</tr>
 			</c:forEach>
