@@ -7,7 +7,7 @@
 <title>메뉴 수정</title>
 </head>
 <body>
-<%@ include file="../include/menu.jsp" %>
+<%@ include file="../include/menu_shop.jsp"%>
 
 </body>
 </html>

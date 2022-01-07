@@ -3,46 +3,48 @@ package com.example.eatclipse.controller.member;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.eatclipse.model.shop.productDAO;
 import com.example.eatclipse.model.shop.productDTO;
-
+@Controller 
 @RequestMapping("/shop/*")//가게 등록수정, 메뉴등록 수정 작업용
 public class shopController {
 
 	@Inject
 	productDAO productdao;
 	
-	@RequestMapping("register.do") //매핑값 /eatclipse/shop/register.do
-	public String shop_register() {
-		return "shop/shop_register"; //상품 등록 페이지
+	@RequestMapping("main.do")
+	public String shopmain() {
+		return "/shop/main";
 	}
 	
-	@RequestMapping("insert.do")
-	public String insert(productDTO dto, HttpServletRequest request) {
-		String fileName = "-"; //첨부파일 없을 때 빈칸 대신 -기호 사용(빈칸"" -> 오류 가능성ㅇ)
-		if(!dto.getImage().isEmpty()) {
-			fileName=dto.getImage();
-		}
-		return "redirect:/shop/detail.do";
-	}
-	
-	@RequestMapping("detail.do") //매핑값 /eatclipse/shop/detail.do
-	public String shop_detail() { 
-		return "shop/shop_detail"; //가게 상세 페이지
-	}
-	
+	//메뉴 등록 페이지로 넘기는 작업
 	@RequestMapping("menu_register.do") // /eatclipse/shop/menu_register.do
 	public String menu_register() {
-	return "shop/menu_register"; //가게 메뉴 등록페이지
+	return "/shop/menu_register";
+	}
+	
+	//메뉴 등록하는 작업
+	@RequestMapping("insert.do")
+	public String insert(productDTO dto, HttpServletRequest request) {
+		/* String fileName = "-"; //첨부파일 없을 때 빈칸 대신 -기호 사용(빈칸"" -> 오류 가능성ㅇ)
+		 * if(!dto.getImage().isEmpty()) { fileName=dto.getImage(); }// 파일 첨부 다시 작업
+		 */		
+		productdao.menu_insert(dto);
+		return "redirect:/shop/menu_list.do"; //insert 후 list로 넘김
 	}
 	
 	@RequestMapping("menu_list.do") // /eatclipse/shop/menu_list.do
-	public String menu_list() {
-		return "shop/menu_list"; //메뉴 리스트..?-> 가게 상세 페이지에 있어야함
+	public ModelAndView list(ModelAndView mav) {
+		mav.setViewName("/shop/menu_list");
+		mav.addObject("menulist", productdao.menu_list());
+		return mav;
 	}
 	
+	//메뉴 수정
 	@RequestMapping("menu_edit")// /eatclipse/shop/menu_edit.do
 	public String menu_edit() {
 		return "shop/menu_edit";

@@ -7,6 +7,8 @@ public class productDTO {
 	private String product_name;
 	private int price;
 	private String image;
+	private int type;
+	
 	
 	public String getShop_name() {
 		return shop_name;
@@ -34,6 +36,14 @@ public class productDTO {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+	
 	public productDTO(String shop_name, String product_name, int price) {
 		this.shop_name = shop_name;
 		this.product_name = product_name;
@@ -45,8 +55,10 @@ public class productDTO {
 	@Override
 	public String toString() {
 		return "productDTO [shop_name=" + shop_name + ", product_name=" + product_name + ", price=" + price + ", image="
-				+ image + "]";
+				+ image + ", type=" + type + "]";
 	}
+	
+	
 	
 	
 	
