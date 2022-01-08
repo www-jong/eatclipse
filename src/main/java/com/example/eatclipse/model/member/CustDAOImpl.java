@@ -68,5 +68,49 @@ public class CustDAOImpl implements CustDAO {
 
 		return result;
 	}
+	
+	/*
+	 * // 캐시 충전
+	 * 
+	 * @Override public void cashCharge(String userid, int amount) {
+	 * 
+	 * sqlSession.cashCharge
+	 * 
+	 * 
+	 * 
+	 * }
+	 */
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
