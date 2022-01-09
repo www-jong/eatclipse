@@ -34,8 +34,9 @@ public class CommonsController {
 	 
 	 @RequestMapping("login_check.do")
 	 public ModelAndView login_check(@ModelAttribute CommonsDTO dto, HttpSession session, ModelAndView mav) {
-		 int no=commonsDao.login(dto);
-		 if(no!=0) { //맞으면
+		 Integer no=commonsDao.login(dto); // Integer는 int랑 다름!! null을 표현할 수 있음!! int는 안됨!! 아오!
+		 System.out.println(no);
+		 if(no!=null) { //맞으면
 			CommonsDTO dto2=(CommonsDTO) commonsDao.view(no); //no를 바탕으로 로그인정보를 다 가져옴
 			int type=dto2.getType();
 			 System.out.println("로그인 성공, type : "+no); //로그인되는지 확인용으로 넣음.
@@ -98,25 +99,7 @@ public class CommonsController {
 	 }
 	 
 	 
-		//회원 정보수정하기
+		//회원 정보수정하기 --> 각자 구현
 
-	 
-		  @RequestMapping("update.do") 
-		  public ModelAndView update(@ModelAttribute CommonsDTO dto, HttpSession session,ModelAndView mav) {
-		  commonsDao.update(dto); //수정처리 
-		  session.invalidate(); //세션 초기화
-		 	mav.setViewName("commons/login");
-		 	mav.addObject("message", "update_success");
-		   return mav;
-		  }
-		  
-		 @RequestMapping("delete.do") 
-		public ModelAndView delete(@RequestParam String userid, HttpSession session, ModelAndView mav) {
-				commonsDao.delete(userid);
-				session.invalidate(); //세션 초기화
-				mav.setViewName("commons/login"); // views/main.jsp
-				mav.addObject("message", "delete_success");
-				return mav;
-
-		}
+	
  }
