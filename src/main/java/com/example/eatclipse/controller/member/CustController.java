@@ -124,12 +124,30 @@ public class CustController {
 	
 	// 회원이 마이페이지에서 [캐시 충전] 버튼을 누르면 돈 충전.
 	@RequestMapping("cashCharge.do")    // 로직 전체 손봐야 해.
-	public String cashCharge(@ModelAttribute CustDTO dto) {
+	public String cashCharge() {
+		return "customer/cashCharge_write";   
+	}
+	
+/*	@RequestMapping("cashCharge_write.do")    // 로직 전체 손봐야 해.
+	public String cashCharge_write(@ModelAttribute CustDTO dto, ModelAndView mav) {
+		
+//		custDAO.cashCharge(String userid, int amount);
+		
+		return "customer/cashCharge";   
+	} */
+	
+	@RequestMapping("cashCharge_logic.do")    // 로직 전체 손봐야 해.
+	public String cashCharge_logic(@ModelAttribute CustDTO dto, 
+			HttpSession session, ModelAndView mav) {
+		
+		custDAO.cashCharge(dto);
 		
 //		custDAO.cashCharge(String userid, int amount);
 		
 		return "customer/cashCharge";   
 	}
+	
+	
 	
 	/////////////   고객 main에서 [한식], [양식], [분식] ... 버튼 눌러서 식당 리스트 접근   ///////////
 	
@@ -157,7 +175,7 @@ public class CustController {
 		return "customer/bunsick";
 	}
 	
-/////////////   최근 본 가게   ///////////
+/////////////   최근 본 가게   /////////////
 	
 	
 	
