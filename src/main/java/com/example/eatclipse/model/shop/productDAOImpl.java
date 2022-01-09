@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.example.eatclipse.model.commons.LogDTO;
+
 @Repository
 public class productDAOImpl implements productDAO {
 
@@ -21,8 +23,8 @@ public class productDAOImpl implements productDAO {
 
 	//메뉴 리스트
 	@Override
-	public List<productDTO> menu_list() {
-		return sqlSession.selectList("menu.list");
+	public List<productDTO> menu_list(String name) {
+		return sqlSession.selectList("menu.list",name);
 	}
 
 	//메뉴 수정
@@ -42,6 +44,13 @@ public class productDAOImpl implements productDAO {
 	public void menu_type_update(productDTO dto) {
 		sqlSession.update("menu.typeupdate", dto);
 	}
+
+	@Override
+	public List<LogDTO> log_list() {
+		return sqlSession.selectList("log.list");
+	}
+
+	
 
 	
 }
