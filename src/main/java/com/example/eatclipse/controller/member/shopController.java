@@ -15,15 +15,21 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.eatclipse.model.shop.productDAO;
 import com.example.eatclipse.model.shop.productDTO;
 @Controller 
-@RequestMapping("/shop/*")//가게 등록수정, 메뉴등록 수정 작업용
+@RequestMapping("/shop/*")//가게 등록수정, 메뉴등록 수정 작업용 
 public class shopController {
 
 	@Inject
 	productDAO productdao;
 	
+	//메뉴리스트 //주문 목록 리스트
 	@RequestMapping("main.do")
-	public String shopmain() {
-		return "/shop/main";
+	public ModelAndView shopmain(ModelAndView mav, HttpSession session) {
+		String name=(String) session.getAttribute("name");
+		//System.out.println(name);
+		mav.addObject("menulist", productdao.menu_list(name));
+		mav.addObject("loglist", productdao.log_list());
+		mav.setViewName("/shop/main.do");
+		return mav;
 	}
 	
 	//메뉴 등록 페이지로 넘기는 작업
@@ -35,16 +41,7 @@ public class shopController {
 	//메뉴 등록하는 작업
 	@RequestMapping("insert.do")
 	public String insert(productDTO dto, HttpServletRequest request, HttpSession session) {
-		/* String fileName = "-"; //첨부파일 없을 때 빈칸 대신 -기호 사용(빈칸"" -> 오류 가능성ㅇ)
-		 * if(!dto.getImage().isEmpty()) { fileName=dto.getImage(); }// 파일 첨부 다시 작업
-		 */	
-		
-		/*
-		 * 업로드기능좀 살려놨어요.
-		 * +productDTO에 MultipartFile file1 얘가필요하길래 이것도 넣어놨어요
-		 * menu_list.jsp 가 없던데 원래없던거맞죠...? merge잘못한줄
-		 */
-		 String filename = "-"; //첨부파일이 없을 때를 나타내는 기호(변경가능)
+		 String filename = "-"; //첨부파일 없을 때 빈칸 대신 -기호 사용(빈칸"" -> 오류 가능성ㅇ)
 	      if (!dto.getFile1().isEmpty()) { //첨부파일이 있을 때
 	         filename = dto.getFile1().getOriginalFilename();//파일이름
 	         System.out.println("filename :"+filename);
@@ -64,38 +61,40 @@ public class shopController {
 	         }
 	      }
 	      dto.setImage(filename); //첨부파일 이름 저장
-		
 		dto.setShop_name((String) session.getAttribute("name")); //dto의 Shop_name에 세션의 name을 전달
 		productdao.menu_insert(dto);
-		return "redirect:/shop/menu_list.do"; //insert 후 list로 넘김
+		return "redirect:/shop/main.do"; //insert 후 list로 넘김
 	}
 	
-	//메뉴 리스트
-	@RequestMapping("menu_list.do") // /eatclipse/shop/menu_list.do
-	public ModelAndView list(ModelAndView mav) {
-		mav.setViewName("/shop/menu_list");
-		mav.addObject("menulist", productdao.menu_list());
-		return mav;
-	}
 	
 	//메뉴 수정
 	@RequestMapping("menu_edit.do")// /eatclipse/shop/menu_edit.do
 	public String menu_edit(productDTO dto, HttpServletRequest request) {
 		productdao.menu_update(dto);
-		return "redirect:/shop/menu_list.do";
+		return "redirect:/shop/main.do";
 	}
 	
 	//메뉴 판매 상태 변경(type)
 	@RequestMapping("menu_type_update.do")
 	public String type_update(productDTO dto, HttpServletRequest request) {
 		productdao.menu_type_update(dto);
-		return "redirect:/shop/menu_list.do";
+		return "redirect:/shop/main.do";
 	}
 	
 	//메뉴 삭제
 	@RequestMapping("delete.do")
 	public String delete(@PathVariable int no, HttpServletRequest request) {
 		productdao.menu_delete(no);
-		return "redirect:/shop/menu_list.do";
+		return "redirect:/shop/main.do";
+	}
+	
+	
+	
+	
+	//주문 진행 상태 변경
+	@RequestMapping("status_update.do")
+	public String status_update(productDTO dto, HttpServletRequest request) {
+		
+		return "redirect:/shop/main.do";
 	}
 }

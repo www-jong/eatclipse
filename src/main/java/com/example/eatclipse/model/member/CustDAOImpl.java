@@ -73,9 +73,9 @@ public class CustDAOImpl implements CustDAO {
 	 // 캐시 충전
 	 
 	  @Override 
-	  public void cashCharge(CustDTO dto) {
+	  public void cashCharge(memberDTO dto) {
 		  
-			sqlSession.selectOne("customer.update", dto);
+			sqlSession.update("customer.cashCharge", dto);
 			
 	  
 	  

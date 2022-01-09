@@ -7,15 +7,14 @@
 <title>캐시 충전 페이지</title>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	$funcion(){
-	$("#btnCashCharge").click(fucntion()){
-		var amount = $("#cash").val();
+	$(function(){
+	$("#btnCashCharge").click(function(){
 		
 		document.form1.action="/eatclipse/customer/cashCharge_logic.do";
 		document.form1.submit();
 		});		
 		
-	}
+	});
 
 
 </script>
@@ -29,7 +28,7 @@
 
 <form name="form1" method="post">
 	충전 금액 <input type="text" id = "cash" name="cash">  // text가 맞냐?
-	<button type="button" id="butCashCharge">캐시 충전</button>
+	<button type="button" id="btnCashCharge">캐시 충전</button>
 </form>
 
 </body>
