@@ -34,13 +34,13 @@ public class CommonDAOImpl implements CommonsDAO {
 
 	@Override
 	public void update(CommonsDTO dto) {
-		// TODO Auto-generated method stub
+		 sqlSession.selectOne("commons.update", dto);
 
 	}
 
 	@Override
 	public void delete(String userid) {
-		// TODO Auto-generated method stub
+		sqlSession.selectOne("commons.delete",userid);
 
 	}
 

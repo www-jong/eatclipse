@@ -98,7 +98,7 @@ public class CustController {
 		return mav;
 	}		*/
 	
-	@RequestMapping("update.do")
+	@RequestMapping("update.do")   // 실패
 	public ModelAndView update(@ModelAttribute CustDTO dto, 
 			Model model, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -121,6 +121,43 @@ public class CustController {
 			return mav;
 		}
 	}	
+	
+	// 회원이 마이페이지에서 [캐시 충전] 버튼을 누르면 돈 충전.
+	@RequestMapping("cashCharge.do")    // 로직 전체 손봐야 해.
+	public String cashCharge(@ModelAttribute CustDTO dto) {
+		
+//		custDAO.cashCharge(String userid, int amount);
+		
+		return "customer/cashCharge";   
+	}
+	
+	/////////////   고객 main에서 [한식], [양식], [분식] ... 버튼 눌러서 식당 리스트 접근   ///////////
+	
+	@RequestMapping("korean.do")
+	public String korean() {
+		
+		// 내용 작성해야 해. 그런데 잘 모르겠음...ㅜㅠ
+		
+		return "customer/korean";
+	}
+	
+	@RequestMapping("western.do")
+	public String western() {
+		
+		// 내용 작성 필요. 한식만 성공하면 여기는 껌.
+		
+		return "customer/western";
+	}
+	
+	@RequestMapping("bunsick.do")
+	public String bunsick() {
+		
+		// 내용 작성 필요. 한식만 성공하면 여기는 껌.
+		
+		return "customer/bunsick";
+	}
+	
+/////////////   최근 본 가게   ///////////
 	
 	
 	

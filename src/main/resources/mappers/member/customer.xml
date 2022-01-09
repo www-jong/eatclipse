@@ -36,4 +36,24 @@
 		member where userid=#{userid} and passwd=#{passwd};
 	</select>
 	
+ 	 <!-- 캐시 충전 --> 
+	<update id="cashCharge">
+		update member set money=#{money} where userid=#{userid}
+	</update>
+	
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

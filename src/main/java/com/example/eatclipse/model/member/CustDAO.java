@@ -22,4 +22,7 @@ public interface CustDAO {
 	
 	// 계정확인(비밀번호 확인)
 	boolean check_passwd(String userid, String passwd);
+	
+	// 캐시 충전
+//	void cashCharge(String userid, int amount);
 }

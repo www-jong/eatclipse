@@ -31,6 +31,6 @@
 	</update>
 	
 		<delete id="delete">
-		delete from memberdb where userid=#{userid}
+		delete from member where userid=#{userid}
 	</delete>
 </mapper>
