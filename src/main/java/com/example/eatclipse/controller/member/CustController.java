@@ -175,7 +175,7 @@ public class CustController {
 		return "customer/bunsick";
 	}
 	
-/////////////   최근 본 가게   ///////////
+/////////////   최근 본 가게   /////////////
 	
 	
 	
