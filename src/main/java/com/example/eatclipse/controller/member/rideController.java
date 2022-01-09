@@ -4,10 +4,13 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.eatclipse.model.commons.CommonsDTO;
 import com.example.eatclipse.model.commons.LogDTO;
 import com.example.eatclipse.model.member.RiderDAO;
 
@@ -59,9 +62,35 @@ public class rideController {
 	 }
 	
 	@RequestMapping("mypage.do")
-	public String mypage() {
-		 return "rider/mypage";
+	public ModelAndView mypage(ModelAndView mav) {
+		mav.setViewName("/rider/mypage");
+		mav.addObject("a",2);
+		return mav;
+	 }
+	@RequestMapping("mypageon.do")
+	public ModelAndView mypageon(ModelAndView mav) {
+		mav.setViewName("/rider/mypage");
+		mav.addObject("a",1); 
+		return mav;
 	 }
 	
+	  @RequestMapping("update.do") 
+	  public ModelAndView update(@ModelAttribute CommonsDTO dto, HttpSession session,ModelAndView mav) {
+	   riderdao.update(dto); //수정처리 
+	  session.invalidate(); //세션 초기화
+	 	mav.setViewName("commons/login");
+	 	mav.addObject("message", "update_success");
+	   return mav;
+	  }
+	  
+	 @RequestMapping("delete.do") 
+	public ModelAndView delete(@RequestParam String userid, HttpSession session, ModelAndView mav) {
+			riderdao.delete(userid);
+			session.invalidate(); //세션 초기화
+			mav.setViewName("commons/login"); // views/main.jsp
+			mav.addObject("message", "delete_success");
+			return mav;
+
+	}
 	
 }

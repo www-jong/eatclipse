@@ -99,7 +99,8 @@ public class CommonsController {
 	 
 	 
 		//회원 정보수정하기
-		
+
+	 
 		  @RequestMapping("update.do") 
 		  public ModelAndView update(@ModelAttribute CommonsDTO dto, HttpSession session,ModelAndView mav) {
 		  commonsDao.update(dto); //수정처리 

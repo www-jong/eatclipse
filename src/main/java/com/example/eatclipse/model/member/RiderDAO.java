@@ -17,5 +17,10 @@ public interface RiderDAO {
 		void accept(LogDTO dto);
 		void complete(int no);
 		List<LogDTO> detail(int no);
+		//유저정보 업데이트
+		void update(CommonsDTO dto);
+
+		//유저탈퇴
+		void delete(String userid);
 	
 }

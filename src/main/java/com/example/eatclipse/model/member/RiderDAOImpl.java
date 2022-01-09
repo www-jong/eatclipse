@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.example.eatclipse.model.commons.CommonsDTO;
 import com.example.eatclipse.model.commons.LogDTO;
 
 @Repository
@@ -43,5 +44,17 @@ public class RiderDAOImpl implements RiderDAO {
 	public List<LogDTO> detail(int no) {
 		
 		return sqlSession.selectList("rider.detail",no);
+	}
+	
+	@Override
+	public void update(CommonsDTO dto) {
+		 sqlSession.selectOne("rider.update", dto);
+
+	}
+
+	@Override
+	public void delete(String userid) {
+		sqlSession.selectOne("rider.delete",userid);
+
 	}
 }

@@ -26,4 +26,14 @@
 	<select id = "detail" resultType="com.example.eatclipse.model.commons.LogDTO">
 	select * from Log where no=#{no};
 	</select>
+	
+		<!-- 수정 -->
+	<update id="update">
+		update member set passwd=#{passwd}, name=#{name},email=#{email}, location=#{location}
+		where userid=#{userid}
+	</update>
+	
+		<delete id="delete">
+		delete from member where userid=#{userid}
+	</delete>
 </mapper>

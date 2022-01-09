@@ -75,7 +75,7 @@ public class CustDAOImpl implements CustDAO {
 	  @Override 
 	  public void cashCharge(CustDTO dto) {
 		  
-			sqlSession.cashCharge("customer.update", dto);
+			sqlSession.selectOne("customer.update", dto);
 			
 	  
 	  
