@@ -24,5 +24,5 @@ public interface CustDAO {
 	boolean check_passwd(String userid, String passwd);
 	
 	// 캐시 충전
-//	void cashCharge(String userid, int amount);
+	void cashCharge(CustDTO dto);
 }
