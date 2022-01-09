@@ -3,37 +3,10 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="customer">
-<!--로그인 	
-	<select id="login" resultType="String"> 
-		select username from memberdb 
-		where userid=#{userid} and passwd=#{passwd}
-	</select> -->
-	
-	<!-- 중복된 이름 검색 : 이거 필요한가???-->
-	<select id="search_name" resultType="String">
-		select userid from member where userid=#{userid}
-	</select>	
-	
-	<!-- 마이 페이지 : 상세정보보기 -->
-	<select id="view" resultType="com.example.eatclipse.model.member.CustDTO">
-		select * from member where userid=#{userid}
-	</select>
-	
-	<!-- 회원정보 수정 -->
-	<update id="update">
-		update member set passwd=#{passwd}, username=#{username},email=#{email}
-		where userid=#{userid}
-	</update>
-	
-	<!-- 계정 탈퇴 -->
-	<delete id="delete">
-		delete from member where userid=#{userid}
-	</delete>
 
-	<!-- 계정확인(비밀번호 확인) -->
-	<select id="check_passwd" resultType="int">
-		select count(*) from
-		member where userid=#{userid} and passwd=#{passwd};
+	<!-- 마이 페이지 : 상세정보보기 -->
+	<select id="view" resultType="com.example.eatclipse.model.member.CommonsDTO">
+		select * from member where userid=#{userid}
 	</select>
 	
  	 <!-- 캐시 충전 --> 
