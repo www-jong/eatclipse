@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.eatclipse.model.member.CustDAO;
 import com.example.eatclipse.model.member.CustDTO;
+import com.example.eatclipse.model.member.memberDTO;
 
 @Controller
 @RequestMapping("/customer/*")   // 고객 로그인 후, 여기로 들어오는 지 확인 필요
@@ -122,7 +123,7 @@ public class CustController {
 		}
 	}	
 	
-	// 회원이 마이페이지에서 [캐시 충전] 버튼을 누르면 돈 충전.
+	// 회원이 마이페이지에서 [캐시 충전] 버튼을 누르면 돈 충전.  성공
 	@RequestMapping("cashCharge.do")    // 로직 전체 손봐야 해.
 	public String cashCharge() {
 		return "customer/cashCharge_write";   
@@ -137,14 +138,25 @@ public class CustController {
 	} */
 	
 	@RequestMapping("cashCharge_logic.do")    // 로직 전체 손봐야 해.
-	public String cashCharge_logic(@ModelAttribute CustDTO dto, 
-			HttpSession session, ModelAndView mav) {
+	public String cashCharge_logic(@RequestParam int cash,   // cash는 write.jsp의 name.
+			HttpSession session) {  // 홍길동의 계정정보 확보. 셋어트리뷰트, 겟어트리뷰트 필요할 때
 		
-		custDAO.cashCharge(dto);
+		int money = (int) session.getAttribute("money");
 		
-//		custDAO.cashCharge(String userid, int amount);
+		money += cash;
 		
-		return "customer/cashCharge";   
+		memberDTO dto2 = new memberDTO();   // 텅 비어있는 상태
+		dto2.setMoney(money);
+		dto2.setUserid((String) session.getAttribute("userid"));
+		
+		
+		custDAO.cashCharge(dto2);
+		
+		session.setAttribute("moeny", money);  // 원래 홍길동 돈을 업데이트.
+		
+		System.out.print("성공");
+		
+		return "customer/myPage";   
 	}
 	
 	
