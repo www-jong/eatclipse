@@ -35,19 +35,30 @@ public class productDAOImpl implements productDAO {
 
 	//메뉴 삭제
 	@Override
-	public void menu_delete(int no) {
-		sqlSession.delete("menu.delete", no);
+	public void menu_delete(productDTO dto) {
+		sqlSession.delete("menu.delete", dto);
 	}
 	
-	//판매 상태 변경
+	//상품 상태 변경 : 0판매
 	@Override
-	public void menu_type_update(productDTO dto) {
-		sqlSession.update("menu.typeupdate", dto);
+	public void typeto0(productDTO dto) {
+		sqlSession.update("menu.typeto0",dto);
+	}
+		
+	//상품 상태 변경 : 1품절
+	@Override
+	public void typeto1(productDTO dto) {
+		sqlSession.update("menu.typeto1",dto);
 	}
 
 	@Override
-	public List<LogDTO> log_list() {
-		return sqlSession.selectList("log.list");
+	public List<LogDTO> log_list(String name) {
+		return sqlSession.selectList("log.list", name);
+	}
+
+	@Override
+	public void update_status(LogDTO dto) {
+		sqlSession.update("log.status", dto);
 	}
 
 	

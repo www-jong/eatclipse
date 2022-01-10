@@ -16,11 +16,16 @@ public interface productDAO {
 	void menu_update(productDTO dto);
 
 	// 메뉴 삭제
-	void menu_delete(int no);
+	void menu_delete(productDTO dto);
 
-	// 판매 상태 변경
-	void menu_type_update(productDTO dto);
+	//상품 상태 변경 : 0판매
+	void typeto0(productDTO dto);
+	
+	//상품 상태 변경 : 1판매
+	void typeto1(productDTO dto);
 
 	// 주문 목록
-	List<LogDTO> log_list();
+	List<LogDTO> log_list(String name);
+
+	void update_status(LogDTO dto);
 }

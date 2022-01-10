@@ -1,4 +1,4 @@
-package com.example.eatclipse.controller.member;
+package com.example.eatclipse.controller.shop;
 
 import java.io.File;
 
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.eatclipse.model.commons.LogDTO;
 import com.example.eatclipse.model.shop.productDAO;
 import com.example.eatclipse.model.shop.productDTO;
 @Controller 
@@ -23,11 +24,11 @@ public class shopController {
 	
 	//메뉴리스트 //주문 목록 리스트
 	@RequestMapping("main.do")
-	public ModelAndView shopmain(ModelAndView mav, HttpSession session) {
-		String name=(String) session.getAttribute("name");
+	public ModelAndView shopmain(ModelAndView mav, HttpSession session, LogDTO dto) {
+		String name = (String)session.getAttribute("name");
 		//System.out.println(name);
 		mav.addObject("menulist", productdao.menu_list(name));
-		mav.addObject("loglist", productdao.log_list());
+		mav.addObject("loglist", productdao.log_list(name));
 		mav.setViewName("/shop/main");
 		return mav;
 	}
@@ -74,27 +75,39 @@ public class shopController {
 		return "redirect:/shop/main.do";
 	}
 	
-	//메뉴 판매 상태 변경(type)
-	@RequestMapping("menu_type_update.do")
-	public String type_update(productDTO dto, HttpServletRequest request) {
-		productdao.menu_type_update(dto);
+	//메뉴 판매 상태 변경(type1 : 품절로)
+	@RequestMapping("typeto0/{no}")
+	public String typeto0(@PathVariable("no") int no) {
+		productDTO dto = new productDTO(); //빈 객체
+		dto.setNo(no);
+		productdao.typeto0(dto);
+		return "redirect:/shop/main.do";
+	}
+	
+	//메뉴 판매 상태 변경(type1 : 품절로)
+	@RequestMapping("typeto1/{no}")
+	public String typeto1(@PathVariable("no") int no) {
+		productDTO dto = new productDTO(); //빈 객체
+		dto.setNo(no);
+		productdao.typeto1(dto);
 		return "redirect:/shop/main.do";
 	}
 	
 	//메뉴 삭제
-	@RequestMapping("delete.do")
-	public String delete(@PathVariable int no, HttpServletRequest request) {
-		productdao.menu_delete(no);
+	@RequestMapping("delete/{no}")
+	public String delete(@PathVariable("no") int no) {
+		productDTO dto = new productDTO(); //빈 객체
+		dto.setNo(no);
+		productdao.menu_delete(dto);
 		return "redirect:/shop/main.do";
 	}
 	
-	
-	
-	
 	//주문 진행 상태 변경
-	@RequestMapping("status_update.do")
-	public String status_update(productDTO dto, HttpServletRequest request) {
-		
+	@RequestMapping("status_update/{no}")
+	public String status_update(@PathVariable("no") int no) {
+		LogDTO dto = new LogDTO();
+		dto.setNo(no);
+		productdao.update_status(dto);
 		return "redirect:/shop/main.do";
 	}
 }
