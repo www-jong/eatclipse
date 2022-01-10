@@ -27,7 +27,7 @@
 <h3>캐시 충전 해보자!!!!</h3>
 
 <form name="form1" method="post">
-	충전 금액 <input type="text" id = "cash" name="cash">  // text가 맞냐?
+	충전 금액 : <input type="text" id = "cash" name="cash">
 	<button type="button" id="btnCashCharge">캐시 충전</button>
 </form>
 

@@ -14,7 +14,41 @@
 		update member set money=#{money} where userid=#{userid}
 	</update>
 	
+	<!-- /////////////////////////////////////////////////// -->
+	<!-- 카테고리 별 식당 목록 확인 -->
+	<!-- 어랏? 이것도 줄일 수 있을 것 같은데.... 뭐 암튼 -->
 	
+	<select id = "koreanList" resultType="com.example.eatclipse.model.commons.CommonsDTO">
+	select * from member where type=#{type} order by no
+	</select>
+	
+	<select id = "westernList" resultType="com.example.eatclipse.model.commons.CommonsDTO">
+	select * from member where type=#{type} order by no
+	</select>
+
+	<select id = "bunsickList" resultType="com.example.eatclipse.model.commons.CommonsDTO">
+	select * from member where type=#{type} order by no
+	</select>
+
+	<select id = "chineseList" resultType="com.example.eatclipse.model.commons.CommonsDTO">
+	select * from member where type=#{type} order by no
+	</select>
+
+	<select id = "japaneseList" resultType="com.example.eatclipse.model.commons.CommonsDTO">
+	select * from member where type=#{type} order by no
+	</select>
+
+	<select id = "disertList" resultType="com.example.eatclipse.model.commons.CommonsDTO">
+	select * from member where type=#{type} order by no
+	</select>
+	
+	<select id = "fastfoodList" resultType="com.example.eatclipse.model.commons.CommonsDTO">
+	select * from member where type=#{type} order by no
+	</select>	
+	
+	
+	<!-- /////////////////////////////////////////////////// -->
+		
 </mapper>
 
 
