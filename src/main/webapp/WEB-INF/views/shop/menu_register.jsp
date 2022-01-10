@@ -10,8 +10,7 @@
 <!-- 메뉴 등록 취소 버튼 -->
 <script>
 function menu_register(){
-	var shop_name ="<%=session.getAttribute("name")%>
-	";
+	var shop_name ="<%=session.getAttribute("name")%>";
 		var product_name = document.form1.product_name.value;
 		var price = document.form1.price.value;
 
@@ -41,7 +40,6 @@ function menu_register(){
 					<th>메뉴 이름</th>
 					<th>가격</th>
 					<th>사진</th>
-					<!-- <th>추가/삭제</th> -->
 				</tr>
 			</thead>
 			<tbody>

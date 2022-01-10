@@ -6,12 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
-	function menu_delete(){
-		alert("삭제하시겠습니까?"); //alert(${row.product_name}+"삭제하시겠습니까?");
-		document.action = "/eatclipse/shop/delete/${row.no}";
-	}
-</script>
+
 </head>
 <body>
    <!-- 가게 메뉴 -->
@@ -44,7 +39,12 @@
             <td>
             	<button onclick="location.href='/eatclipse/shop/menu_edit.do'">수정</button>
             	<button onclick="menu_delete()">삭제</button>
-           		<%-- <a href="/eatclipse/shop/delete/${row.no}">삭제하기</a> --%>
+            	<script>
+					function menu_delete(){
+					alert("삭제하시겠습니까?");
+					location.href="/eatclipse/shop/delete/${row.no}";
+					}
+				</script>
             </td>
          </tr>
       </c:forEach>

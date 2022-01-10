@@ -64,7 +64,7 @@ public class shopController {
 		            e.printStackTrace();
 		         }
 		      }
-		      dto.setImage(filename); //첨부파일 이름 저장
+		    dto.setImage(filename); //첨부파일 이름 저장
 			dto.setShop_name((String) session.getAttribute("name")); //dto의 Shop_name에 세션의 name을 전달
 			productdao.menu_insert(dto);
 			mav.setViewName("shop/menu_register");
@@ -73,15 +73,8 @@ public class shopController {
 	    	mav.setViewName("shop/menu_register");
 			mav.addObject("message", "error");
 	     }
-		 
-	    	 
-		
-		//return "redirect:/shop/main.do"; //insert 후 list로 넘김
 		return mav;
 	}
-	
-	
-	
 	
 	//메뉴 수정
 	@RequestMapping("menu_edit.do")// /eatclipse/shop/menu_edit.do
