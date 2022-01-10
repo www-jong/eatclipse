@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,31 +42,45 @@ public class shopController {
 	
 	//메뉴 등록하는 작업
 	@RequestMapping("insert.do")
-	public String insert(productDTO dto, HttpServletRequest request, HttpSession session) {
+	public ModelAndView insert(@ModelAttribute productDTO dto, ModelAndView mav, HttpServletRequest request, HttpSession session) {
 		 String filename = "-"; //첨부파일 없을 때 빈칸 대신 -기호 사용(빈칸"" -> 오류 가능성ㅇ)
-	      if (!dto.getFile1().isEmpty()) { //첨부파일이 있을 때
-	         filename = dto.getFile1().getOriginalFilename();//파일이름
-	         System.out.println("filename :"+filename);
-	         System.out.println("file1 :"+dto.getFile1());
-	         try {
-	            //application 객체 생성(서버 전체에서 공유)
-	            ServletContext application = request.getSession().getServletContext();
-	            //실제 서비스 경로
-	            String path = application.getRealPath("/WEB-INF/views/images/");
-	            System.out.println("실제경로 :"+path);
-	         
-	            new File(path).mkdir(); //디렉토리 생성(디렉토리가 없을 경우)
-	            //첨부파일이 지정된 디렉토리에 복사
-	            dto.getFile1().transferTo(new File(path + filename));
-	         } catch (Exception e) {
-	            e.printStackTrace();
-	         }
-	      }
-	      dto.setImage(filename); //첨부파일 이름 저장
-		dto.setShop_name((String) session.getAttribute("name")); //dto의 Shop_name에 세션의 name을 전달
-		productdao.menu_insert(dto);
-		return "redirect:/shop/main.do"; //insert 후 list로 넘김
+	     String product_name = productdao.search_product_name(dto);
+		 if(product_name==null) { //중복되는 상품 이름 없을 시
+			 if (!dto.getFile1().isEmpty()) { //첨부파일이 있을 때
+		         filename = dto.getFile1().getOriginalFilename();//파일이름
+		         System.out.println("filename :"+filename);
+		         System.out.println("file1 :"+dto.getFile1());
+		         try {
+		            //application 객체 생성(서버 전체에서 공유)
+		            ServletContext application = request.getSession().getServletContext();
+		            //실제 서비스 경로
+		            String path = application.getRealPath("/WEB-INF/views/images/");
+		            System.out.println("실제경로 :"+path);
+		         
+		            new File(path).mkdir(); //디렉토리 생성(디렉토리가 없을 경우)
+		            //첨부파일이 지정된 디렉토리에 복사
+		            dto.getFile1().transferTo(new File(path + filename));
+		         } catch (Exception e) {
+		            e.printStackTrace();
+		         }
+		      }
+		      dto.setImage(filename); //첨부파일 이름 저장
+			dto.setShop_name((String) session.getAttribute("name")); //dto의 Shop_name에 세션의 name을 전달
+			productdao.menu_insert(dto);
+			mav.setViewName("shop/menu_register");
+			mav.addObject("message", "success");
+	     }else {
+	    	mav.setViewName("shop/menu_register");
+			mav.addObject("message", "error");
+	     }
+		 
+	    	 
+		
+		//return "redirect:/shop/main.do"; //insert 후 list로 넘김
+		return mav;
 	}
+	
+	
 	
 	
 	//메뉴 수정

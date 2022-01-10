@@ -49,14 +49,18 @@ function menu_register(){
 					<td><input type="text" name="product_name"></td>
 					<td><input type="text" name="price"></td>
 					<td><input type="file" name="file1"></td>
-					<!-- <td>
-						<button onclick="copy_row(this); return false;">추가</button>
-						<button onclick="remove_row(this)">삭제</button>
-					</td> -->
 				</tr>
 			</tbody>
 		</table>
-		<input type="button" value="메뉴등록" onclick="menu_register()">
+		<button onclick="menu_register()">메뉴등록</button>
+		<c:if test="${message == 'error'}">
+			<div style="color: red">존재하는 상품이 있습니다.</div>
+		</c:if>
+		<c:if test="${message == 'success'}">
+			<script>
+				alert('상품등록 성공!');
+			</script>
+		</c:if>
 	</form>
 </body>
 </html>
