@@ -9,7 +9,7 @@
 <body>
 <%@ include file="../include/menu_cust.jsp" %>
 
-<h3>장바구니!@#$%^&</h3>
+<h3>"장바구니 페이지"</h3>
 
 </body>
 </html>

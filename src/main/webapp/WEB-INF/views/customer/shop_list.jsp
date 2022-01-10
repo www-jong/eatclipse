@@ -28,7 +28,7 @@
 
 		<c:forEach var="row" items="${list}">
 			<tr>
-				<td>${row.name}</td>
+				<td><a href="/eatclipse/customer/shopInfo.do">${row.name}</a></td>
 				<td>${row.email}</td>
 				<td>${row.location}</td>
 				<td>${row.join_date}</td>

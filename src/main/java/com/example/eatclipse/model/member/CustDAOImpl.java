@@ -10,6 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.example.eatclipse.model.commons.CommonsDTO;
+import com.example.eatclipse.model.shop.productDTO;
+
 
 @Repository
 public class CustDAOImpl implements CustDAO {
@@ -37,39 +39,16 @@ public class CustDAOImpl implements CustDAO {
 	--------------------------------------------------------------------------*/
 	
 	@Override
-	public List<CommonsDTO> koreanList(int type){
-		return sqlSession.selectList("customer.koreanList", type);
+	public List<CommonsDTO> shopList(int type){
+		return sqlSession.selectList("customer.shopList", type);
 	}
 	
+	// [식당 이름] 눌러서 메뉴 확인. - 식당 이름을 이용해, 등록된 모든 메뉴를 가져오는 작업 : 메뉴 목록
 	@Override
-	public List<CommonsDTO> westernList(int type){
-		return sqlSession.selectList("customer.westernList", type);
+	public List<productDTO> menuList(String shop_name) {		
+		return sqlSession.selectList("customer.menuList");
 	}
 	
-	@Override
-	public List<CommonsDTO> bunsickList(int type){
-		return sqlSession.selectList("customer.bunsickList", type);
-	}
-	
-	@Override
-	public List<CommonsDTO> chineseList(int type){
-		return sqlSession.selectList("customer.chineseList", type);
-	}
-	
-	@Override
-	public List<CommonsDTO> japaneseList(int type){
-		return sqlSession.selectList("customer.japaneseList", type);
-	}
-	
-	@Override
-	public List<CommonsDTO> disertList(int type){
-		return sqlSession.selectList("customer.disertList", type);
-	}
-	
-	@Override
-	public List<CommonsDTO> fastfoodList(int type){
-		return sqlSession.selectList("customer.fastfoodList", type);
-	}
 	
 	
 	
