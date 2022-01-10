@@ -27,7 +27,7 @@ public class shopController {
 	@RequestMapping("main.do")
 	public ModelAndView shopmain(ModelAndView mav, HttpSession session, LogDTO dto) {
 		String name = (String)session.getAttribute("name");
-		//System.out.println(name);
+		System.out.println(name);
 		mav.addObject("menulist", productdao.menu_list(name));
 		mav.addObject("loglist", productdao.log_list(name));
 		mav.setViewName("/shop/main");
@@ -56,7 +56,8 @@ public class shopController {
 		            //실제 서비스 경로
 		            String path = application.getRealPath("/WEB-INF/views/images/");
 		            System.out.println("실제경로 :"+path);
-		         
+		           // path="C:\\serverfile\\";
+		            //System.out.println("임시 실제경로 :"+path);
 		            new File(path).mkdir(); //디렉토리 생성(디렉토리가 없을 경우)
 		            //첨부파일이 지정된 디렉토리에 복사
 		            dto.getFile1().transferTo(new File(path + filename));

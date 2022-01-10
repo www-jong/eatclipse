@@ -1,0 +1,70 @@
+손님이 주문할 시  log 생성방법
+
+우선 cart 테이블 : product_no, userid, product_name, amount, shop_name, total_price
+     log 테이블 : no , order_name, shop_name, product_name, amount, rider_name, l
+
+ 먼저 세션에서 location , user_id들고와 log에 집어넣고, start_date에 now() 집어넣고 
+      cart에서 amount를 들고와 집어넣고 cart의 shop_name을 통해 member에서 shop_id얻어와 집어넣고
+      메뉴마다는 max(no)+1해서 집어넣고  status 0 으로! 
+      
+
+CustController 부분
+
+// 식당의 페이지에서 그 메뉴를 장바구니 담기 할 경우,
+	@RequestMapping("cartinsert/{shop_name}/{no}/{amount}")
+	public ModelAndView cartinsert(@PathVariable("shop_name") String shop_name,@PathVariable("no") int no, 
+	String shop_name,@PathVariable("amount") int amount, HttpSession session,ModelAndView mav) {
+		Map<String,Object> map=new HashMap<>(); // 그냥 Map을 써보고싶었어요.
+		map.put("shop_name",shop_name);
+		map.put("no", no);
+		map.put("userid",session.getAttribute("userid");
+		map.put("amount",amount);
+		map.put("product_name",(String) Custdao.getproductname(no));
+		int total_price=amount*(Custdao.getproductprice(no));
+		map.put("total_price",total_price);
+		Custdao.cartinsert(map);
+		
+			mav.setViewName("주소); 
+			mav.addObject("message", "success");   // 장바구니 담겼다는 alert 뜨게해야됨
+		return mav;
+	}
+	
+	
+	
+	CustDAO 부분
+	
+	String getproductname(int no);
+	int getproductprice(int no);
+	void cartinsert(Map<String,Object> map); 
+	
+	DAOImpl부분
+	@Override
+	public String getproductname(int no){
+		return sqlSession.selectOne("customer.getproductname",no);
+	}
+	@Override
+	public int getproductprice(int no){
+		return sqlSession.selectOne("customer.getproductprice",no);
+	}
+	@Override
+	public void cartinsert(Map<String,Object> map) {
+		sqlSession.insert("customer.cartinsert", map);
+
+	}
+	
+	
+	.xml부분
+		<select id = "getproductname" resultType="String">
+	select product_name from product where no=#{no}
+	</select>	
+	
+		<select id = "getproductprice" resultType="int">
+	select price from product where no=#{no}
+	</select
+	
+	<insert id="insert">
+	insert into cart(product_no, userid, product_name, amount, shop_name, total_price)
+	values(#{no},#{userid},#{product_name}, #{amount},#{shop_name}, #{total_price})
+</insert>
+	
+	

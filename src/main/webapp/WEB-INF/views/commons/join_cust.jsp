@@ -12,18 +12,29 @@
 	$("#btnLogin").click(function(){
 		var userid=$("#userid").val();
 		var passwd=$("#passwd").val();
-		
+		var name=$("#name").val();
+		var location=$("#location").val();
 		if(userid==""){
-			alert("아이디는 필수값입니다.");
+			alert("전부 입력해주세요");
 			$("#userid").focus();
 			return;
 			}
 		if(passwd==""){
-			alert("비밀번호는 필수값입니다.");
+			alert("전부 입력해주세요");
 			$("#passwd").focus();
 			return;
 			}
-		
+		if(name==""){
+			alert("전부 입력해주세요");
+			$("#name").focus();
+			return;
+			}
+		if(location==""){
+			alert("전부 입력해주세요");
+			$("#location").focus();
+			return;
+			}
+
 		document.form1.action="/eatclipse/commons/join_check.do"; /* 확인하는페이지로 */
 		document.form1.submit();
 		});
@@ -31,7 +42,7 @@
 </script>
 </head>
 <body>
-	<h2>회원가입</h2>
+	<h2>손님회원가입</h2>
 	<form name="form1" method="post">
 		<table border="1" width="400px">
 			<tr>
@@ -43,7 +54,7 @@
 				<td><input type="password" id="passwd" name="passwd"></td>
 			</tr>
 			<tr>
-				<td>이름(상호명)</td>
+				<td>닉네임</td>
 				<td><input type="text" id="name" name="name"></td>
 			</tr>
 			<tr>
@@ -56,21 +67,7 @@
 			</tr>
 			<tr>
 			<td>
-				<select name="type">
-   				 <option value="">유형선택</option>
-   					 <option value="0">고객</option>
-  					  <option value="1">라이더</option>
-  					  <optgroup label="가게">
-  					   <option value="2">한식</option>
-  					   <option value="3">양식</option>
-  					   <option value="4">분식</option>
-  					   <option value="5">중식</option>
-  					   <option value="6">일식</option>
-  					   <option value="7">디저트</option>
-  					   <option value="8">패스트푸드</option>
-						</optgroup>
-				</select>
-				</td>
+			<input type="hidden" value="0" name="type"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">

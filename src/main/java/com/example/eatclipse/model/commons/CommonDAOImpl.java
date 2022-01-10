@@ -32,6 +32,11 @@ public class CommonDAOImpl implements CommonsDAO {
 		return sqlSession.selectOne("commons.view", no);
 	}
 
+	@Override
+	public String search_name(CommonsDTO dto) { // 아이디가 겹치는지 확인
+		return sqlSession.selectOne("commons.search_name", dto);
+	}
+
 
 
 }

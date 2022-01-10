@@ -25,7 +25,10 @@
 	</delete>
 	
 	<select id = "loglist" resultType="com.example.eatclipse.model.commons.LogDTO">
-	select * from log group by no order by no desc;
+	select * from log group by no order by no desc
 	</select>
 
+	<select id = "productlist" resultType="com.example.eatclipse.model.shop.productDTO">
+	select * from product order by shop_name, no
+	</select>
 </mapper>

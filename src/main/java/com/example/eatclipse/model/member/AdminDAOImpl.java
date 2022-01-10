@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.eatclipse.model.commons.CommonsDTO;
 import com.example.eatclipse.model.commons.LogDTO;
+import com.example.eatclipse.model.shop.productDTO;
 
 
 
@@ -49,5 +50,10 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<LogDTO> loglist() {
 		
 		return sqlSession.selectList("admin.loglist");
+	}
+	@Override
+	public List<productDTO> productlist() {
+		
+		return sqlSession.selectList("admin.productlist");
 	}
 }

@@ -10,7 +10,7 @@
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<h2>전체사용자 목록</h2>
+<h2>전체로그 목록</h2>
  <a href="/eatclipse/admin/main.do">[메인화면]</a>
 <table border="1" width="700px">
    <tr>

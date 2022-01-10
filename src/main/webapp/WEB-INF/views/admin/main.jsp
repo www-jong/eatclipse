@@ -15,5 +15,6 @@
 <a href="/eatclipse/admin/list/1">라이더관리</a>
 <a href="/eatclipse/admin/list/2">가게관리</a>
 <a href="/eatclipse/admin/loglist.do">로그보기 </a>
+<a href="/eatclipse/admin/productlist.do">모든메뉴보기 </a>
 </body>
 </html>

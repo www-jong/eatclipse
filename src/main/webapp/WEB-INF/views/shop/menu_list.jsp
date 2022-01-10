@@ -38,13 +38,6 @@
             </td>
             <td>
             	<button onclick="location.href='/eatclipse/shop/menu_edit.do'">수정</button>
-            	<button onclick="menu_delete()">삭제</button>
-            	<script>
-					function menu_delete(){
-					alert("삭제하시겠습니까?");
-					location.href="/eatclipse/shop/delete/${row.no}";
-					}
-				</script>
             </td>
          </tr>
       </c:forEach>

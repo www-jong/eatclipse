@@ -13,6 +13,8 @@ public class LogDTO {
 	private int status;
 	private Date start_date;
 	private Date end_date;
+	private String review;
+	private int totalmoney;
 	public int getNo() {
 		return no;
 	}
@@ -73,8 +75,22 @@ public class LogDTO {
 	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
 	}
+	
+	public String getReview() {
+		return review;
+	}
+	public void setReview(String review) {
+		this.review = review;
+	}
+	public int getTotalmoney() {
+		return totalmoney;
+	}
+	public void setTotalmoney(int totalmoney) {
+		this.totalmoney = totalmoney;
+	}
+	
 	public LogDTO(int no, String order_name, String shop_name, String product_name, int amount, String rider_name,
-			String location, int status, Date start_date, Date end_date) {
+			String location, int status, Date start_date, Date end_date, String review, int totalmoney) {
 		this.no = no;
 		this.order_name = order_name;
 		this.shop_name = shop_name;
@@ -85,6 +101,8 @@ public class LogDTO {
 		this.status = status;
 		this.start_date = start_date;
 		this.end_date = end_date;
+		this.review = review;
+		this.totalmoney = totalmoney;
 	}
 	public LogDTO() {
 

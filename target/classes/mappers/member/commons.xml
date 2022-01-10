@@ -24,5 +24,8 @@
 		select userid from member where userid=#{userid}
 	</select>
 	
-
+<!-- 중복된 가게이름 검색 -->
+	<select id="search_name" resultType="String">
+		select name from member where name=#{name}
+	</select>
 </mapper>

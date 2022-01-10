@@ -15,5 +15,5 @@ public interface CommonsDAO {
 
 	Object view(int no);
 	
-
+	String search_name(CommonsDTO dto);
 }

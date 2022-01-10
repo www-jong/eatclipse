@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.eatclipse.model.commons.CommonsDTO;
 import com.example.eatclipse.model.commons.LogDTO;
+import com.example.eatclipse.model.shop.productDTO;
 
 
 
@@ -24,5 +25,5 @@ public interface AdminDAO {
 	
 		List<LogDTO> loglist();
 	
-	
+		List<productDTO> productlist();
 }

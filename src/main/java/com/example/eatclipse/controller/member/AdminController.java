@@ -50,6 +50,11 @@ public class AdminController {
 	      mav.addObject("list",adminDao.loglist());
 		 return mav;
 	   }
-	 
+	 @RequestMapping("productlist.do")
+	   public ModelAndView productlist(ModelAndView mav) { //모든메뉴보기
+	      mav.setViewName("/admin/productlist");
+	      mav.addObject("list",adminDao.productlist());
+		 return mav;
+	   }
 	
 }

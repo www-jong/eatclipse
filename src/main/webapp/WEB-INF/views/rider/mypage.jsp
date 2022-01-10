@@ -34,9 +34,10 @@ $(function(){
  <c:choose>
  <c:when test="${a==1}">
  
- <h2>상세 회원정보</h2>
+
 <form name="form1" method="post">
-	<table border="1" width="700px">
+	<table border="1" width="700px" align="right">
+	<caption>회원정보</caption>
 		<tr>
 			<td>아이디</td>
 			<td><input type="text" name="userid" value="${sessionScope.userid}" readonly></td>
@@ -78,10 +79,9 @@ $(function(){
 </form>
  </c:when>
  <c:otherwise>
- 
- <h2>상세 회원정보</h2>
 <form name="form2" method="post">
-	<table border="1" width="700px">
+	<table border="1" width="700px" align="right">
+	<caption>회원정보</caption>
 		<tr>
 			<td>아이디</td>
 			<td>${sessionScope.userid}</td>
@@ -100,7 +100,7 @@ $(function(){
 		</tr>
 		<tr>
 			<td>잔액</td>
-			<td>${sessionScope.money}"</td>
+			<td>${sessionScope.money}원</td>
 		</tr>
 		<tr>
 			<td>지역</td>
@@ -123,6 +123,36 @@ $(function(){
 </form>
  </c:otherwise>
  </c:choose>
+<form name="form3" method="post">
+	<table border="1" width="700px" align="left">
+	<caption>배달내역</caption>
+		<tr>
+      <th>주문자명</th>
+      <th>가게명</th>
+      <th>지역</th>
+      <th>상세보기</th><!-- 이거누르면 같은log명을 가진 제품들 alert로 뜨게 -->
+      <th>배달완료날짜</th>
+      <th>수익금</th>
+   </tr>
+   <c:forEach var="row" items="${complete_list}"><!-- status가 2인 log들만 올라옴 -->
+   <tr>
+      <td>${row.order_name}</td>
+      <td>${row.shop_name}</td>
+      <td>${row.location}</td>
+      <td><input type="button"  onclick="order_detail(no=${row.no})" value="상세보기"></td>
+      <td>${row.end_date}</td>
+      <td>${row.totalmoney}</td>
+   </tr>
+   <script>
+function order_detail(no){
+		window.open("/eatclipse/rider/detail/"+no,"_blank","toolber=yes,menubar=yes,width=700,height=500").focus();
+		
 
+}
+</script>
+</c:forEach>   
+	</table>
+	<div style="color:red;">${message}</div>
+</form>
 </body>
 </html>

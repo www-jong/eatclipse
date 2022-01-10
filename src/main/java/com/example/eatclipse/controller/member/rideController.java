@@ -36,7 +36,7 @@ public class rideController {
 		//log의 status가 2인 목록을  불러오는 dao
 		mav.addObject("delivery_list", riderdao.delivery_list());
 		//수락한 배달목록을 불러오는 dao
-		String name=(String) session.getAttribute("name");
+		String name=(String) session.getAttribute("userid");
 		System.out.println(name);
 		mav.addObject("accept_list", riderdao.accept_list(name));
 		mav.setViewName("/rider/list");
@@ -47,7 +47,7 @@ public class rideController {
 	public String acceptdo(@PathVariable("no") int no,HttpSession session) {
 		LogDTO dto=new LogDTO();
 		dto.setNo(no);
-		dto.setRider_name((String) session.getAttribute("name"));
+		dto.setRider_name((String) session.getAttribute("userid"));
 		 riderdao.accept(dto);
 		 return "redirect:/rider/list.do";
 	 }
@@ -58,14 +58,14 @@ public class rideController {
 		//productDTO dto=new productDTO(); map을 사용해보자
 		
 		int total=0;
-		String shop_name = null;
+		String shop_id = null;
 		List<LogDTO> log_product_list=riderdao.detail(no); // detail을 재활용. 해당no의 log 다들고옴
-		for(LogDTO list:log_product_list) {
+		for(LogDTO list:log_product_list) { //각각의 주문에 대해 money을 얻어와 amount와 곱해 total을 구하는 과정
 			Map<String,Object> map=new HashMap<>(); // 그냥 Map을 써보고싶었어요.
-			String s=list.getShop_name();
-			shop_name=list.getShop_name();
-			String p=list.getProduct_name();
-			map.put("shop_name", s);
+			String s=list.getShop_name(); //log에서 shop의 id들고옴
+			shop_id=list.getShop_name(); // 
+			String p=list.getProduct_name(); // log에서 제품의 name을 들고옴
+			map.put("shop_name", riderdao.getshopname(s));  //id로 shopname을 들고오는과정
 			map.put("product_name", p);
 			// product테이블에서 배달완료한 음식의 가격을 알아오기위해 log테이블에서 shop_name과 product_name을 들고오고
 			// 밑의 getmoney로 price를 조회해옴.  --> log에 money컬럼추가하면되는데 귀찮으니..
@@ -79,12 +79,16 @@ public class rideController {
 		System.out.println(total/10);
 		riderdao.addmoney(map2);  // 라이더에게 돈 10프로주기
 		Map<String,Object> map3=new HashMap<>();
-		map3.put("userid",shop_name); // 여기를 수정해야한다.
+		System.out.println("샵id:"+shop_id);
+		map3.put("userid",shop_id); // 여기를 수정해야한다.
 		map3.put("money",(total*9)/10);
-		System.out.println(shop_name);
 		riderdao.addmoney(map3); // 가게에게 돈 90프로 주기
 		session.setAttribute("money", (int)session.getAttribute("money")+total/10); //세션에 등록하는 과정
-		 riderdao.complete(no);
+		Map<String,Object> map4=new HashMap<>(); // 그냥 Map을 써보고싶었어요.
+		map4.put("no",no);
+		map4.put("totalmoney", total);
+		
+		riderdao.complete(map4);
 		 return "redirect:/rider/list.do";
 	 }
 	
@@ -96,9 +100,11 @@ public class rideController {
 	 }
 	
 	@RequestMapping("mypage.do")
-	public ModelAndView mypage(ModelAndView mav) {
+	public ModelAndView mypage(ModelAndView mav,HttpSession session) {
 		mav.setViewName("/rider/mypage");
 		mav.addObject("a",2);
+		mav.addObject("complete_list",riderdao.complete_list((String) session.getAttribute("userid")));
+	
 		return mav;
 	 }
 	@RequestMapping("mypageon.do")
@@ -111,6 +117,8 @@ public class rideController {
 	  @RequestMapping("update.do") 
 	  public ModelAndView update(@ModelAttribute CommonsDTO dto, HttpSession session,ModelAndView mav) {
 	   riderdao.update(dto); //수정처리 
+	   //Map<String,Object> map=new HashMap<>(); // 기존name과 바뀐name을 담기위해 생성
+	   //riderdao.logtoupdate(map);  // 기존name을 바뀐name으로 바꿔주는 dao
 	  session.invalidate(); //세션 초기화
 	 	mav.setViewName("commons/login");
 	 	mav.addObject("message", "update_success");

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.eatclipse.model.commons.CommonsDTO;
 import com.example.eatclipse.model.commons.LogDTO;
+import com.example.eatclipse.model.shop.productDTO;
 
 @Repository
 public class RiderDAOImpl implements RiderDAO {
@@ -38,8 +39,8 @@ public class RiderDAOImpl implements RiderDAO {
 	
 	//배달완료
 	@Override
-	public void complete(int no) {
-		sqlSession.update("rider.complete",no);
+	public void complete(Map<String,Object> map) {
+		sqlSession.update("rider.complete",map);
 	}
 
 	@Override
@@ -70,12 +71,30 @@ public class RiderDAOImpl implements RiderDAO {
 
 	}
 	
+	@Override
+	public String getuserid(String name) {
+		return sqlSession.selectOne("rider.getuserid",name);
+
+	}
+	//상품 상태 변경 : 1품절
+	@Override
+	public void logtoupdate(Map<String,Object> map) {
+		sqlSession.update("rider.logtoupdate",map);
+	}
+	
+	@Override
+	public String getshopname(String userid) {
+		return sqlSession.selectOne("rider.getshopname",userid);
+
+	}
 	
 	
 	
-	
-	
-	
+	@Override
+	public List<LogDTO> complete_list(String userid) {
+		
+		return sqlSession.selectList("rider.complete_list",userid);
+	}
 	
 	
 	
