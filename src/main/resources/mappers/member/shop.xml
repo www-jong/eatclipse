@@ -10,6 +10,10 @@
 		values(#{shop_name}, #{product_name}, #{price}, #{image})
 	</insert>
 
+	<!-- 메뉴 이름 검색(중복 체크) -->
+	<select id="search" resultType="com.example.eatclipse.model.shop.productDTO">
+		select product_name from product where product_name=#{product_name}
+	</select>
 	<!-- 메뉴 리스트 -->
 	<select id="list" resultType="com.example.eatclipse.model.shop.productDTO">
 		select * from product order by shop_name=#{name}
@@ -30,11 +34,14 @@
 		delete from product where no=#{no}
 	</delete>
 
-	<!-- 판매 상태 변경 -->
-	<update id="typeupdate">
-		update product set
-		type=#{type}
-		where no=#{no}
+	<!-- 상품 상태 변경 : 0판매-->
+	<update id="typeto0">
+		update product set type=0 where no=#{no}
+	</update>
+	
+	<!-- 상품 상태 변경 : 1품절-->
+	<update id="typeto1">
+		update product set type=1 where no=#{no}
 	</update>
 
 </mapper>

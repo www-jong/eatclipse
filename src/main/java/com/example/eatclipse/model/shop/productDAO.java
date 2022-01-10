@@ -9,6 +9,8 @@ public interface productDAO {
 	// 메뉴 등록
 	void menu_insert(productDTO dto);
 
+	//메뉴 이름 중복 체크
+	String search_product_name(productDTO dto);
 	// 메뉴 목록
 	List<productDTO> menu_list(String name);
 
@@ -16,11 +18,17 @@ public interface productDAO {
 	void menu_update(productDTO dto);
 
 	// 메뉴 삭제
-	void menu_delete(int no);
+	void menu_delete(productDTO dto);
 
-	// 판매 상태 변경
-	void menu_type_update(productDTO dto);
+	//상품 상태 변경 : 0판매
+	void typeto0(productDTO dto);
+	
+	//상품 상태 변경 : 1판매
+	void typeto1(productDTO dto);
 
 	// 주문 목록
-	List<LogDTO> log_list();
+	List<LogDTO> log_list(String name);
+
+	//주문 상태 변경
+	void update_status(LogDTO dto);
 }

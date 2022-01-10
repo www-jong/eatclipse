@@ -17,13 +17,13 @@ $(function(){
 		document.form2.submit();
 	});
 	$("#btnUpdate").click(function(){
-		document.form2.action="/eatclipse/commons/update.do";
-		document.form2.submit();
+		document.form1.action="/eatclipse/rider/update.do";
+		document.form1.submit();
 	});
 	$("#btnDelete").click(function(){
 		if(confirm("삭제하시겠습니까?")){
-		document.form2.action="/eatclipse/commons/delete.do";
-		document.form2.submit();
+		document.form1.action="/eatclipse/rider/delete.do";
+		document.form1.submit();
 		}
 	});
 });

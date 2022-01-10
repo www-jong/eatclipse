@@ -36,4 +36,14 @@
 		<delete id="delete">
 		delete from member where userid=#{userid}
 	</delete>
+	
+		
+	<select id = "getmoney" resultType="int">
+	select price from product where shop_name=#{shop_name} and product_name=#{product_name}
+	</select>
+	
+	<update id="addmoney">
+		update member set money=money+#{money} where userid=#{userid}
+	</update>
+	
 </mapper>

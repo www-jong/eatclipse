@@ -1,6 +1,8 @@
 package com.example.eatclipse.model.member;
 
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import javax.inject.Inject;
 
@@ -48,13 +50,41 @@ public class RiderDAOImpl implements RiderDAO {
 	
 	@Override
 	public void update(CommonsDTO dto) {
-		 sqlSession.selectOne("rider.update", dto);
+		 sqlSession.update("rider.update", dto);
 
 	}
 
 	@Override
 	public void delete(String userid) {
-		sqlSession.selectOne("rider.delete",userid);
+		sqlSession.delete("rider.delete",userid);
 
 	}
+	@Override
+	public int getmoney(Map<String,Object> map) {
+		return sqlSession.selectOne("rider.getmoney",map);
+	}
+	
+	@Override
+	public void addmoney(Map<String,Object> map) {
+		sqlSession.update("rider.addmoney",map);
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

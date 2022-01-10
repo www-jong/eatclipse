@@ -4,6 +4,10 @@
 
 <mapper namespace="log">
 	<select id="list" resultType="com.example.eatclipse.model.commons.LogDTO">
-		select * from Log where no=#{no};
+		select * from log group by no having shop_name=#{name} order by start_date desc
 	</select>
+	
+	<update id="status">
+		update log set status=(status+1) where no=#{no}
+	</update>
 </mapper>

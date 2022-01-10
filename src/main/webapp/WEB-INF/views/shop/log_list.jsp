@@ -19,24 +19,44 @@
 			<th>수량</th>
 			<th>주문자명</th>
 			<th>주소</th>
-			<th>상태</th>
-			<th>라이더</th>
-			<th>배달완료시간</th>
+			<th>주문상태</th>
 		</tr>
 		<c:forEach var="log" items="${loglist}">
 			<tr>
 				<td>${log.no}</td>
-				<td>${log.start_date}</td>
+				<td><fmt:formatDate value="${row.start_date}" pattern="MM-dd HH:mm"/></td>
 				<td>${log.product_name}</td>
 				<td>${log.amount}</td>
 				<td>${log.order_name}</td>
 				<td>${log.location}</td>
 				<td>
-					${log.status}
+					<c:if test="${log.status==0}">
+						주문요청
+						<input type="button" value="주문수락" onclick="location.href='/eatclipse/shop/status_update/${log.no}'">
+					</c:if>
 					
+					<c:if test="${log.status==1}">
+						조리중
+						<input type="button" value="배달요청" onclick="location.href='/eatclipse/shop/status_update/${log.no}'">
+					</c:if>
+					
+					<c:if test="${log.status==2}">
+						라이더 요청중
+					</c:if>
+					
+					<c:if test="${log.status==3}">
+						배달중
+						라이더 : ${log.rider_name}
+					</c:if>
+					
+					<c:if test="${log.status==4}">
+						배달완료
+						<ol>
+							<li>라이더 : ${log.rider_name}</li>
+							<li>배달완료시간 : <fmt:formatDate value="${row.end_date}" pattern="YY-MM-dd HH:mm:ss"/></li>
+						</ol>
+					</c:if>
 				</td>
-				<td>${log.rider_name}</td>
-				<td>${log.end_date}</td>
 			</tr>
 		</c:forEach>
 	</table>

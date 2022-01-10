@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class productDTO {
 	
 	//쿼리의 product에 해당하는 dto
+	private int no;
 	private String shop_name;
 	private String product_name;
 	private int price;
@@ -31,8 +32,12 @@ public class productDTO {
 		this.price = price;
 	}
 	
-	
-	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public MultipartFile getFile1() {
 		return file1;
 	}
@@ -53,8 +58,12 @@ public class productDTO {
 		this.type = type;
 	}
 	
+	public productDTO() {
+	}
 	
-	public productDTO(String shop_name, String product_name, int price, String image, int type, MultipartFile file1) {
+	public productDTO(int no, String shop_name, String product_name, int price, String image, int type,
+			MultipartFile file1) {
+		this.no = no;
 		this.shop_name = shop_name;
 		this.product_name = product_name;
 		this.price = price;
@@ -62,15 +71,15 @@ public class productDTO {
 		this.type = type;
 		this.file1 = file1;
 	}
-	public productDTO() {
-
-	}
+	
 	@Override
 	public String toString() {
-		return "productDTO [shop_name=" + shop_name + ", product_name=" + product_name + ", price=" + price + ", image="
-				+ image + ", type=" + type + ", file1=" + file1 + "]";
+		return "productDTO [no=" + no + ", shop_name=" + shop_name + ", product_name=" + product_name + ", price="
+				+ price + ", image=" + image + ", type=" + type + ", file1=" + file1 + "]";
 	}
-
+	
+	
+	
 	
 	
 	

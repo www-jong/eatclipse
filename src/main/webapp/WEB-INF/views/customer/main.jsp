@@ -19,32 +19,29 @@ $(function(){
 <body>
 <%-- <%@ include file="../include/menu.jsp" %> --%>
 <%@ include file="../include/menu_cust.jsp" %>
-<h2>고객 메인 페이지</h2>
+<h3>"고객 메인 페이지"</h3>
 
-<h3 style="text-align:center" > 배달은, 요기요! </h3><br>
-<h3 style="text-align:center">[여기는 검색창 들어갈 자리]</h3><br>
+<h3 style="text-align:center" > {EatClipse}; 배고픔엔 예외가 없잖아요 </h3>
 
+<p style="text-align:center">---------------------------------------------------</p>
+
+<h3 style="text-align:center">[여기는 검색창 들어갈 자리]</h3>
+
+<p style="text-align:center">---------------------------------------------------</p>
+
+<h5 style="text-align:center">[카테고리]</h5>
 <div style="text-align:center">
-	<a href = "/eatclipse/customer/korean.do">한식</a>
-	<a href = "/eatclipse/customer/western.do">양식</a>
-	<a href = "/eatclipse/customer/bunsick.do">분식</a>
-	<a href = "/eatclipse/customer/cart.do">중식</a>
-	<a href = "/eatclipse/customer/cart.do">일식</a>
-	<a href = "/eatclipse/customer/cart.do">디저트</a>
-	<a href = "/eatclipse/customer/cart.do">패스트푸드</a>
+<a href="/eatclipse/customer/shopList/${type=2}">한식</a>
+<a href="/eatclipse/customer/shopList/${type=3}">양식</a>
+<a href="/eatclipse/customer/shopList/${type=4}">분식</a>
+<a href="/eatclipse/customer/shopList/${type=5}">중식</a>
+<a href="/eatclipse/customer/shopList/${type=6}">일식</a>
+<a href="/eatclipse/customer/shopList/${type=7}">디저트</a>
+<a href="/eatclipse/customer/shopList/${type=8}">패스트푸드</a>
 </div>
 
-<br>
 
-<form name="form1" method="post">
-<div>
-	<input type="button" value="한식" id="btnKorean">
-	<input type="button" value="양식" id="btnWestern">
-	<input type="button" value="분식" id="btnBunsick">
-</div>
-</form>
-
-<br>
+<p style="text-align:center">---------------------------------------------------</p>
 
 <h3 style="text-align:center">[여기는 최근 본 가게 들어갈 자리]</h3>
 

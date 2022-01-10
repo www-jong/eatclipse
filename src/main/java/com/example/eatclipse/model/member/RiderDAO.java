@@ -1,6 +1,7 @@
 package com.example.eatclipse.model.member;
 
 import java.util.List;
+import java.util.Map;
 
 import com.example.eatclipse.model.commons.CommonsDTO;
 import com.example.eatclipse.model.commons.LogDTO;
@@ -22,5 +23,8 @@ public interface RiderDAO {
 
 		//유저탈퇴
 		void delete(String userid);
-	
+		
+		int getmoney(Map<String,Object> map);
+		
+		void addmoney(Map<String,Object> map);
 }

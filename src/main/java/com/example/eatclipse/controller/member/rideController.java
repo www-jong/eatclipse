@@ -1,5 +1,9 @@
 package com.example.eatclipse.controller.member;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.eatclipse.model.commons.CommonsDTO;
 import com.example.eatclipse.model.commons.LogDTO;
 import com.example.eatclipse.model.member.RiderDAO;
+import com.example.eatclipse.model.shop.productDTO;
 
 @Controller
 @RequestMapping("/rider/*")//라이더 등록수정, 메뉴등록 수정 작업용
@@ -49,7 +54,36 @@ public class rideController {
 	
 	@RequestMapping("complete/{no}")
 	public String complete(@PathVariable("no") int no,HttpSession session) {
+		// 총금액: sum(product.money*log.amount)+....
+		//productDTO dto=new productDTO(); map을 사용해보자
 		
+		int total=0;
+		String shop_name = null;
+		List<LogDTO> log_product_list=riderdao.detail(no); // detail을 재활용. 해당no의 log 다들고옴
+		for(LogDTO list:log_product_list) {
+			Map<String,Object> map=new HashMap<>(); // 그냥 Map을 써보고싶었어요.
+			String s=list.getShop_name();
+			shop_name=list.getShop_name();
+			String p=list.getProduct_name();
+			map.put("shop_name", s);
+			map.put("product_name", p);
+			// product테이블에서 배달완료한 음식의 가격을 알아오기위해 log테이블에서 shop_name과 product_name을 들고오고
+			// 밑의 getmoney로 price를 조회해옴.  --> log에 money컬럼추가하면되는데 귀찮으니..
+			int amount=list.getAmount();
+			total+=amount*riderdao.getmoney(map);
+		}
+		System.out.println(total); // --> 완벽히 작동!
+		Map<String,Object> map2=new HashMap<>(); // 그냥 Map을 써보고싶었어요.
+		map2.put("userid",session.getAttribute("userid"));
+		map2.put("money", total/10);
+		System.out.println(total/10);
+		riderdao.addmoney(map2);  // 라이더에게 돈 10프로주기
+		Map<String,Object> map3=new HashMap<>();
+		map3.put("userid",shop_name); // 여기를 수정해야한다.
+		map3.put("money",(total*9)/10);
+		System.out.println(shop_name);
+		riderdao.addmoney(map3); // 가게에게 돈 90프로 주기
+		session.setAttribute("money", (int)session.getAttribute("money")+total/10); //세션에 등록하는 과정
 		 riderdao.complete(no);
 		 return "redirect:/rider/list.do";
 	 }
