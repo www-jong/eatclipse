@@ -56,9 +56,17 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="button" value="수정" onclick="menu_update()" /></td>
-				<td><input type="button" value="삭제" onclick="menu_delete()" /></td>
-				<td><a href="/shop/main.do">취소</a></td>
+				<td><input type="button" value="수정" onclick="menu_update()" />
+				<button onclick="menu_delete(); location.href='/eatclipse/shop/delete/${row.no}'">삭제</button>
+            	<script>
+					function menu_delete(){
+						var msg = "삭제하시겠습니까?";
+						var flag = confirm(msg);
+						if(flag==true) alert("메뉴를 삭제했습니다.");
+						else alert("취소되었습니다.");
+					}
+				</script>
+				</td>
 			</tr>
 		</table>
 	</form>
