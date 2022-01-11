@@ -81,7 +81,7 @@ public class shopController {
 	
 	//메뉴 수정
 	@RequestMapping("menu_edit/{no}")
-	public ModelAndView edit(@PathVariable("product_code") int no, ModelAndView mav) {
+	public ModelAndView edit(@PathVariable("no") int no, ModelAndView mav) {
 	      mav.setViewName("/shop/menu_edit"); //페이지 이름
 	      mav.addObject("dto", productdao.menu_no(no));
 	      return mav;
