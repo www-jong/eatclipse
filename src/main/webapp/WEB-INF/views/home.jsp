@@ -4,12 +4,21 @@
 <%@ page session="false"%>
 <html>
 <head>
-<title>Home</title>
+<title>Eatclipse</title>
+<link rel="stylesheet" href="/eatclipse/resources/css/HomeCss.css">
+<style type="text/css">
+body{
+	background-image: url("./images/platter.jpg");
+}
+</style>
+
 </head>
 <body>
-	<h5>{EatClipse}</h5>
-
-	<div><a href="/eatclipse/commons/login.do">로그인</a></div>
-	<div><a href="/eatclipse/commons/join.do">회원가입</a></div>
+	<header><h1><a class="title" href="/eatclipse/home">{EatClipse}</a></h1></header>
+	<div class="text_align_center">
+		<a class="main" href="/eatclipse/commons/login.do">로그인</a> 
+		<a class="main" href="/eatclipse/commons/join.do">회원가입</a>
+	</div>
+	
 </body>
 </html>
