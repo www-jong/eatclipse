@@ -8,7 +8,7 @@
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-	function menu_update() {
+	function menu_update(no) {
 		
 		var product_name = document.form1.product_name.value;
 		var price = document.form1.price.value;
@@ -27,7 +27,7 @@
 			alert("사진을 첨부하세요.");
 			return;
 		}
-		document.action="/eatclipse/shop/menu_update.do";
+		document.action="/eatclipse/shop/menu_update/"+no;
 		document.submit();
 	}
 	
@@ -55,7 +55,7 @@
 			</tr>
 			<tr>
 				<td>
-					<button onclick="menu_update()">수정</button>
+					<button onclick="menu_update(no=${row.no}); location.href='/eatclipse/shop/menu_update/${row.no}">수정</button>
 					<button onclick="menu_delete(); location.href='/eatclipse/shop/delete/${row.no}'">삭제</button>
 	            	<script>
 						function menu_delete(){

@@ -15,7 +15,7 @@ public interface productDAO {
 	List<productDTO> menu_list(String name);
 
 	//메뉴 1개
-	String menu_no(int no);
+	productDTO menu_no(int no);
 	
 	// 메뉴 수정
 	void menu_update(productDTO dto);

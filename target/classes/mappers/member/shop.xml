@@ -20,8 +20,8 @@
 	</select>
 
 	<!-- 메뉴 1개 -->
-	<select id="no">
-		select no from product where shop_name=#{name}
+	<select id="no" resultType="com.example.eatclipse.model.shop.productDTO">
+		select * from product where no=#{no}
 	</select>
 	<!-- 메뉴 수정 -->
 	<update id="update">
@@ -29,7 +29,6 @@
 		product_name=#{product_name},
 		price=#{price},
 		image=#{image},
-		type=#{type}
 		where no=#{no}
 	</update>
 

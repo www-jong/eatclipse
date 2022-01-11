@@ -87,9 +87,10 @@ public class shopController {
 	      return mav;
 	}
 	
-	@RequestMapping("menu_update.do")//
-	public String update(productDTO dto, HttpServletRequest request,HttpSession session) {
-	      String filename = "-";
+	@RequestMapping("menu_update/{no}")//
+	public String update(@PathVariable("no")int no, HttpServletRequest request,HttpSession session) {
+		productDTO dto = new productDTO();  
+		String filename = "-";
 	      if (!dto.getFile1().isEmpty()) { //첨부파일이 있을 때
 		         filename = dto.getFile1().getOriginalFilename();//파일이름
 		         System.out.println("filename :"+filename);

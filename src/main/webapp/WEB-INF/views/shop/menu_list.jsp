@@ -37,7 +37,7 @@
                </c:if>
             </td>
             <td>
-            	<button onclick="location.href='/eatclipse/shop/menu_edit/${row.no}">수정</button>
+            	<button onclick="location.href='/eatclipse/shop/menu_edit/${row.no}'">수정</button>
             </td>
          </tr>
       </c:forEach>

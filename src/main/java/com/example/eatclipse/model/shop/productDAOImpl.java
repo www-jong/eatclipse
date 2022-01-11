@@ -71,7 +71,7 @@ public class productDAOImpl implements productDAO {
 
 	//메뉴 1개
 	@Override
-	public String menu_no(int no) {
+	public productDTO menu_no(int no) {
 		return sqlSession.selectOne("menu.no", no);
 	}
 
