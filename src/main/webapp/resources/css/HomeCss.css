@@ -14,7 +14,11 @@ header {
 	padding: 50px;
 	margin: 1px;
 }
-
+h2{
+	text-align: center;
+	color: white;
+	font-size: 50px;
+}
 .title{
 	color: white;
 	text-align: center;
