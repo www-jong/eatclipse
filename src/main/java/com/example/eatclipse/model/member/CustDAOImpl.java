@@ -46,7 +46,7 @@ public class CustDAOImpl implements CustDAO {
 	// [식당 이름] 눌러서 메뉴 확인. - 식당 이름을 이용해, 등록된 모든 메뉴를 가져오는 작업 : 메뉴 목록
 	@Override
 	public List<productDTO> menuList(String shop_name) {		
-		return sqlSession.selectList("customer.menuList");
+		return sqlSession.selectList("customer.menuList",shop_name);
 	}
 	
 	
