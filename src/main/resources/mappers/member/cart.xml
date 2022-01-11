@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="cart">
+
+
+	<select id="getproductname" resultType="String">
+		select product_name from product where no=#{no}
+	</select>
+
+	<select id="getproductprice" resultType="int">
+		select price from product where no=#{no}
+	</select>
+   
+   
+	<insert id="cartinsert">
+		insert into cart(product_no, userid, product_name, amount, shop_name, total_price)
+		values(#{no}, #{userid}, #{product_name}, #{amount},#{shop_name}, #{total_price})
+	</insert>
+
+	<!-- userid가 가지고 있는 실제 존재하는 장바구니내 물건 목록 -->
+	<select id="list" 
+	 resultType="com.example.eatclipse.model.shop.CartDTO">
+		select * from cart where product_name=#{product_name}
+	</select>
+	
+	<select id="sum_money" resultType="int">
+		select sum(total_price) as total_money from cart where userid=#{userid}
+	</select>
+
+
+
+</mapper>

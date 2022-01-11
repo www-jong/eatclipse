@@ -10,24 +10,25 @@
 </head>
 <body>
 <%@ include file="../include/menu_cust.jsp" %>
-<h2>식당 이름이 나오게 해야함.</h2>
-<h2>${shop_name}</h2>
+
+<h3>${shop_name}</h3>
 
 <table border="1" width="700px">
    <tr>
       <th>메뉴</th>
       <th>가격</th>
+      <th>no(프로덕트 테이블의 key)</th>
       <th>수량</th>
-  	  <th>장바구니???</th>
+
    </tr>
    
-<%--    		<c:forEach var="row" items="${dto}">
+    	<c:forEach var="row" items="${dto}">
 			<tr>
                 <td>${row.product_name}</td>
 				<td>${row.price}</td>
-			
+				<td>${row.no}</td>  <!-- 얘 넘어오는 거 나중에 -->
 				<td>
-					<form name="form1" method="post" action="/eatclipse/customer/cart/insert.do">
+					<form name="form1" method="post" action="/eatclipse/customer/cart/cartinsert.do">   <!-- 경로 나중에 -->
 				    <select name="amount">
                         <c:forEach begin="1" end="10" var="i">
                            <option value="${i}">${i}</option>
@@ -36,8 +37,10 @@
                      <input type="submit" value="장바구니에 담기">
 					</form>
 				</td>
+
+				
 			</tr>
-		</c:forEach> --%>
+		</c:forEach>
 
 
 

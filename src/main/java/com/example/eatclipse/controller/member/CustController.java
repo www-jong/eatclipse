@@ -106,15 +106,6 @@ public class CustController {
 	 * --------------------------------------------------------------------------
 	 */
 
-	/*
-	@RequestMapping("shopInfo.do")
-	public String menuList(HttpSession session, Model model) {
-		
-		String shop_name = 	"한식식당1_찌개";
-		model.addAttribute("test", shop_name);
-		
-		return "/customer/shopInfo";
-	} */
 	
 	
 	@RequestMapping("shopInfo.do")
@@ -132,9 +123,10 @@ public class CustController {
 //		mav.setViewName("/customer/shopInfo");
 		mav.addObject("shop_name", shop_name);
 
-		mav.setViewName("/customer/shopInfo");
+		
 		mav.addObject("dto", custDAO.menuList(shop_name));
-
+		mav.setViewName("/customer/shopInfo");
+		
 		return mav;
 	}
 
@@ -147,7 +139,7 @@ public class CustController {
 	// 메인에서 [장바구니] 누르면 cart.jsp로 이동
 	@RequestMapping("cart.do")
 	public String cart() {
-		return "customer/cart";
+		return "customer/cart_list";  // 경로!
 	}
 
 	/*
