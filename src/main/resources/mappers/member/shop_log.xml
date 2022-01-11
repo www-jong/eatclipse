@@ -4,7 +4,7 @@
 
 <mapper namespace="log">
 	<select id="list" resultType="com.example.eatclipse.model.commons.LogDTO">
-		select * from log group by no having shop_name=#{name} order by start_date desc
+		select * from log group by no having shop_name=#{userid} order by start_date desc
 	</select>
 	
 	<update id="status">

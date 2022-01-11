@@ -28,9 +28,10 @@ public class shopController {
 	@RequestMapping("main.do")
 	public ModelAndView shopmain(ModelAndView mav, HttpSession session, LogDTO dto) {
 		String name = (String)session.getAttribute("name");
+		String userid = (String)session.getAttribute("userid");
 		System.out.println(name);
 		mav.addObject("menulist", productdao.menu_list(name));
-		mav.addObject("loglist", productdao.log_list(name));
+		mav.addObject("loglist", productdao.log_list(userid));
 		mav.setViewName("/shop/main");
 		return mav;
 	}

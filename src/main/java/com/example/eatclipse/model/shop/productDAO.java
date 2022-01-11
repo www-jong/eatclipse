@@ -30,7 +30,7 @@ public interface productDAO {
 	void typeto1(productDTO dto);
 
 	// 주문 목록
-	List<LogDTO> log_list(String name);
+	List<LogDTO> log_list(String userid);
 
 	//주문 상태 변경
 	void update_status(LogDTO dto);
