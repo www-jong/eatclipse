@@ -34,9 +34,12 @@ public class shopController {
 		System.out.println(name);
 		mav.addObject("menulist", productdao.menu_list(name));
 		mav.addObject("loglist", productdao.log_list(userid));
+		mav.addObject("reviewlist", productdao.review_list(userid));
 		mav.setViewName("/shop/main");
 		return mav;
 	}
+	
+	
 	
 	//메뉴 등록 페이지로 넘기는 작업
 	@RequestMapping("menu_register.do") // /eatclipse/shop/menu_register.do
