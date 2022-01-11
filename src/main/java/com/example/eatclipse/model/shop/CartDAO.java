@@ -10,7 +10,9 @@ public interface CartDAO {
 	String getproductname(int no);
 	int getproductprice(int no);
 	void cartinsert(Map<String,Object> map);
-	List<CartDTO> list(String product_name);
-	int sum_money(String userid); 
+
+	List<CartDTO> list(String userid);
+	int sum_money(String userid);
+	
 
 }

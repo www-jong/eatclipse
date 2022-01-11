@@ -13,11 +13,23 @@ import com.example.eatclipse.model.commons.CommonsDTO;
 import com.example.eatclipse.model.shop.productDTO;
 
 
+
 @Repository
 public class CustDAOImpl implements CustDAO {
 
 	@Inject
 	SqlSession sqlSession;
+	
+	@Override
+	public void update(CommonsDTO dto) {
+		sqlSession.update("customer.update",dto);
+		
+	}
+	
+	@Override
+	public void delete(String userid) {
+		sqlSession.delete("customer.delete", userid);
+	}
 
 	// 고객 회원 상세 정보 보여주기
 	@Override

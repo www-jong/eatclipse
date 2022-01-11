@@ -17,13 +17,14 @@
    
 	<insert id="cartinsert">
 		insert into cart(product_no, userid, product_name, amount, shop_name, total_price)
-		values(#{no}, #{userid}, #{product_name}, #{amount},#{shop_name}, #{total_price})
+		values(#{no}, #{userid}, #{product_name}, #{amount}, #{shop_name}, #{total_price})
 	</insert>
+	
 
 	<!-- userid가 가지고 있는 실제 존재하는 장바구니내 물건 목록 -->
 	<select id="list" 
 	 resultType="com.example.eatclipse.model.shop.CartDTO">
-		select * from cart where product_name=#{product_name}
+		select * from cart where userid=#{userid}
 	</select>
 	
 	<select id="sum_money" resultType="int">

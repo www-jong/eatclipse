@@ -17,7 +17,7 @@
    <tr>
       <th>메뉴</th>
       <th>가격</th>
-      <th>no(프로덕트 테이블의 key)</th>
+      <th>no(프로덕트 테이블의 key)_확인용</th>
       <th>수량</th>
 
    </tr>
@@ -28,7 +28,7 @@
 				<td>${row.price}</td>
 				<td>${row.no}</td>  <!-- 얘 넘어오는 거 나중에 -->
 				<td>
-					<form name="form1" method="post" action="/eatclipse/customer/cart/cartinsert.do">   <!-- 경로 나중에 -->
+					<form name="form1" method="post" action="/eatclipse/cart/cartinsert.do">   
 				    <select name="amount">
                         <c:forEach begin="1" end="10" var="i">
                            <option value="${i}">${i}</option>

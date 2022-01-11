@@ -29,9 +29,12 @@ public class CartDAOImpl implements CartDAO {
 		sqlSession.insert("cart.cartinsert", map);
 
 	}
+	
+
+	
 	@Override
-	public List<CartDTO> list(String product_name){
-		return sqlSession.selectList("cart.list", product_name);
+	public List<CartDTO> list(String userid){
+		return sqlSession.selectList("cart.list", userid);
 		
 	}
 	
@@ -39,5 +42,6 @@ public class CartDAOImpl implements CartDAO {
 	public int sum_money(String userid) {
 		return sqlSession.selectOne("cart.sum_money", userid);
 	}
+	
 
 }

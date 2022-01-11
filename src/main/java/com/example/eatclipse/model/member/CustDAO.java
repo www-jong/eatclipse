@@ -6,7 +6,12 @@ import com.example.eatclipse.model.commons.CommonsDTO;
 import com.example.eatclipse.model.shop.productDTO;
 
 
+
 public interface CustDAO {
+	
+	void update(CommonsDTO dto);
+	
+	void delete(String userid);
 	
 	// 고객 회원 상세 정보 보여주기
 	Object view(String userid);
