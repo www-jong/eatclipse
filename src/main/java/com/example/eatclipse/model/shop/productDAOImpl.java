@@ -1,6 +1,7 @@
 package com.example.eatclipse.model.shop;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -53,11 +54,11 @@ public class productDAOImpl implements productDAO {
 
 	//주문 목록 리스트
 	@Override
-	public List<LogDTO> log_list(String name) {
-		return sqlSession.selectList("log.list", name);
+	public List<LogDTO> log_list(String userid) {
+		return sqlSession.selectList("log.list", userid);
 	}
 
-	//주문 상채 변경
+	//주문 상태 변경
 	@Override
 	public void update_status(LogDTO dto) {
 		sqlSession.update("log.status", dto);
@@ -69,7 +70,16 @@ public class productDAOImpl implements productDAO {
 		return sqlSession.selectOne("menu.search", dto);
 	}
 
-
+	//메뉴 1개
+	@Override
+	public productDTO menu_no(int no) {
+		return sqlSession.selectOne("menu.no", no);
+	}
+	
+	@Override
+	public void log_nameupdate(Map<String,Object> map) {
+		sqlSession.update("menu.log_menuupdate", map);
+	}
 
 	
 }

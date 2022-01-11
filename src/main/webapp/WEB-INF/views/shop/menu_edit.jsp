@@ -5,11 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>메뉴 수정</title>
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-	function menu_update() {
+	function menu_update(){
 		var product_name = document.form1.product_name.value;
 		var price = document.form1.price.value;
-		var image = document.form1.image.value;
+		var file1 = document.form1.file1.value;
 		if (product_name == "") {
 			alert("상품명을 입력하세요.");
 			document.form1.product_name.focus();
@@ -20,25 +22,22 @@
 			document.form1.price.focus();
 			return;
 		}
-		if (image == "") {
+		if (file1 == "") {
 			alert("사진을 첨부하세요.");
 			return;
 		}
-		document.form1.action = "/eatclipse/shop/menu_edit.do";
+		document.form1.action="/eatclipse/shop/menu_update.do";
 		document.form1.submit();
 	}
-	function product_delete(){
-	    if(confirm("삭제하시겠습니까?")){
-	      document.form1.action="/eatclipse/shop/delete.do"
-	      document.form1.submit();
-	   } 
-	}
+	
 </script>
 </head>
 <body>
 	<%@ include file="../include/menu_shop.jsp"%>
 	<h4>메뉴 수정</h4>
 	<form name="form1" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="no" value="${dto.no}">
+	<input type="hidden" name="shop_name" value="${dto.product_name}"><!--  -->
 		<table>
 			<tr>
 				<td>메뉴이름</td>
@@ -52,23 +51,27 @@
 				<td>이미지</td>
 				<td>
 					<img src="/eatclipse/images/${dto.image}" width="100px" height="100px">
-					<input type="file" name="image">
+					<input type="file" name="file1">
 				</td>
 			</tr>
 			<tr>
-				<td><input type="button" value="수정" onclick="menu_update()" />
-				<button onclick="menu_delete(); location.href='/eatclipse/shop/delete/${row.no}'">삭제</button>
-            	<script>
-					function menu_delete(){
-						var msg = "삭제하시겠습니까?";
-						var flag = confirm(msg);
-						if(flag==true) alert("메뉴를 삭제했습니다.");
-						else alert("취소되었습니다.");
-					}
-				</script>
+				<td><!-- ; location.href='/eatclipse/shop/menu_update/${dto.no}' -->
+					<button onclick="menu_update()">수정</button>
+					<button onclick="menu_delete(); location.href='/eatclipse/shop/delete/${dto.no}'">삭제</button>
+	            	<script>
+						function menu_delete(){
+							var msg = "삭제하시겠습니까?";
+							var flag = confirm(msg);
+							if(flag==true) alert("메뉴를 삭제했습니다.");
+							else alert("취소되었습니다.");
+						}
+					</script>
 				</td>
 			</tr>
 		</table>
+			<c:if test="${message == 'error'}">
+			<div style="color: red">존재하는 상품명이 있습니다.</div>
+		</c:if>
 	</form>
 </body>
 </html>

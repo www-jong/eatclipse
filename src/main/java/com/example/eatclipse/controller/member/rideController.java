@@ -108,9 +108,10 @@ public class rideController {
 		return mav;
 	 }
 	@RequestMapping("mypageon.do")
-	public ModelAndView mypageon(ModelAndView mav) {
+	public ModelAndView mypageon(ModelAndView mav,HttpSession session) {
 		mav.setViewName("/rider/mypage");
 		mav.addObject("a",1); 
+		mav.addObject("complete_list",riderdao.complete_list((String) session.getAttribute("userid")));
 		return mav;
 	 }
 	

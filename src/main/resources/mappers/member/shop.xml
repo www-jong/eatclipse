@@ -19,13 +19,16 @@
 		select * from product where shop_name=#{name}
 	</select>
 
+	<!-- 메뉴 1개 -->
+	<select id="no" resultType="com.example.eatclipse.model.shop.productDTO">
+		select * from product where no=#{no}
+	</select>
 	<!-- 메뉴 수정 -->
 	<update id="update">
 		update product set
 		product_name=#{product_name},
 		price=#{price},
-		image=#{image},
-		type=#{type}
+		image=#{image}
 		where no=#{no}
 	</update>
 
@@ -44,5 +47,9 @@
 		update product set type=1 where no=#{no}
 	</update>
 
+	<!-- 상품 상태 변경 : 1품절-->
+	<update id="log_menuupdate">
+		update log set product_name=#{new_product_name} where shop_name=#{shopid} and product_name=#{old_product_name}
+	</update>
 </mapper>
 
