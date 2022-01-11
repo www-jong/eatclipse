@@ -55,8 +55,8 @@
 			</tr>
 			<tr>
 				<td>
-					<button onclick="menu_update(no=${row.no}); location.href='/eatclipse/shop/menu_update/${row.no}">수정</button>
-					<button onclick="menu_delete(); location.href='/eatclipse/shop/delete/${row.no}'">삭제</button>
+					<button onclick="menu_update(no=${dto.no}); location.href='/eatclipse/shop/menu_update/${dto.no}">수정</button>
+					<button onclick="menu_delete(); location.href='/eatclipse/shop/delete/${dto.no}'">삭제</button>
 	            	<script>
 						function menu_delete(){
 							var msg = "삭제하시겠습니까?";
