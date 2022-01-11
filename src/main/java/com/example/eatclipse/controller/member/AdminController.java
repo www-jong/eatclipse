@@ -25,6 +25,11 @@ public class AdminController {
 	   public String main() {
 	      return "admin/main";
 	   }
+	
+	@RequestMapping("admin_test.do")
+	   public String admin_test() {
+	      return "admin/admin_test";
+	   }
 
 	@RequestMapping("list/{type}") //type을 전해받아 그 type의 
 	   public ModelAndView list(@PathVariable("type") int type,ModelAndView mav) {

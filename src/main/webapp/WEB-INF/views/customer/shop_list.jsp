@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>식당 목록</title>
+
 </head>
 <body>
 <%@ include file="../include/menu_cust.jsp" %>
