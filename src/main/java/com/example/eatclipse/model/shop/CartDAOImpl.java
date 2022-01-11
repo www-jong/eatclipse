@@ -23,15 +23,10 @@ public class CartDAOImpl implements CartDAO {
 	public int getproductprice(int no) {
 		return sqlSession.selectOne("cart.getproductprice", no);
 	}
-
+	
 	@Override
-	public void cartinsert(Map<String, Object> map) {
-		sqlSession.insert("cart.cartinsert", map);
-
-	}
-	@Override
-	public List<CartDTO> list(String product_name){
-		return sqlSession.selectList("cart.list", product_name);
+	public List<CartDTO> cartlist(String userid){
+		return sqlSession.selectList("cart.cartlist", userid);
 		
 	}
 	
@@ -39,5 +34,31 @@ public class CartDAOImpl implements CartDAO {
 	public int sum_money(String userid) {
 		return sqlSession.selectOne("cart.sum_money", userid);
 	}
+	@Override
+	public void Cartinsert(CartDTO dto) {
+		sqlSession.insert("cart.cartinsert", dto);
 
+	}
+	@Override
+	public String anothershopcheck(Map<String,Object> map) {
+		return sqlSession.selectOne("cart.anothershopcheck", map);
+	}
+	@Override
+	public int cart_total_price(String userid) {
+		return sqlSession.selectOne("cart.cart_total_price",userid);
+	}
+	@Override
+	public void cartdeleteall(String userid) {
+		sqlSession.delete("cart.cartdeleteall", userid);
+	}
+	@Override
+	public String cartemptycheck(String userid) {
+		
+		return sqlSession.selectOne("cart.cartemptycheck", userid);
+	}
+	
+	@Override
+	public void cartdelete(Map<String,Object> map) {
+		 sqlSession.delete("cart.cartdelete", map);
+	}
 }

@@ -34,6 +34,7 @@ public class shopController {
 		System.out.println(name);
 		mav.addObject("menulist", productdao.menu_list(name));
 		mav.addObject("loglist", productdao.log_list(userid));
+		mav.addObject("reviewlist", productdao.review_list(userid));
 		mav.setViewName("/shop/main");
 		return mav;
 	}

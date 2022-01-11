@@ -16,20 +16,38 @@
    
    
 	<insert id="cartinsert">
-		insert into cart(product_no, userid, product_name, amount, shop_name, total_price)
-		values(#{no}, #{userid}, #{product_name}, #{amount},#{shop_name}, #{total_price})
+		insert into cart(product_no, userid, product_name, amount, shop_name, total_price) 
+		values(#{product_no}, #{userid}, #{product_name}, #{amount}, #{shop_name}, #{total_price})
 	</insert>
+	
 
-	<!-- userid가 가지고 있는 실제 존재하는 장바구니내 물건 목록 -->
-	<select id="list" 
+	<!-- userid가 가지고 있는 실제 존재하는 장바구니내 물건 목록, 그런데 중복되는메뉴는 합쳐서  -->
+	<select id="cartlist" 
 	 resultType="com.example.eatclipse.model.shop.CartDTO">
-		select * from cart where product_name=#{product_name}
+		select product_no, product_name,userid,shop_name, sum(amount) as amount, sum(total_price) total_price from cart group by product_no having userid=#{userid}
 	</select>
 	
 	<select id="sum_money" resultType="int">
 		select sum(total_price) as total_money from cart where userid=#{userid}
 	</select>
 
-
-
+	<select id="anothershopcheck" resultType="String">
+		select shop_name from cart where userid=#{userid} and shop_name!=#{shop_name} LIMIT 1
+	</select>
+	
+	<select id="cart_total_price" resultType="int">
+		select sum(total_price) from cart where userid=#{userid}
+	</select>
+	
+	<delete id="cartdeleteall">
+		delete from cart where userid=#{userid}
+	</delete>
+	
+	<select id="cartemptycheck" resultType="String">
+		select product_name from cart where userid=#{userid}LIMIT 1
+	</select>
+	
+	<delete id="cartdelete">
+		delete from cart where userid=#{userid} and product_no=#{product_no}
+	</delete>
 </mapper>

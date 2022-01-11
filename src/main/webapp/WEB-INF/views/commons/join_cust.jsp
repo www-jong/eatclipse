@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="/eatclipse/resources/css/HomeCss.css">
+<title>Join</title>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
@@ -42,8 +43,8 @@
 </script>
 </head>
 <body>
-	<h2>손님회원가입</h2>
-	<form name="form1" method="post">
+	<h2>회원가입</h2>
+	<form class="form1" name="form1" method="post">
 		<table border="1" width="400px">
 			<tr>
 				<td>아이디</td>

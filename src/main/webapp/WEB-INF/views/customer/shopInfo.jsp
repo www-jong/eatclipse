@@ -17,25 +17,37 @@
    <tr>
       <th>메뉴</th>
       <th>가격</th>
-      <th>no(프로덕트 테이블의 key)</th>
+      <th>no(프로덕트 테이블의 key)_확인용</th>
+      <th>사진</th>
       <th>수량</th>
 
    </tr>
    
-    	<c:forEach var="row" items="${dto}">
+    	<c:forEach var="row" items="${productList}">
 			<tr>
                 <td>${row.product_name}</td>
 				<td>${row.price}</td>
 				<td>${row.no}</td>  <!-- 얘 넘어오는 거 나중에 -->
+				 <td><img src="/eatclipse/images/${row.image}" width="100px" height="100px"></td>
 				<td>
-					<form name="form1" method="post" action="/eatclipse/customer/cart/cartinsert.do">   <!-- 경로 나중에 -->
+				<c:if test="${row.type == 0}">
+					<form name="form1" method="post" action="/eatclipse/cart/cartinsert.do">   
+					<input type="hidden"name="product_no" value="${row.no}">
+					<input type="hidden"name="shop_name" value="${row.shop_name}">
+					<input type="hidden"  name="product_name" value="${row.product_name}">
+					<input type="hidden" name="total_price" value="${row.price}"><!-- logdto에는 price가 없으므로 잠시 여기담음 -->
 				    <select name="amount">
+				 
                         <c:forEach begin="1" end="10" var="i">
                            <option value="${i}">${i}</option>
                         </c:forEach>
                      </select>&nbsp;개
                      <input type="submit" value="장바구니에 담기">
 					</form>
+					  </c:if>
+					  <c:if test="${row.type == 1}">
+					  품절입니다.
+					    </c:if>
 				</td>
 
 				

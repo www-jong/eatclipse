@@ -19,6 +19,18 @@ public class CustDAOImpl implements CustDAO {
 	@Inject
 	SqlSession sqlSession;
 
+
+	@Override
+	public void update(CommonsDTO dto) {
+		sqlSession.update("customer.update",dto);
+
+	}
+
+	@Override
+	public void delete(String userid) {
+		sqlSession.delete("customer.delete", userid);
+	}
+	
 	// 고객 회원 상세 정보 보여주기
 	@Override
 	public CommonsDTO view(String userid) {
@@ -49,7 +61,7 @@ public class CustDAOImpl implements CustDAO {
 		return sqlSession.selectList("customer.menuList",shop_name);
 	}
 	
-	
+	// [식당 이름] 눌러서 메뉴 확인. - 식당 이름을 이용해, 등록된 모든 메뉴를 가져오는 작업 : 메뉴 목록
 	
 	
 

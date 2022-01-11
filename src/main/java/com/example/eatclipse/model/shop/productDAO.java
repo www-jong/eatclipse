@@ -39,5 +39,6 @@ public interface productDAO {
 	//log 의 productname 변경
 	void log_nameupdate(Map<String,Object> map);
 	
+	List<LogDTO> review_list(String userid);
 	
 }

@@ -20,7 +20,7 @@
 <div style="text-align:right">
 <a href = "/eatclipse/customer/main.do">Home</a>
 <a href = "/eatclipse/customer/myPage.do?userid=${sessionScope.userid}">마이페이지</a> 
-<a href = "/eatclipse/customer/cart.do">장바구니</a>
+<a href = "/eatclipse/cart/cartlist.do">장바구니</a>
 </div>
 
 

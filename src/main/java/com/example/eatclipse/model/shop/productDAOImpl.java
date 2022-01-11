@@ -81,5 +81,8 @@ public class productDAOImpl implements productDAO {
 		sqlSession.update("menu.log_menuupdate", map);
 	}
 
-	
+	@Override
+	public List<LogDTO> review_list(String userid) {
+		return sqlSession.selectList("log.review",userid);
+	}
 }

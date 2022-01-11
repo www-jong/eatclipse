@@ -19,17 +19,17 @@
       <c:if test="${t==7}">디저트</c:if>
       <c:if test="${t==8}">패스트푸드</c:if>목록</h2>
 
-<table border="1" width="700px">
+<table border="1" width="1000px">
    <tr>
-      <th>가게이름</th>
-      <th>이메일</th>
-  	  <th>위치</th>
-  	  <th>EatClips 가입날짜</th>
+      <th width="200px">가게이름</th>
+      <th width="200px">이메일</th>
+  	  <th width="200px">위치</th>
+  	  <th width="400px">EatClips 가입날짜</th>
    </tr>
 
 		<c:forEach var="row" items="${list}">
 			<tr>
-				<td><a href="/eatclipse/customer/shopInfo.do">${row.name}</a></td>
+				<td><a href="/eatclipse/customer/shopInfo.do?shop_name=${row.name}">${row.name}</a></td>  <!-- 이거 수정해야 -->
 				<td>${row.email}</td>
 				<td>${row.location}</td>
 				<td>${row.join_date}</td>
