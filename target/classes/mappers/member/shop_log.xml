@@ -7,6 +7,10 @@
 		select * from log group by no having shop_name=#{userid} order by start_date desc
 	</select>
 	
+	<select id="review" resultType="com.example.eatclipse.model.commons.LogDTO">
+		select * from log where status=4 group by no having shop_name=#{userid} order by start_date desc
+	</select>
+	
 	<update id="status">
 		update log set status=(status+1) where no=#{no}
 	</update>
