@@ -14,6 +14,9 @@ public interface productDAO {
 	// 메뉴 목록
 	List<productDTO> menu_list(String name);
 
+	//메뉴 1개
+	String menu_no(int no);
+	
 	// 메뉴 수정
 	void menu_update(productDTO dto);
 
@@ -31,4 +34,6 @@ public interface productDAO {
 
 	//주문 상태 변경
 	void update_status(LogDTO dto);
+	
+	
 }

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메뉴 수정</title>
 
 </head>
 <body>
@@ -37,7 +37,7 @@
                </c:if>
             </td>
             <td>
-            	<button onclick="location.href='/eatclipse/shop/menu_edit.do'">수정</button>
+            	<button onclick="location.href='/eatclipse/shop/menu_edit/${row.no}">수정</button>
             </td>
          </tr>
       </c:forEach>
