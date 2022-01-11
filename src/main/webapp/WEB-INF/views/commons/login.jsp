@@ -6,8 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/join.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
@@ -33,7 +34,11 @@
 </script>
 </head>
 <body>
-	<%@ include file="../include/menu.jsp" %>
+	<header>
+		<%@ include file="../include/menu.jsp" %>
+	</header>
+	
+	
 	<h2>로그인</h2>
 	<br>
 	<form name="form1" method="post">

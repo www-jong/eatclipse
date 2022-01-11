@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/eatclipse/resources/css/main.css">
-<link rel="stylesheet" href="/eatclipse/resources/css/HomeCss.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/join.css">
 <style type="text/css">
 h2{
