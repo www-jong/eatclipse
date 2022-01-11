@@ -53,11 +53,11 @@ public class productDAOImpl implements productDAO {
 
 	//주문 목록 리스트
 	@Override
-	public List<LogDTO> log_list(String name) {
-		return sqlSession.selectList("log.list", name);
+	public List<LogDTO> log_list(String userid) {
+		return sqlSession.selectList("log.list", userid);
 	}
 
-	//주문 상채 변경
+	//주문 상태 변경
 	@Override
 	public void update_status(LogDTO dto) {
 		sqlSession.update("log.status", dto);
@@ -67,6 +67,12 @@ public class productDAOImpl implements productDAO {
 	@Override
 	public String search_product_name(productDTO dto) {
 		return sqlSession.selectOne("menu.search", dto);
+	}
+
+	//메뉴 1개
+	@Override
+	public productDTO menu_no(int no) {
+		return sqlSession.selectOne("menu.no", no);
 	}
 
 

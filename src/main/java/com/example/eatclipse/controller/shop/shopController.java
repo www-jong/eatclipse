@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.eatclipse.model.commons.LogDTO;
 import com.example.eatclipse.model.shop.productDAO;
 import com.example.eatclipse.model.shop.productDTO;
+
 @Controller 
 @RequestMapping("/shop/*")//가게 등록수정, 메뉴등록 수정 작업용 
 public class shopController {
@@ -27,9 +28,10 @@ public class shopController {
 	@RequestMapping("main.do")
 	public ModelAndView shopmain(ModelAndView mav, HttpSession session, LogDTO dto) {
 		String name = (String)session.getAttribute("name");
+		String userid = (String)session.getAttribute("userid");
 		System.out.println(name);
 		mav.addObject("menulist", productdao.menu_list(name));
-		mav.addObject("loglist", productdao.log_list(name));
+		mav.addObject("loglist", productdao.log_list(userid));
 		mav.setViewName("/shop/main");
 		return mav;
 	}
@@ -78,11 +80,41 @@ public class shopController {
 	}
 	
 	//메뉴 수정
-	@RequestMapping("menu_edit.do")// /eatclipse/shop/menu_edit.do
-	public String menu_edit(productDTO dto, HttpServletRequest request) {
-		productdao.menu_update(dto);
-		return "redirect:/shop/main.do";
+	@RequestMapping("menu_edit/{no}")
+	public ModelAndView edit(@PathVariable("no") int no, ModelAndView mav) {
+	      mav.setViewName("/shop/menu_edit"); //페이지 이름
+	      mav.addObject("dto", productdao.menu_no(no));
+	      return mav;
 	}
+	
+	@RequestMapping("menu_update/{no}")//
+	public String update(@PathVariable("no")int no, HttpServletRequest request,HttpSession session) {
+		productDTO dto = new productDTO();  
+		String filename = "-";
+	      if (!dto.getFile1().isEmpty()) { //첨부파일이 있을 때
+		         filename = dto.getFile1().getOriginalFilename();//파일이름
+		         System.out.println("filename :"+filename);
+		         System.out.println("file1 :"+dto.getFile1());
+		         try {
+		            //application 객체 생성(서버 전체에서 공유)
+		            ServletContext application = request.getSession().getServletContext();
+		            //실제 서비스 경로
+		            String path = application.getRealPath("/WEB-INF/views/images/");
+		            System.out.println("실제경로 :"+path);
+		           // path="C:\\serverfile\\";
+		            //System.out.println("임시 실제경로 :"+path);
+		            new File(path).mkdir(); //디렉토리 생성(디렉토리가 없을 경우)
+		            //첨부파일이 지정된 디렉토리에 복사
+		            dto.getFile1().transferTo(new File(path + filename));
+		         } catch (Exception e) {
+		            e.printStackTrace();
+		         }
+		      }
+		    dto.setImage(filename); //첨부파일 이름 저장
+			dto.setShop_name((String) session.getAttribute("name")); //dto의 Shop_name에 세션의 name을 전달
+	      productdao.menu_update(dto);
+	      return "redirect:/shop/main.do";
+	   }
 	
 	//메뉴 판매 상태 변경(type1 : 품절로)
 	@RequestMapping("typeto0/{no}")

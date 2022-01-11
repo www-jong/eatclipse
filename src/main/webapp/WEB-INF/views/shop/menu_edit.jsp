@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>메뉴 수정</title>
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-	function menu_update() {
+	function menu_update(no) {
+		
 		var product_name = document.form1.product_name.value;
 		var price = document.form1.price.value;
 		var image = document.form1.image.value;
@@ -24,15 +27,10 @@
 			alert("사진을 첨부하세요.");
 			return;
 		}
-		document.form1.action = "/eatclipse/shop/menu_edit.do";
-		document.form1.submit();
+		document.action="/eatclipse/shop/menu_update/"+no;
+		document.submit();
 	}
-	function product_delete(){
-	    if(confirm("삭제하시겠습니까?")){
-	      document.form1.action="/eatclipse/shop/delete.do"
-	      document.form1.submit();
-	   } 
-	}
+	
 </script>
 </head>
 <body>
@@ -56,16 +54,17 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="button" value="수정" onclick="menu_update()" />
-				<button onclick="menu_delete(); location.href='/eatclipse/shop/delete/${row.no}'">삭제</button>
-            	<script>
-					function menu_delete(){
-						var msg = "삭제하시겠습니까?";
-						var flag = confirm(msg);
-						if(flag==true) alert("메뉴를 삭제했습니다.");
-						else alert("취소되었습니다.");
-					}
-				</script>
+				<td>
+					<button onclick="menu_update(no=${dto.no}); location.href='/eatclipse/shop/menu_update/${dto.no}">수정</button>
+					<button onclick="menu_delete(); location.href='/eatclipse/shop/delete/${dto.no}'">삭제</button>
+	            	<script>
+						function menu_delete(){
+							var msg = "삭제하시겠습니까?";
+							var flag = confirm(msg);
+							if(flag==true) alert("메뉴를 삭제했습니다.");
+							else alert("취소되었습니다.");
+						}
+					</script>
 				</td>
 			</tr>
 		</table>

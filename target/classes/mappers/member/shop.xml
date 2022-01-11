@@ -19,13 +19,16 @@
 		select * from product where shop_name=#{name}
 	</select>
 
+	<!-- 메뉴 1개 -->
+	<select id="no" resultType="com.example.eatclipse.model.shop.productDTO">
+		select * from product where no=#{no}
+	</select>
 	<!-- 메뉴 수정 -->
 	<update id="update">
 		update product set
 		product_name=#{product_name},
 		price=#{price},
 		image=#{image},
-		type=#{type}
 		where no=#{no}
 	</update>
 
