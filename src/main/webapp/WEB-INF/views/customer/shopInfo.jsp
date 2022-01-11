@@ -28,7 +28,7 @@
 				<td>${row.price}</td>
 				<td>${row.no}</td>  <!-- 얘 넘어오는 거 나중에 -->
 				<td>
-					<form name="form1" method="post" action="/eatclipse/customer/cart/cartinsert.do">   <!-- 경로 나중에 -->
+					<form name="form1" method="post" action="/eatclipse/cart/cartinsert.do">   <!-- 경로 나중에 -->
 				    <select name="amount">
                         <c:forEach begin="1" end="10" var="i">
                            <option value="${i}">${i}</option>

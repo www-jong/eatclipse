@@ -2,8 +2,10 @@ package com.example.eatclipse.model.shop;
 
 import java.util.List;
 import java.util.Map;
-import com.example.eatclipse.model.shop.CartDTO;
 
+import org.springframework.stereotype.Repository;
+
+import com.example.eatclipse.model.shop.CartDTO;
 
 public interface CartDAO {
 	

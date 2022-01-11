@@ -16,7 +16,7 @@ import com.example.eatclipse.model.shop.CartDAO;
 import com.example.eatclipse.model.shop.CartDTO;
 
 @Controller
-@RequestMapping("customer/cart/*")
+@RequestMapping("/cart/*")
 
 public class CartController {
 	
@@ -41,7 +41,7 @@ public class CartController {
 		map.put("total_price", total_price);
 		cartDAO.cartinsert(map);
 
-		mav.setViewName("customer/cart/cart_list");
+		mav.setViewName("cart/cart_list");
 		mav.addObject("message", "장바구니에 담겼습니다!"); // 장바구니 담겼다는 alert 뜨게해야됨
 		return mav;
 	}
@@ -74,7 +74,7 @@ public class CartController {
 		
 		
 		mav.addObject("map", map);
-		mav.setViewName("shop/cart_list");
+		mav.setViewName("cart/cart_list");
 		
 		return mav;
 	}
@@ -88,7 +88,7 @@ public class CartController {
 	@RequestMapping("delete.do")
 	public String delete() {
 		
-		return "redirect:/customer/cart/list.do";
+		return "redirect:/cart/list.do";
 	}
 	
 	/*
@@ -100,7 +100,7 @@ public class CartController {
 	@RequestMapping("deleteAll.do")
 	public String deleteAll(HttpSession session) {
 		
-		return "redirect:/customer/cart/list.do";
+		return "redirect:/cart/list.do";
 	}
 	
 	
@@ -113,7 +113,7 @@ public class CartController {
 	@RequestMapping("update.do")
 	public String update(int[] amount, int[] cart_id, HttpSession session) {
 		
-		return "redirect:/customer/cart/list.do";
+		return "redirect:/cart/list.do";
 	}
 	
 
