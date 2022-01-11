@@ -6,15 +6,6 @@
 <meta charset="UTF-8">
 <title>고객 메인 페이지</title>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-$(function(){
-	$("#btnKorean").click(function(){  // 이거 왜 안돼!@#$#%^&^%#@&%^^%
-		document.form1.action="/eatclipse/customer/korean.do";  // 경로가 맞나???
-		document.form1.submit();
-	});
-</script>
-
 </head>
 <body>
 <%-- <%@ include file="../include/menu.jsp" %> --%>

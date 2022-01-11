@@ -13,13 +13,13 @@
 <script>
 $(function(){
 	$("#btnUpdate").click(function(){
-		document.form1.action="/eatclipse/commons/update.do";  // 경로가 맞나???
+		document.form1.action="/eatclipse/customer/update.do";  // 경로가 맞나???
 		document.form1.submit();
 	});
 	
 	$("#btnDelete").click(function(){
 		if(confirm("삭제하시겠습니까?")){
-			document.form1.action="/eatclipse/commons/delete.do";  // 경로가 맞나???
+			document.form1.action="/eatclipse/customer/delete.do";  // 경로가 맞나???
 			document.form1.submit();
 		}
 	});
