@@ -17,6 +17,7 @@
 			<th>주문시간</th>
 			<th>메뉴이름</th>
 			<th>수량</th>
+			<th>결제금액</th>
 			<th>주문자명</th>
 			<th>주소</th>
 			<th>주문상태</th>
@@ -27,6 +28,7 @@
 				<td><fmt:formatDate value="${log.start_date}" pattern="MM-dd HH:mm"/></td>
 				<td>${log.product_name}</td>
 				<td>${log.amount}</td>
+				<td>${log.totalmoney}</td>
 				<td>${log.order_name}</td>
 				<td>${log.location}</td>
 				<td>
@@ -51,10 +53,10 @@
 					
 					<c:if test="${log.status==4}">
 						배달완료
-						<ol>
+						<ul>
 							<li>라이더 : ${log.rider_name}</li>
-							<li>배달완료시간 : <fmt:formatDate value="${row.end_date}" pattern="YY-MM-dd HH:mm:ss"/></li>
-						</ol>
+							<li>배달완료시간 : <fmt:formatDate value="${log.end_date}" pattern="YY-MM-dd HH:mm:ss"/></li>
+						</ul>
 					</c:if>
 				</td>
 			</tr>

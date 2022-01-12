@@ -1,5 +1,22 @@
 @charset "UTF-8";
-
+.title_color_white{
+	color: white;
+}
+.title_color_yellow{
+	color: #FFC000;
+}
+.title_color_blue{
+	color: #00B0F0;
+}
+div{
+	font-weight: bold;
+	text-align: center;
+	margin: 1px;
+}
+body{
+	height: 100hv;
+	background-image: url("../images/ocean_platter.jpg");
+}
 h1, h2{
 	text-align: center;
 	width: 100%;
@@ -34,22 +51,4 @@ a.main:hover{
 }
 a:link {
     text-decoration: none;
-}
-.title_color_white{
-	color: white;
-}
-.title_color_yellow{
-	color: #FFC000;
-}
-.title_color_blue{
-	color: #00B0F0;
-}
-div{
-	font-weight: bold;
-	text-align: center;
-	margin: 1px;
-}
-body{
-	height: 100hv;
-	background-image: url("../images/ocean_platter.jpg");
 }
