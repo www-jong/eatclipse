@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
 <title>메뉴 등록</title>
-<!-- 메뉴 등록 후 가게 관리 페이지로 넘어가는 작업 -->
-<!-- 메뉴 등록 취소 버튼 -->
 <script>
 function menu_register(){
 	var shop_name ="<%=session.getAttribute("name")%>";

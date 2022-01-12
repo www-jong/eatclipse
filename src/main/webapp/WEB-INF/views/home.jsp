@@ -14,7 +14,7 @@ body{
 
 </head>
 <body>
-	<header><h1><a class="title" href="/eatclipse/home">{EatClipse}</a></h1></header>
+	<header><h1><a class="title" href="/eatclipse">{EatClipse}</a></h1></header>
 	<div class="text_align_center">
 		<a class="main" href="/eatclipse/commons/login.do">로그인</a> 
 		<a class="main" href="/eatclipse/commons/join.do">회원가입</a>
