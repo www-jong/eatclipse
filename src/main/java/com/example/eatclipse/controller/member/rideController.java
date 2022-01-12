@@ -54,42 +54,19 @@ public class rideController {
 	
 	@RequestMapping("complete/{no}")
 	public String complete(@PathVariable("no") int no,HttpSession session) {
-		// 총금액: sum(product.money*log.amount)+....
-		//productDTO dto=new productDTO(); map을 사용해보자
-		
-		int total=0;
-		String shop_id = null;
-		List<LogDTO> log_product_list=riderdao.detail(no); // detail을 재활용. 해당no의 log 다들고옴
-		for(LogDTO list:log_product_list) { //각각의 주문에 대해 money을 얻어와 amount와 곱해 total을 구하는 과정
-			Map<String,Object> map=new HashMap<>(); // 그냥 Map을 써보고싶었어요.
-			String s=list.getShop_name(); //log에서 shop의 id들고옴
-			shop_id=list.getShop_name(); // 
-			String p=list.getProduct_name(); // log에서 제품의 name을 들고옴
-			map.put("shop_name", riderdao.getshopname(s));  //id로 shopname을 들고오는과정
-			map.put("product_name", p);
-			// product테이블에서 배달완료한 음식의 가격을 알아오기위해 log테이블에서 shop_name과 product_name을 들고오고
-			// 밑의 getmoney로 price를 조회해옴.  --> log에 money컬럼추가하면되는데 귀찮으니..
-			int amount=list.getAmount();
-			total+=amount*riderdao.getmoney(map);
-		}
-		System.out.println(total); // --> 완벽히 작동!
-		Map<String,Object> map2=new HashMap<>(); // 그냥 Map을 써보고싶었어요.
-		map2.put("userid",session.getAttribute("userid"));
-		map2.put("money", total/10);
-		System.out.println(total/10);
-		riderdao.addmoney(map2);  // 라이더에게 돈 10프로주기
-		Map<String,Object> map3=new HashMap<>();
-		System.out.println("샵id:"+shop_id);
-		map3.put("userid",shop_id); // 여기를 수정해야한다.
-		map3.put("money",(total*9)/10);
-		riderdao.addmoney(map3); // 가게에게 돈 90프로 주기
-		session.setAttribute("money", (int)session.getAttribute("money")+total/10); //세션에 등록하는 과정
-		Map<String,Object> map4=new HashMap<>(); // 그냥 Map을 써보고싶었어요.
-		map4.put("no",no);
-		map4.put("totalmoney", total);
-		
-		riderdao.complete(map4);
+		LogDTO dto=riderdao.getlogdata(no);
+		Map<String,Object> map=new HashMap<>();
+		map.put("userid",session.getAttribute("userid"));
+	map.put("money",dto.getTotalmoney()/10);
+	riderdao.addmoney(map); // 라이더에게 10%지급
+		map.put("userid",dto.getShop_name());
+		map.put("money",dto.getTotalmoney()*9/10);
+		riderdao.addmoney(map);  //가게에게 90% 지급
+	  	riderdao.complete(no);
 		 return "redirect:/rider/list.do";
+
+		
+		
 	 }
 	
 	@RequestMapping("detail/{no}")

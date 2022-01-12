@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.example.eatclipse.model.commons.LogDTO;
+
 @Repository
 public class CartDAOImpl implements CartDAO {
 
@@ -61,4 +63,22 @@ public class CartDAOImpl implements CartDAO {
 	public void cartdelete(Map<String,Object> map) {
 		 sqlSession.delete("cart.cartdelete", map);
 	}
+	
+	@Override
+	public int getmaxno() {
+		return sqlSession.selectOne("cart.getmaxno");
+	}
+	
+	@Override
+	public String getshopid(String shop_name) {
+		
+		return sqlSession.selectOne("cart.getshopid", shop_name);
+	}
+	
+	@Override
+	public void loginsert(LogDTO dto) {
+		sqlSession.insert("cart.loginsert", dto);
+
+	}
+	
 }

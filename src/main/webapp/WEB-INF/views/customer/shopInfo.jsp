@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css"
 <title>식당 정보</title>
 </head>
 <body>
@@ -14,6 +16,14 @@
 <h3>${shop_name}</h3>
 
 <table border="1" width="700px">
+				<c:if test="${message == 'success' }">
+					<div style="color:red">
+					장바구니 담기 성공적으로 물건을 담았습니다. </div>
+					 </c:if>
+					 <c:if test="${message == 'error' }">
+					<div style="color:red">
+					다른가게의 물건을 담을 수 없습니다. </div>
+					 </c:if>
    <tr>
       <th>메뉴</th>
       <th>가격</th>

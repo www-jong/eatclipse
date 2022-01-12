@@ -29,9 +29,17 @@ public class CommonsController {
 	}
 	
 	 @RequestMapping("login.do") //세부적인 url pattern
-	public String login() {
-		 return "commons/login";
-	}
+	public String login(HttpSession session) {
+		/*
+		 * if(session.getAttribute("type")==null) { return "/commons/login"; } int
+		 * type=(int) session.getAttribute("type"); if(type==-1)return
+		 * "redirect:/admin.main.do"; else if(type==0)return
+		 * "redirect:/commons/main.do"; else if(type==1)return
+		 * "redirect:/rider/main.do"; else if(type>=2&&type<=8)return
+		 * "redirect:/shop/main.do"; else
+		 */ return "/commons/login";
+	 
+	 }
 	 
 	 @RequestMapping("login_check.do")
 	 public ModelAndView login_check(@ModelAttribute CommonsDTO dto, HttpSession session, ModelAndView mav) {

@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>고객 메인 페이지</title>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 <%-- <%@ include file="../include/menu.jsp" %> --%>

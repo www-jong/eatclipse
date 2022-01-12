@@ -19,7 +19,7 @@
 
 <!-- 배달수락 -->
 	<update id="complete">
-		update log set end_date=now(), status=(status+1),totalmoney=#{totalmoney} where no=#{no}
+		update log set end_date=now(), status=(status+1) where no=#{no}
 	</update>
 	
 	<!-- 해당 no의 상세주문정보를 보여줌 -->
@@ -58,6 +58,10 @@
 	
 		<select id = "complete_list" resultType="com.example.eatclipse.model.commons.LogDTO">
 	select * from log group by no having rider_name=#{userid} and status=4 order by no desc
+	</select>
+	
+		<select id = "getlogdata" resultType="com.example.eatclipse.model.commons.LogDTO">
+	select * from log group by no having no=#{no} LIMIT 1;
 	</select>
 	
 	

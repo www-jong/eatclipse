@@ -149,9 +149,11 @@ public class CustController {
 			 HttpSession session, ModelAndView mav) {
 		String shop_name="";
 		shop_name=request.getParameter("shop_name"); //샵네임이 전달될경우
+		String message=request.getParameter("message");
 		//가게이름으로 그 가게의 음식목록 불러오기(근데 품절이면 선택불가(.jsp에서구현)
 		mav.addObject("productList",custDAO.menuList(shop_name));
 		mav.addObject("shop_name", shop_name); //가게이름만 따로 전달
+		mav.addObject("message",message);
 		mav.setViewName("/customer/shopInfo");
 		return mav;
 	}

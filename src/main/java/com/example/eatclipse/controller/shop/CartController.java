@@ -1,5 +1,7 @@
 package com.example.eatclipse.controller.shop;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.eatclipse.model.commons.CommonsDTO;
 import com.example.eatclipse.model.commons.LogDTO;
+import com.example.eatclipse.model.member.RiderDAO;
 import com.example.eatclipse.model.shop.CartDAO;
 import com.example.eatclipse.model.shop.CartDTO;
 
@@ -28,8 +31,8 @@ public class CartController {
 	
 	// 식당 페이지에서 메뉴 장바구니 담기.
 	@RequestMapping("cartinsert.do")
-	public String cartinsert(  // 한식식당1, 바나나찌개(no=16)으로 가정. 
-			@ModelAttribute CartDTO dto, HttpSession session) {
+	public ModelAndView cartinsert(  // 한식식당1, 바나나찌개(no=16)으로 가정. 
+			@ModelAttribute CartDTO dto, HttpSession session,ModelAndView mav) throws UnsupportedEncodingException {
 		// 건너오는값: product_no, product_name, amount, price, shop_name
 		Map<String,Object> map=new HashMap<>(); // 그냥 Map을 써보고싶었어요.
 		map.put("shop_name",dto.getShop_name());
@@ -40,55 +43,27 @@ public class CartController {
 		dto.setTotal_price(total);  // amount와 price를 곱해서 넣어줌.
 		                   // 여기 totalprice는 그냥 price로 담아왔기에 이런형태
 		dto.setUserid((String) session.getAttribute("userid")); 
-		//그럼 여기서 dto는 다 완성됬다.
-		
+		//그럼 여기서 dto는 다 완성됬다.	
 		cartDAO.Cartinsert(dto);
-		
-		/*
-		 * int no=16; // 일단 '바나나찌개' 가정
-		 * 
-		 * 
-		 * Map<String, Object> map = new HashMap<>(); String
-		 * userid=(String)session.getAttribute("userid"); mav.addObject("userid",
-		 * userid);
-		 * 
-		 * 
-		 * List<CartDTO> list = cartDAO.list(userid);
-		 * 
-		 * map.put("shop_name", shop_name); // 일단 "한식식당1"로 가정. map.put("no", no); //
-		 * "바나나 찌개".여기서 no는 프로덕트 테이블에서 해당 '메뉴'를 뜻함. map.put("userid",
-		 * session.getAttribute("userid")); // 세션 통해서 로그인된 고객의 id 가져와서 넣기.
-		 * map.put("amount", amount); // 얘는 @RequestParam 통해서 shopInfo.jsp에서 가져온다.
-		 * map.put("product_name", (String) cartDAO.getproductname(no)); // no 통해서 프로덕트
-		 * 테이블에서 해당 메뉴 이름 가져와서 map에 넣기 int total_price = amount *
-		 * (cartDAO.getproductprice(no)); // '한 메뉴'에 대한 총 금액 map.put("total_price",
-		 * total_price); // 이로써 map에 cart table의 모든 컬럼에 대한 요소가 담김.
-		 * 
-		 * // map에 다른 정보도 추가. int sumMoney=cartDAO.sum_money(userid); //'모든 메뉴'에 대한 금액
-		 * 합계 int fee=sumMoney>=30000?0:2500; //배송료
-		 * 
-		 * // map에 총금액, 배달비, 최종금액(=총금액+배달비) list, 레코드 갯수도 추가. map.put("sumMoney",
-		 * sumMoney); map.put("fee", fee); map.put("sum", sumMoney+fee); map.put("list",
-		 * list); map.put("count", list.size()); //레코드 개수
-		 * 
-		 * 
-		 * cartDAO.cartinsert(map); // 결국 cart(장바구니)에 넣는 것은 이걸 실행시키는 것
-		 */		
+
 		System.out.println("장바구니 테스트용");
 		
-		String go="redirect:/customer/shopInfo/"+dto.getShop_name();
-		/*
-		 * mav.setViewName("redirect:/customer/shopInfo.do?shop_name="+dto.getShop_name(
-		 * )); //이걸 하고싶은데.. mav.addObject("message", "success"); // 장바구니 담겼다는 alert
-		 * 뜨게해야됨
-		 */		}
+		String shop_name=(String) dto.getShop_name();
+		String name=URLEncoder.encode(shop_name,"utf-8");
+		String message=URLEncoder.encode("success","utf-8");
+		//mav.addObject("map",map);
+		mav.setViewName("redirect:/customer/shopInfo.do?shop_name="+name+"&message="+message);
+		//mav.addObject("message","success");
+		}
 		else {
 			System.out.println("대충 장바구니에 다른가게이름이 들어올려했다는 내용");
-			/*
-			 * mav.setViewName("redirect:/customer/shopInfo?shop_name="+dto.getShop_name());
-			 * mav.addObject("message", "error"); // 이건 겹친다는 에러
-			 */		}
-		return "redirect:/customer/shopInfo/"+(String) dto.getShop_name();
+			String shop_name=(String) dto.getShop_name();
+			String name=URLEncoder.encode(shop_name,"utf-8");
+			String message=URLEncoder.encode("error","utf-8");
+			  mav.setViewName("redirect:/customer/shopInfo.do?shop_name="+name+"&message="+message);
+			 // mav.addObject("message", "error"); // 이건 겹친다는 에러
+			 		}
+		return mav;
 	}
 	
 	/*
@@ -99,17 +74,18 @@ public class CartController {
 	
 	//수정 by 원종
 	@RequestMapping("cartlist.do") 
-	public ModelAndView list(HttpSession session, ModelAndView mav) {
+	public ModelAndView list(HttpServletRequest request,HttpSession session, ModelAndView mav) {
 		//자기이름에 해당하는 cartlist를 여기 받아옴(중복다 제거)
 		String check="";
 		check=cartDAO.cartemptycheck((String) session.getAttribute("userid"));
 		if(check!=null) {
+			String message=request.getParameter("message");
 		mav.addObject("list",cartDAO.cartlist((String) session.getAttribute("userid")));
 		// 여기에 담기는 데이터는 product_no, product_name, userid,shop_name, total_amount(그메뉴의모든양),total_price(그메뉴의 모든돈합친거)
 		Map<String,Object> map=new HashMap<>(); // 장바구니의 총금액 계산
 		map.put("cart_total_price",cartDAO.cart_total_price((String) session.getAttribute("userid")));
 		map.put("userid", session.getAttribute("userid"));
-		
+		mav.addObject("message",message);
 		mav.addObject("map",map);
 		mav.setViewName("cart/cart_list");
 		}
@@ -159,6 +135,46 @@ public class CartController {
 		
 		return "redirect:/cart/list.do";
 	}
+	
+	@RequestMapping("order.do")
+	public ModelAndView order( ModelAndView mav, HttpSession session) throws UnsupportedEncodingException {
+		int totalmoney=cartDAO.cart_total_price((String) session.getAttribute("userid"));
+		int mymoney=(int) session.getAttribute("money");
+		if(totalmoney<=mymoney) {
+		mav.addObject("cart_total_price",cartDAO.cart_total_price((String) session.getAttribute("userid")));
+		//주문한 목록 보여주기위해 들고옴
+		mav.addObject("list",cartDAO.cartlist((String) session.getAttribute("userid")));
+		List<CartDTO> orderlist=cartDAO.cartlist((String) session.getAttribute("userid"));
+		int no=cartDAO.getmaxno();
+		
+		for(CartDTO list:orderlist) {
+			//no:max(no)+1 , order_name=세션, shop_name=dao로얻어오기,
+		LogDTO dto=new LogDTO();
+		dto.setNo(no);
+		dto.setOrder_name((String) session.getAttribute("userid"));
+		dto.setShop_name(cartDAO.getshopid(list.getShop_name()));
+		dto.setProduct_name(list.getProduct_name());
+		dto.setAmount(list.getAmount());
+		dto.setLocation((String) session.getAttribute("location"));
+		dto.setStatus(0);
+		//dto.setStart_date(now()); 이건 xml에서 처리 
+		dto.setTotalmoney(totalmoney);
+		System.out.println("로그인서트 확인용");
+		cartDAO.loginsert(dto);
+		}
+		cartDAO.cartdeleteall((String) session.getAttribute("userid"));
+		mav.setViewName("cart/order_complete");
+		}
+		else {
+			String message=URLEncoder.encode("error","utf-8");
+			  mav.setViewName("redirect:/cart/cartlist.do?message="+message);
+	
+		
+		}
+		return mav;
+	}
+	
+	
 	
 
 }

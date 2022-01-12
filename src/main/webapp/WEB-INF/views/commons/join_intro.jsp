@@ -6,16 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/eatclipse/resources/css/HomeCss.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/main.css">
-<link rel="stylesheet" href="/eatclipse/resources/css/join.css">
-<style type="text/css">
-h2{
-	text-align: center;
-}
-body{
-	background-image: url("../images/platter.jpg");
-}
-</style>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
@@ -42,8 +35,14 @@ body{
 </head>
 <body>
 	<header>
-	<h1><a class="title" href="/eatclipse/home">{EatClipse}</a></h1>
-	<br>
+	<h1>
+			<a href="/eatclipse">
+				<span class="title_color_white">{</span>
+				<span class="title_color_yellow">Eat</span>
+				<span class="title_color_blue">Clipse</span>
+				<span class="title_color_white">};</span>
+			</a>
+		</h1>
 	<h2>회원가입</h2>
 	</header>
 	

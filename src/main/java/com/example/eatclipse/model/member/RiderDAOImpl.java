@@ -39,8 +39,8 @@ public class RiderDAOImpl implements RiderDAO {
 	
 	//배달완료
 	@Override
-	public void complete(Map<String,Object> map) {
-		sqlSession.update("rider.complete",map);
+	public void complete(int no) {
+		sqlSession.update("rider.complete",no);
 	}
 
 	@Override
@@ -96,7 +96,11 @@ public class RiderDAOImpl implements RiderDAO {
 		return sqlSession.selectList("rider.complete_list",userid);
 	}
 	
-	
+	@Override
+	public LogDTO getlogdata(int no) {
+		
+		return sqlSession.selectOne("rider.getlogdata",no);
+	}
 	
 	
 	

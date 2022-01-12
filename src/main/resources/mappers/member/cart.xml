@@ -24,7 +24,7 @@
 	<!-- userid가 가지고 있는 실제 존재하는 장바구니내 물건 목록, 그런데 중복되는메뉴는 합쳐서  -->
 	<select id="cartlist" 
 	 resultType="com.example.eatclipse.model.shop.CartDTO">
-		select product_no, product_name,userid,shop_name, sum(amount) as amount, sum(total_price) total_price from cart group by product_no having userid=#{userid}
+		select product_no, product_name,userid,shop_name, sum(amount) as amount, sum(total_price) total_price from cart where userid=#{userid} group by product_no
 	</select>
 	
 	<select id="sum_money" resultType="int">
@@ -50,4 +50,17 @@
 	<delete id="cartdelete">
 		delete from cart where userid=#{userid} and product_no=#{product_no}
 	</delete>
+	
+	<select id="getmaxno" resultType="int">
+		select max(no)+1 from log
+	</select>
+	
+	<select id="getshopid" resultType="String">
+		select userid from member where name=#{shop_name}
+	</select>
+	
+	<insert id="loginsert">
+		insert into log(no,order_name, shop_name, product_name, amount, location, status,start_date,totalmoney) 
+		values(#{no}, #{order_name}, #{shop_name}, #{product_name}, #{amount}, #{location},#{status},now(),#{totalmoney})
+	</insert>
 </mapper>

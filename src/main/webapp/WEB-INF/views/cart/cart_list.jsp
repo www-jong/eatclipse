@@ -11,6 +11,10 @@
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(function(){
+	var price=${map.cart_total_price};
+	var money=${sessionScope.money};
+	
+	
    $("#btnList").click(function(){
       location.href="/eatclipse/customer/main.do";
    });
@@ -19,6 +23,11 @@ $(function(){
          location.href="/eatclipse/cart/deleteAll.do";
       }
    });
+   $("#btnOrder").click(function(){
+	      if(confirm("주문하시겠습니까?")){
+	         location.href="/eatclipse/cart/order.do";
+	      }
+	   });
 });
 </script>
 
@@ -28,7 +37,10 @@ $(function(){
 <%@ include file="../include/menu_cust.jsp" %>
 
 <h2>장바구니 페이지</h2>
-
+<c:if test="${message == 'error' }">
+					<div style="color:red">
+					돈이 모자랍니다! </div>
+					 </c:if>
 <c:choose>
    <c:when test="${map.count == 0 }">
       장바구니가 비었습니다.
@@ -37,6 +49,10 @@ $(function(){
       <form id="form1" name="form1" method="post" 
          action="/eatclipse/cart/update.do">
       <table border="1" width="800px">
+      <c:if test="${message == 'error' }">
+					<div style="color:red">
+					돈이 모자랍니다! </div>
+					 </c:if>
          <tr>
             <th>상품명</th>
             <th>단가</th>
@@ -67,6 +83,7 @@ $(function(){
       </table>
       <button id="btnUpdate">수정</button>
       <button type="button" id="btnDelete">장바구니 비우기</button>
+      <button type="button" id="btnOrder">주문하기</button>
       </form>
    </c:otherwise>
 </c:choose>

@@ -6,10 +6,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/eatclipse/resources/css/join.css">
-<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/HomeCss.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	var type="${sessionScope.type}";
+	
+	if(type=="-1"){
+		document.form.action="/eatclipse/admin/main.do";
+	}
+	if(type=="0"){
+		document.form.action="/eatclipse/customer/main.do";
+	}
+	if(type=="1"){
+		document.action="/eatclipse/rider/main.do";
+	}
+	if(type=="2"){
+		document.action="/eatclipse/shop/main.do";
+	}
+	else{
+	}
+});
+</script>
 <script>
 	$(function(){
 	$("#btnLogin").click(function(){
@@ -36,10 +57,19 @@
 <body>
 	<header>
 		<%@ include file="../include/menu.jsp" %>
+		<h1>
+			<a href="/eatclipse">
+				<span class="title_color_white">{</span>
+				<span class="title_color_yellow">Eat</span>
+				<span class="title_color_blue">Clipse</span>
+				<span class="title_color_white">};</span>
+			</a>
+		</h1>
+		<h2>로그인</h2>
+		
 	</header>
 	
-	
-	<h2>로그인</h2>
+
 	<br>
 	<form name="form1" method="post">
 		<table border="1" width="400px">

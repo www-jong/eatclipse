@@ -16,7 +16,7 @@ public interface RiderDAO {
 		List<LogDTO> accept_list(String name);  //  
 		
 		void accept(LogDTO dto);
-		void complete(Map<String,Object> map);
+		void complete(int no);
 		List<LogDTO> detail(int no);
 		//유저정보 업데이트
 		void update(CommonsDTO dto);
@@ -24,6 +24,7 @@ public interface RiderDAO {
 		//유저탈퇴
 		void delete(String userid);
 		
+		LogDTO getlogdata(int no);
 		int getmoney(Map<String,Object> map);
 		
 		void addmoney(Map<String,Object> map);

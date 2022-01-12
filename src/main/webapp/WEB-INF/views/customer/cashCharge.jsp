@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>캐시 충전 페이지</title>
+<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
 </head>
 <body>
 <%@ include file="../include/menu_cust.jsp" %>

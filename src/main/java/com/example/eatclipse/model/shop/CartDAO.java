@@ -2,6 +2,8 @@ package com.example.eatclipse.model.shop;
 
 import java.util.List;
 import java.util.Map;
+
+import com.example.eatclipse.model.commons.LogDTO;
 import com.example.eatclipse.model.shop.CartDTO;
 
 
@@ -21,4 +23,7 @@ public interface CartDAO {
 	void cartdeleteall(String userid);
 	String cartemptycheck(String userid);
 	void cartdelete(Map<String, Object> map);
+	int getmaxno();
+	String getshopid(String shop_name);
+	void loginsert(LogDTO dto);
 }
