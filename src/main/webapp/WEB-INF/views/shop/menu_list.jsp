@@ -12,7 +12,7 @@
    <!-- 가게 메뉴 -->
    <h4>가게 메뉴</h4>
    <a href="/eatclipse/shop/menu_register.do">메뉴 등록</a>
-   <table>
+   <table class="box highlight">
       <tr>
          <th>이미지</th>
          <th>메뉴</th>

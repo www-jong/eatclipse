@@ -5,7 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
 <title>Insert title here</title>
+<style type="text/css">
+
+</style>
 </head>
 <body>
 <%@ include file="../include/menu_rider.jsp" %>

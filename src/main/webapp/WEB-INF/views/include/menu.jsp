@@ -9,7 +9,7 @@
 				<a href="/eatclipse/commons/logout.do">로그아웃</a>  
 		</c:when>
 		<c:otherwise> <!-- 로그인 안되어있는 상태 -->
-			<a href="/eatclipse/commons/login.do">로그인</a>  |
+			<a href="/eatclipse/commons/login.do">로그인</a>
 			<a href="/eatclipse/commons/join.do">회원가입</a>
 		</c:otherwise>
 		</c:choose>
