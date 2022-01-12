@@ -16,7 +16,7 @@ a {
     position: absolute;
     top: 0;
     left: 100%;
-    background-color: #dfdfdf;
+    background-color: #FFC000;
 }
 
 body {
@@ -24,7 +24,7 @@ body {
 }
 
 .left-side-bar {
-    background-color: #dfdfdf;
+    background-color: #FFC000;
     height: 100%;
     width: 180px;
     position: fixed;
@@ -63,7 +63,7 @@ body {
 
 .left-side-bar ul > li:hover > a {
     color: white;
-    background-color: black;
+    background-color: #00B0F0;
 }
 
 .left-side-bar > .status-ico > span:last-child {
