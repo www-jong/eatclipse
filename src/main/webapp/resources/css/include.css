@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+.title_color_white {
+	font-size: 50px;
+	color: white;
+}
+
+.title_color_yellow {
+	font-size: 50px;
+	color: #FFC000;
+}
+
+.title_color_blue {
+	font-size: 50px;
+	color: #00B0F0;
+}
+
+header {
+	background-image: url("../images/main.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 150px;
+}
+
+nav ul li {
+	display: inline-flex;
+	color: white;
+}
+
+.menu {
+	color: white;
+	background-color: #52331C;
+	margin: 2px;
+	padding: 2px;
+}
+
+.menu:hover {
+	color: white;
+	background-color: #EB9350;
+	box-shadow: 0 10px 30px -15px #333;
+	box-sizing: border-box;
+	transition: .3s;
+}
+
+a:link {
+	text-decoration: none;
+}

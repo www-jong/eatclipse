@@ -25,7 +25,7 @@
 		<c:forEach var="log" items="${loglist}">
 			<tr>
 				<td>${log.no}</td>
-				<td><fmt:formatDate value="${log.start_date}" pattern="MM-dd HH:mm"/></td>
+				<td><fmt:formatDate value="${log.start_date}" pattern="YY-MM-dd HH:mm:ss"/></td>
 				<td>${log.product_name}</td>
 				<td>${log.amount}</td>
 				<td>${log.totalmoney}</td>

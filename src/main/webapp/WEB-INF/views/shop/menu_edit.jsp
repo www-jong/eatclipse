@@ -31,7 +31,6 @@
 		document.form1.action="/eatclipse/shop/menu_update.do";
 		document.form1.submit();
 	}
-	
 </script>
 </head>
 <body>
@@ -57,14 +56,18 @@
 				</td>
 			</tr>
 			<tr>
-				<td><!-- ; location.href='/eatclipse/shop/menu_update/${dto.no}' -->
+				<td>
 					<button onclick="menu_update()">수정</button>
-					<button onclick="menu_delete(); location.href='/eatclipse/shop/delete/${dto.no}'">삭제</button>
+					<button onclick="menu_delete(no=${dto.no});">삭제</button>
 	            	<script>
-						function menu_delete(){
+						function menu_delete(no){
 							var msg = "삭제하시겠습니까?";
 							var flag = confirm(msg);
-							if(flag==true) alert("메뉴를 삭제했습니다.");
+							if(flag==true) {
+								alert("메뉴를 삭제했습니다.");
+								document.form1.action="/eatclipse/shop/delete/"+no;
+								document.form1.submit();
+							}
 							else alert("취소되었습니다.");
 						}
 					</script>
