@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  trimDirectiveWhitespaces="true"
-	import ="com.example.eatclipse.controller.member.SessionUserCounter"
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="/eatclipse/resources/css/include.css">
@@ -19,7 +18,6 @@
 			<c:when test="${sessionScope.userid != null}"> <!-- 로그인상태. -->
 				<ul>
 					<li>${sessionScope.name}님이 로그인중입니다.</li>
-					<li><a class="menu">현재접속자수 : <%=SessionUserCounter.getCount()%></a></li>
 					<li><a class="menu" href="/eatclipse/commons/logout.do">로그아웃</a></li>
 				</ul>
 			</c:when>

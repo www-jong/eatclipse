@@ -27,5 +27,5 @@ public interface AdminDAO {
 	
 		List<productDTO> productlist();
 
-		Object online();
+		//Object online();
 }

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>EATCLIPSE|회원가입</title>
 <link rel="stylesheet" href="/eatclipse/resources/css/main.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/table_center.css">
@@ -39,7 +39,8 @@
 </script>
 </head>
 <body>
-	<h2>라이더회원가입</h2>
+	<%@ include file="../include/menu.jsp" %>
+	<h2 style="text-align: center; margin:30px">회원가입|라이더</h2>
 	<div class = "center">
 	<form name="form1" method="post">
 		<table>

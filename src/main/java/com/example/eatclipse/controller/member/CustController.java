@@ -1,5 +1,6 @@
 package com.example.eatclipse.controller.member;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,7 @@ import com.example.eatclipse.model.shop.productDTO;
 
 public class CustController {
 
+	
 	@Inject
 	CustDAO custDAO;
 
@@ -39,19 +41,19 @@ public class CustController {
 	@RequestMapping("main.do")
 	public ModelAndView main(ModelAndView mav, HttpSession session) {
 		mav.setViewName("customer/main");
-
-		
-		/*
-		 * List<LogDTO> list= custDAO.userlog((String) session.getAttribute("userid"));
-		 * List<String> plist=new ArrayList<>();
-		 * for(LogDTO list:list) {
-		 * 	plist.add(custDAO.get
-		 * } 
-		 * 
-		 * mav.addObject("recent_shoplist", custDAO.recent_shop);
-		 */
-		 
-
+			//자기가 주문했던 log 들고옴
+		  List<LogDTO> loglist= custDAO.userlog((String) session.getAttribute("userid"));
+		  List<productDTO> plist=new ArrayList<productDTO>();
+		  List<String> imagelist=new ArrayList<String>();
+		  int count=0;
+		  for(LogDTO list:loglist) {
+			  //shop_name이 id로 되어있으므로 이를 name으로 대체해줌
+			  list.setShop_name(custDAO.getshopname(list.getShop_name()));
+		  	plist.addAll(custDAO.getrecent(list));
+		  	count++;
+		  	if(count>=5||count>=loglist.size())break;
+		  } 
+		  mav.addObject("recent_shoplist",plist);
 		return mav;
 	}
 
@@ -64,7 +66,7 @@ public class CustController {
 	------------------------------------------------------------------*/
 
 	@RequestMapping("myPage.do")
-	public String myPage(Model model, HttpSession	9 session) {
+	public String myPage(Model model, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
 		model.addAttribute("dto", custDAO.view(userid));
 		model.addAttribute("a", 1);
@@ -132,7 +134,7 @@ public class CustController {
 
 		session.setAttribute("money", money); // 원래 홍길동 돈을 업데이트.
 
-		System.out.print("성공");
+		System.out.println(session.getAttribute("userid")+" 님이"+money+"만큼 충전하였습니다.");
 
 		return "redirect:/customer/myPage.do";
 	}
@@ -231,7 +233,6 @@ public class CustController {
 
 	@RequestMapping("recommend.do")
 	public ModelAndView recommend(@RequestParam("count") int count, ModelAndView mav, HttpSession session) {
-		System.out.println(count);
 		mav.setViewName("customer/recommend_menu");
 		mav.addObject("count", count);
 		if (count == 7) {
@@ -244,10 +245,94 @@ public class CustController {
 					break;
 				}
 				b++;
-
 			}
 		}
+		return mav;
+	}
+	
+	
+	@RequestMapping("worldcupon")
+	public ModelAndView worldcupon(ModelAndView mav, HttpSession session) {
+		System.out.println(session.getAttribute("name") + "님이 월드컵실행!");
+		
+		List<productDTO> nolist = custDAO.product_no(); //모든 product 목록(품절이아닌)
+		List<Integer> productlist=new ArrayList<Integer>(); //랜덤한 16개의 음식을 담기위한 리스트
+		List<productDTO> newlist=new ArrayList<productDTO>();
+		System.out.println("실행되긴함"+nolist.size());
+		int count=0;
+			while(true) {
+				int a = (int) ((Math.random() * nolist.size())+1); // no의 크기만큼에서 무작위숫자생성
+				if (!productlist.contains(a)) 
+				{ //같은값 있는지 확인
+					productlist.add(a);
+					System.out.print(a+", ");
+					count++;
+				}
+				if(count==16)break;
+			}
+			System.out.println();
+		count=0;
+			for (productDTO list : nolist) {
+				if(productlist.contains(count)) { //추출된 16개의 번호에 해당하는 product를 새롭게 객체화
+					newlist.add(list);
+				}
+				count++;
+				if(newlist.size()>=16)break;
+			}
+			mav.addObject("worldcuplist",newlist);
+			mav.addObject("list_num",productlist);
+			mav.setViewName("customer/worldcup");
+			mav.addObject("count",0);
+		return mav;
+	}
 
+// worldcuplist 객체를 html에서 콘트롤러로 다시 전달받기 어떻게..?
+	@RequestMapping("worldcup.do")
+	public ModelAndView worldcup(HttpServletRequest request,@RequestParam("count") int count,@RequestParam("worldcuplist") List<productDTO> worldcuplist, ModelAndView mav, HttpSession session) {
+		String num = request.getParameter("num");
+		mav.setViewName("customer/worldcup");
+		mav.addObject("count", count);
+		if(count==1) { // 처음 실행했을때,
+			System.out.println("췤");
+			int c=1;
+			for (productDTO list : worldcuplist) {
+				if(c==1) {mav.addObject("first_image",list.getImage());
+				mav.addObject("first_product_name",list.getProduct_name());
+				mav.addObject("first",list.getNo());
+				}
+				else if(c==2) {mav.addObject("second_image",list.getImage());
+				mav.addObject("second_product_name",list.getProduct_name());
+				mav.addObject("second",list.getNo());
+				break;
+				}
+				c++;
+			}
+		}
+		else { // 이후, 선택값제외 제거
+			int c=1;
+			if(num.equals("1"))worldcuplist.remove(1); // 1번골랐으면 2번을 지움
+			else if(num.equals("2"))worldcuplist.remove(0); // 2번골랐으면 1번을 지움
+			for (productDTO list : worldcuplist) {
+				if(c==1) {mav.addObject("first_image",list.getImage());
+				mav.addObject("first_product_name",list.getProduct_name());
+				mav.addObject("first",list.getNo());
+				}
+				else if(c==2) {mav.addObject("second_image",list.getImage());
+				mav.addObject("second_product_name",list.getProduct_name());
+				mav.addObject("second",list.getNo());
+				break;
+				}
+				c++;
+			}
+		}
+		if(worldcuplist.size()==1) {
+			for (productDTO list : worldcuplist) {
+			mav.addObject("first_image",list.getImage());
+			mav.addObject("first_product_name",list.getProduct_name());
+			break;
+			}
+		}
+		mav.addObject("worldcuplist",worldcuplist);
 		return mav;
 	}
 

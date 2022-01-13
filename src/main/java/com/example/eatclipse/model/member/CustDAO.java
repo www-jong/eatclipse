@@ -33,6 +33,10 @@ public interface CustDAO {
 	String review_get(int no);
 
 	List<productDTO> product_no();
+
+	List<productDTO> getrecent(LogDTO list);
+
+	String getshopname(String shop_name);
 	
 	
 	

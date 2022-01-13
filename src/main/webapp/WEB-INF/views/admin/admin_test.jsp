@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  trimDirectiveWhitespaces="true"
+	import ="com.example.eatclipse.controller.member.SessionUserCounter"
+%>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -51,14 +52,8 @@
                 </ul> -->
             </li>
             <li>
-                <a href="#">1차 메뉴 아이템4</a>
-                <ul>
-                    <li><a href="#">2차 메뉴 아이템1</a></li>
-                    <li><a href="#">2차 메뉴 아이템2</a></li>
-                    <li><a href="#">2차 메뉴 아이템3</a></li>
-                    <li><a href="#">2차 메뉴 아이템4</a></li>
-                    <li><a href="#">2차 메뉴 아이템5</a></li>
-                </ul>
+                <a href="#">현재 접속자 수 : <%=SessionUserCounter.getCount()%></a>
+
             </li>
         </ul>
     </div>

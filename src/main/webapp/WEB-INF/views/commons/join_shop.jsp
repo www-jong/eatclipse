@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>EATCLIPSE|회원가입</title>
 <link rel="stylesheet" href="/eatclipse/resources/css/main.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/table_center.css">
@@ -37,8 +37,6 @@
 			$("#location").focus();
 			return;
 			}
-
-		
 		document.form1.action="/eatclipse/commons/join_check.do"; /* 확인하는페이지로 */
 		document.form1.submit();
 		});
@@ -46,7 +44,8 @@
 </script>
 </head>
 <body>
-	<h2>가게회원가입</h2>
+	<%@ include file="../include/menu.jsp" %>
+	<h2 style="text-align: center; margin:30px">회원가입|가게</h2>
 	<div class = "center">
 	
 	<form name="form1" method="post">

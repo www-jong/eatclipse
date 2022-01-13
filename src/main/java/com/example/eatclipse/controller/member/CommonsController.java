@@ -30,25 +30,15 @@ public class CommonsController {
 	
 	 @RequestMapping("login.do") //세부적인 url pattern
 	public String login(HttpSession session) {
-		/*
-		 * if(session.getAttribute("type")==null) { return "/commons/login"; } int
-		 * type=(int) session.getAttribute("type"); if(type==-1)return
-		 * "redirect:/admin.main.do"; else if(type==0)return
-		 * "redirect:/commons/main.do"; else if(type==1)return
-		 * "redirect:/rider/main.do"; else if(type>=2&&type<=8)return
-		 * "redirect:/shop/main.do"; else
-		 */ return "/commons/login";
-	 
+	 return "/commons/login";
 	 }
 	 
 	 @RequestMapping("login_check.do")
 	 public ModelAndView login_check(@ModelAttribute CommonsDTO dto, HttpSession session, ModelAndView mav) {
 		 Integer no=commonsDao.login(dto); // Integer는 int랑 다름!! null을 표현할 수 있음!! int는 안됨!! 아오!
-		 System.out.println(no);
 		 if(no!=null) { //맞으면
 			CommonsDTO dto2=(CommonsDTO) commonsDao.view(no); //no를 바탕으로 로그인정보를 다 가져옴
 			int type=dto2.getType();
-			 System.out.println("로그인 성공, type : "+no); //로그인되는지 확인용으로 넣음.
 			 session.setAttribute("type", dto2.getType());
 			 session.setAttribute("name", dto2.getName());
 			 session.setAttribute("userid", dto.getUserid());
@@ -57,8 +47,8 @@ public class CommonsController {
 		 	session.setAttribute("money", dto2.getMoney());
 		 	session.setAttribute("location", dto2.getLocation());
 		 	session.setAttribute("join_date", dto2.getJoin_date());
+		 	System.out.println(dto.getUserid()+"님이 로그인하였습니다.");
 			if(type==0) { //고객이라면 고객페이지로
-				 System.out.println("넘어온다");
 			
 				mav.setViewName("redirect:/customer/main.do"); // views/customer/main.jsp
 			 }else if(type==1) { // 라이더페이지로
@@ -137,10 +127,5 @@ public class CommonsController {
 			 
 		 }
 		 return mav;
-	 }
-	 
-	 
-		//회원 정보수정하기 --> 각자 구현
-
-	
+	 }	
  }

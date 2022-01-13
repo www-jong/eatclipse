@@ -28,7 +28,6 @@
    <tr>
       <th>메뉴</th>
       <th>가격</th>
-      <th>no(프로덕트 테이블의 key)_확인용</th>
       <th>사진</th>
       <th>수량</th>
 
@@ -38,7 +37,6 @@
 			<tr>
                 <td>${row.product_name}</td>
 				<td>${row.price}</td>
-				<td>${row.no}</td>  <!-- 얘 넘어오는 거 나중에 -->
 				 <td><img src="/eatclipse/images/${row.image}" width="100px" height="100px"></td>
 				<td>
 				<c:if test="${row.type == 0}">

@@ -20,7 +20,7 @@ public class SessionUserCounter implements HttpSessionListener {
     //  세션이 생성될 때 세션객체를 꺼내옴.
     HttpSession session = event.getSession();
     count ++;
-    logger.error("\n\tSESSION CREATED : {}, TOTAL ACCESSER : {}", session.getId(), count);
+    logger.error("\n\t세션이 생성되었습니다. : {}, 총 접속자수 : {}", session.getId(), count);
   }
 
   @Override
@@ -30,7 +30,7 @@ public class SessionUserCounter implements HttpSessionListener {
     if( count < 0 ) count = 0;
     
     HttpSession session = event.getSession();
-    logger.error("\n\tSESSION DESTROYED : {}, TOTAL ACCESSER : {}", session.getId(), count);
+    logger.error("\n\t세션이 종료되었습니다. : {}, 총 접속자수 : {}", session.getId(), count);
   }
   
 }

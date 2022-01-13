@@ -7,13 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>장바구니</title>
-
+<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/table_shop.css">
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(function(){
 	var price=${map.cart_total_price};
-	var money=${sessionScope.money};
-	
+	var money=${sessionScope.money};	
 	
    $("#btnList").click(function(){
       location.href="/eatclipse/customer/main.do";
@@ -29,14 +30,20 @@ $(function(){
 	      }
 	   });
 });
-</script>
 
+</script>
 
 </head>
 <body>
 <%@ include file="../include/menu_cust.jsp" %>
+<div style="text-align: right;">
+<button type="button" id="btnList">BACK</button>
+</div>
 
 <h2>장바구니 페이지</h2>
+<br>
+
+<div class="center">
 <c:if test="${message == 'error' }">
 					<div style="color:red">
 					돈이 모자랍니다! </div>
@@ -46,8 +53,7 @@ $(function(){
       장바구니가 비었습니다.
    </c:when>
    <c:otherwise>
-      <form id="form1" name="form1" method="post" 
-         action="/eatclipse/cart/update.do">
+      <form id="form1" name="form1" method="post" action="/eatclipse/cart/update.do">
       <table border="1" width="800px">
       <c:if test="${message == 'error' }">
 					<div style="color:red">
@@ -85,8 +91,7 @@ $(function(){
       </form>
    </c:otherwise>
 </c:choose>
-<button type="button" id="btnList">메인 메뉴 돌아가기</button>
-
+</div>
 
 </body>
 </html>
