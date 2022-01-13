@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/eatclipse/resources/css/include.css">
 <header>
 	<h1>
-		<a href="/eatclipse">
+		<a href="/eatclipse/shop/main.do">
 			<span class="title_color_white">{</span>
 			<span class="title_color_yellow">Eat</span>
 			<span class="title_color_blue">Clipse</span>
@@ -11,7 +11,7 @@
 		</a>
 	</h1>
 	
-	<nav class="include_menu">
+	<nav>
 	 	<c:choose>
 			<c:when test="${sessionScope.userid != null}"> <!-- 로그인상태. -->
 				<ul>
@@ -23,8 +23,10 @@
 				
 			</c:when>
 			<c:otherwise> <!-- 로그인 안되어있는 상태 -->
-				<a class="menu" href="/eatclipse/commons/login.do">로그인</a>  
-				<a class="menu" href="/eatclipse/commons/join.do">회원가입</a>
+			<ul>
+				<li><a class="menu" href="/eatclipse/commons/login.do">로그인</a></li>
+				<li><a class="menu" href="/eatclipse/commons/join.do">회원가입</a></li>
+			</ul>
 			</c:otherwise>
 		</c:choose>
 	</nav>
