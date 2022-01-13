@@ -5,16 +5,13 @@
 <html>
 <head>
 <title>Eatclipse</title>
-<link rel="stylesheet" href="/eatclipse/resources/css/HomeCss.css">
-<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-.css">
-<style type="text/css">
-
-</style>
+<link rel="stylesheet" href="/eatclipse/resources/css/home.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
 </head>
 <body>
 	<header>
 		<h1>
-			<a href="/eatclipse">
+			<a href="/eatclipse" class="eatclipse">
 				<span class="title_color_white">{</span>
 				<span class="title_color_yellow">Eat</span>
 				<span class="title_color_blue">Clipse</span>
@@ -26,6 +23,5 @@
 		<a class="main" href="/eatclipse/commons/login.do">로그인</a> 
 		<a class="main" href="/eatclipse/commons/join.do">회원가입</a>
 	</div>
-	
 </body>
 </html>

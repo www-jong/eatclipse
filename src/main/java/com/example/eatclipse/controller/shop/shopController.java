@@ -73,7 +73,7 @@ public class shopController {
 		    dto.setImage(filename); //첨부파일 이름 저장
 			dto.setShop_name((String) session.getAttribute("name")); //dto의 Shop_name에 세션의 name을 전달
 			productdao.menu_insert(dto);
-			mav.setViewName("shop/menu_register");
+			mav.setViewName("shop/main.do");
 			mav.addObject("message", "success");
 	     }else {
 	    	mav.setViewName("shop/menu_register");
@@ -91,7 +91,7 @@ public class shopController {
 	}
 	
 	@RequestMapping("menu_update.do")//
-	public ModelAndView update( ModelAndView mav, @ModelAttribute productDTO dto, HttpServletRequest request,HttpSession session) {
+	public ModelAndView update(ModelAndView mav, @ModelAttribute productDTO dto, HttpServletRequest request,HttpSession session) {
 		System.out.println("업데이트 테스트 no :"+dto.getNo());
 		String product_name= productdao.search_product_name(dto);
 		if(product_name==dto.getShop_name())product_name=null; // 원래이름과 같을경우, null처리. 여기서 Shop_name은 기존의 product_name
@@ -129,7 +129,7 @@ public class shopController {
 			productdao.log_nameupdate(map);
 	      */
 	      mav.setViewName("redirect:/shop/main.do");
-			mav.addObject("message", "success");
+		  mav.addObject("message", "success");
 		}
 		else {
 			   mav.setViewName("/shop/menu_edit");
