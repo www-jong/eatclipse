@@ -29,6 +29,10 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<listener>
+		<listener-class>com.example.eatclipse.controller.member.SessionUserCounter</listener-class>
+	</listener>
 
 <filter> <!-- 한글처리부분 --> <!-- 선처리클래스. 앞서서 먼저 실행하는 부분 -->
 <filter-name>encoding</filter-name>

@@ -24,7 +24,6 @@ import com.example.eatclipse.model.member.memberDTO;
 import com.example.eatclipse.model.shop.CartDTO;
 import com.example.eatclipse.model.shop.productDTO;
 
-
 @Controller
 @RequestMapping("/customer/*") // 고객 로그인 후, 여기로 들어오는 지 확인 필요 : 종현씨 수정 완료.
 
@@ -38,8 +37,22 @@ public class CustController {
 	------------------------------------------------------------------*/
 
 	@RequestMapping("main.do")
-	public String main() {
-		return "customer/main";
+	public ModelAndView main(ModelAndView mav, HttpSession session) {
+		mav.setViewName("customer/main");
+
+		
+		/*
+		 * List<LogDTO> list= custDAO.userlog((String) session.getAttribute("userid"));
+		 * List<String> plist=new ArrayList<>();
+		 * for(LogDTO list:list) {
+		 * 	plist.add(custDAO.get
+		 * } 
+		 * 
+		 * mav.addObject("recent_shoplist", custDAO.recent_shop);
+		 */
+		 
+
+		return mav;
 	}
 
 	/*-----------------------------------------------------------------
@@ -51,48 +64,45 @@ public class CustController {
 	------------------------------------------------------------------*/
 
 	@RequestMapping("myPage.do")
-	public String myPage(Model model,HttpSession session) {
-		String userid=(String) session.getAttribute("userid");
+	public String myPage(Model model, HttpSession	9 session) {
+		String userid = (String) session.getAttribute("userid");
 		model.addAttribute("dto", custDAO.view(userid));
-		model.addAttribute("a",1);
-		model.addAttribute("list",custDAO.userlog(userid));
+		model.addAttribute("a", 1);
+		model.addAttribute("list", custDAO.userlog(userid));
 		return "customer/myPage";
 	}
+
 	@RequestMapping("myPageon.do")
-	public String myPageon(Model model,HttpSession session) {
-		String userid=(String) session.getAttribute("userid");
+	public String myPageon(Model model, HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
 		model.addAttribute("dto", custDAO.view(userid));
-		model.addAttribute("a",2);
-		model.addAttribute("list",custDAO.userlog(userid));
+		model.addAttribute("a", 2);
+		model.addAttribute("list", custDAO.userlog(userid));
 		return "customer/myPage";
 	}
-	
+
 	/*-----------------------------------------------------------------
 	회원이 마이페이지에서 회원 정보 수정
 	------------------------------------------------------------------*/
 	@RequestMapping("update.do")
-	public ModelAndView update(@ModelAttribute CommonsDTO dto,
-			HttpSession session, ModelAndView mav) {
+	public ModelAndView update(@ModelAttribute CommonsDTO dto, HttpSession session, ModelAndView mav) {
 		custDAO.update(dto);
 		session.invalidate();
 		mav.setViewName("commons/login");
 		mav.addObject("message", "update_success");
 		return mav;
 	}
-	
+
 	@RequestMapping("delete.do")
 	public ModelAndView delete(@RequestParam String userid, HttpSession session, ModelAndView mav) {
-		
-			custDAO.delete(userid);
-			session.invalidate(); //세션 초기화
-			mav.setViewName("commons/login"); 
-			mav.addObject("message", "delete_success");
-			return mav;
+
+		custDAO.delete(userid);
+		session.invalidate(); // 세션 초기화
+		mav.setViewName("commons/login");
+		mav.addObject("message", "delete_success");
+		return mav;
 
 	}
-	
-	
-	
 
 	/*-----------------------------------------------------------------
 	회원이 마이페이지에서 [캐시 충전] 버튼을 누르면 돈 충전.  기본은 성공
@@ -128,9 +138,8 @@ public class CustController {
 	}
 
 	/*
-	 * ----------------------------------------------------------------------- 
-	 * 고객 main에서 [한식], [양식], [분식] ... 버튼 눌러서 카테고리별 식당 리스트 확인 및 접근
-	 * 1/10(월) 오전 일부 완성 - 
+	 * ----------------------------------------------------------------------- 고객
+	 * main에서 [한식], [양식], [분식] ... 버튼 눌러서 카테고리별 식당 리스트 확인 및 접근 1/10(월) 오전 일부 완성 -
 	 * --------------------------------------------------------------------------
 	 */
 
@@ -143,108 +152,103 @@ public class CustController {
 
 		return mav;
 	}
-	
+
 	/*
-	 * ----------------------------------------------------------------------- 
-	 * 식당 이름을 선택 시 각 식당의 메뉴 볼 수 확인 및 장바구니.
-	 *   * 망.... 확장 실패.
+	 * ----------------------------------------------------------------------- 식당
+	 * 이름을 선택 시 각 식당의 메뉴 볼 수 확인 및 장바구니. * 망.... 확장 실패.
 	 * --------------------------------------------------------------------------
 	 */
 
-	@RequestMapping("shopInfo.do")     
+	@RequestMapping("shopInfo.do")
 	// PathVariable 쓰려면 {shop_name}으로 해야함.
 	// 그런데 문제는 각 카테고리마다 식당 수도 다르고, 유동적으로 변해야 함.
 	// 어케 해?ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 	// --> httpservletrequest 사용.
-	public ModelAndView menuList(HttpServletRequest request,
-			 HttpSession session, ModelAndView mav) {
-		String shop_name="";
-		shop_name=request.getParameter("shop_name"); //샵네임이 전달될경우
-		String message=request.getParameter("message");
-		
-		//가게이름으로 그 가게의 음식목록 불러오기(근데 품절이면 선택불가(.jsp에서구현)
-		mav.addObject("productList",custDAO.menuList(shop_name));
-		mav.addObject("shop_name", shop_name); //가게이름만 따로 전달
-		mav.addObject("message",message);
+	public ModelAndView menuList(HttpServletRequest request, HttpSession session, ModelAndView mav) {
+		String shop_name = "";
+		shop_name = request.getParameter("shop_name"); // 샵네임이 전달될경우
+		String message = request.getParameter("message");
+
+		// 가게이름으로 그 가게의 음식목록 불러오기(근데 품절이면 선택불가(.jsp에서구현)
+		mav.addObject("productList", custDAO.menuList(shop_name));
+		mav.addObject("shop_name", shop_name); // 가게이름만 따로 전달
+		mav.addObject("message", message);
 		mav.setViewName("/customer/shopInfo");
 		return mav;
 	}
 
 	/*
-	 * -----------------------------------------------------------------------
-	 * 장바구니 - 주요 기능은 CartController
+	 * ----------------------------------------------------------------------- 장바구니
+	 * - 주요 기능은 CartController
 	 * --------------------------------------------------------------------------
 	 */
 
 	// 메인에서 [장바구니] 누르면 cart.jsp로 이동
 	@RequestMapping("cart.do")
 	public String cart() {
-		return "customer/cart_list";  // 경로!
+		return "customer/cart_list"; // 경로!
 	}
 
-	
 	@RequestMapping("detail/{no}")
-	public ModelAndView detail(@PathVariable("no") int no,ModelAndView mav,HttpSession session) {
-		 mav.setViewName("rider/order_detail");
-		 mav.addObject("list",custDAO.detail(no));
-		 return mav;
-	 }
-	
+	public ModelAndView detail(@PathVariable("no") int no, ModelAndView mav, HttpSession session) {
+		mav.setViewName("rider/order_detail");
+		mav.addObject("list", custDAO.detail(no));
+		return mav;
+	}
+
 	@RequestMapping("review_write/{no}")
-	public ModelAndView review_write(@PathVariable("no") int no,ModelAndView mav,HttpSession session) {
-		 mav.setViewName("customer/review_write");
-		 //mav.addObject("list",custDAO.detail(no));
-		 mav.addObject("no",no);
-		 return mav;
-	 }
-	
-	@RequestMapping("review_set.do")
-	public ModelAndView review_set(@ModelAttribute LogDTO dto,HttpSession session,ModelAndView mav) {
-		System.out.println("리뷰작성내용 :"+dto.getReview());
-		System.out.println("리뷰작성no :"+dto.getNo());
+	public ModelAndView review_write(@PathVariable("no") int no, ModelAndView mav, HttpSession session) {
 		mav.setViewName("customer/review_write");
-		mav.addObject("check","check");
+		// mav.addObject("list",custDAO.detail(no));
+		mav.addObject("no", no);
+		return mav;
+	}
+
+	@RequestMapping("review_set.do")
+	public ModelAndView review_set(@ModelAttribute LogDTO dto, HttpSession session, ModelAndView mav) {
+		System.out.println("리뷰작성내용 :" + dto.getReview());
+		System.out.println("리뷰작성no :" + dto.getNo());
+		mav.setViewName("customer/review_write");
+		mav.addObject("check", "check");
 		custDAO.review_set(dto);
 		return mav;
-	 }
-	
-	
+	}
+
 	@RequestMapping("review_view/{no}")
-	public ModelAndView review_view(@PathVariable("no") int no,ModelAndView mav,HttpSession session) {
-		 mav.setViewName("customer/review_view");
-		 mav.addObject("review",custDAO.review_get(no));
-		 return mav;
-	 }
-	
+	public ModelAndView review_view(@PathVariable("no") int no, ModelAndView mav, HttpSession session) {
+		mav.setViewName("customer/review_view");
+		mav.addObject("review", custDAO.review_get(no));
+		return mav;
+	}
+
 	@RequestMapping("recommendon")
-	public ModelAndView recommendon(ModelAndView mav,HttpSession session) {
-		System.out.println(session.getAttribute("name")+"님이 메뉴추천실행!");
-		 mav.setViewName("customer/recommend_menu");
-		 mav.addObject("count",0);
-		 return mav;
-	 }
-	
-	@RequestMapping("recommend.do")
-	public ModelAndView recommend(@RequestParam("count") int count,ModelAndView mav,HttpSession session) {
-		System.out.println(count); 
+	public ModelAndView recommendon(ModelAndView mav, HttpSession session) {
+		System.out.println(session.getAttribute("name") + "님이 메뉴추천실행!");
 		mav.setViewName("customer/recommend_menu");
-		 mav.addObject("count",count);
-		 if(count==7) {
-			List<productDTO> nolist= custDAO.product_no();
-			int a=(int)(Math.random()*nolist.size());
-		 int b=0;
-		 for(productDTO list:nolist) {
-			 if(b==a) {
-				 mav.addObject("list",list);
-				 break;
-			 }
-			 b++;
-			 
-		 }
-		 }
-		 
-		 return mav;
-	 }
-	
+		mav.addObject("count", 0);
+		return mav;
+	}
+
+	@RequestMapping("recommend.do")
+	public ModelAndView recommend(@RequestParam("count") int count, ModelAndView mav, HttpSession session) {
+		System.out.println(count);
+		mav.setViewName("customer/recommend_menu");
+		mav.addObject("count", count);
+		if (count == 7) {
+			List<productDTO> nolist = custDAO.product_no();
+			int a = (int) (Math.random() * nolist.size());
+			int b = 0;
+			for (productDTO list : nolist) {
+				if (b == a) {
+					mav.addObject("list", list);
+					break;
+				}
+				b++;
+
+			}
+		}
+
+		return mav;
+	}
 
 }

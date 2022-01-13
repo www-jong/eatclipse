@@ -43,7 +43,7 @@
 		
 		<!-- 해당 no의 상세주문정보를 보여줌 -->
 	<select id = "detail" resultType="com.example.eatclipse.model.commons.LogDTO">
-	select * from Log where no=#{no};
+	select * from Log where no=#{no}
 	</select>
 	
 	<update id="review_set">
@@ -51,11 +51,11 @@
 	</update>
 	
 	<select id = "review_get" resultType="String">
-	select review from Log where no=#{no} group by no;
+	select review from Log where no=#{no} group by no
 	</select>
 	
 	<select id = "product_no" resultType="com.example.eatclipse.model.shop.productDTO">
-	select * from product;
+	select * from product
 	</select>
 </mapper>
 

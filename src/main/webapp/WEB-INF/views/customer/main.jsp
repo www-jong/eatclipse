@@ -4,44 +4,61 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>고객 메인 페이지</title>
+<title>EATCLIPSE</title>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/home.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/table_shop.css">
+<style type="text/css">
+img.recent {
+  width: 150px;
+  height: 150px;
+  text-align:center;
+}
+</style>
 </head>
 <body>
-<%-- <%@ include file="../include/menu.jsp" %> --%>
 <%@ include file="../include/menu_cust.jsp" %>
-<h3>"고객 메인 페이지"</h3>
-
-<h3 style="text-align:center" > {EatClipse}; 배고픔엔 예외가 없잖아요 </h3>
-
-<p style="text-align:center">---------------------------------------------------</p>
-
-<h3 style="text-align:center">[여기는 검색창 들어갈 자리]</h3>
-
-<p style="text-align:center">---------------------------------------------------</p>
-
-<h5 style="text-align:center">[카테고리]</h5>
-<div style="text-align:center">
-<a href="/eatclipse/customer/shopList/${type=2}">한식</a>
-<a href="/eatclipse/customer/shopList/${type=3}">양식</a>
-<a href="/eatclipse/customer/shopList/${type=4}">분식</a>
-<a href="/eatclipse/customer/shopList/${type=5}">중식</a>
-<a href="/eatclipse/customer/shopList/${type=6}">일식</a>
-<a href="/eatclipse/customer/shopList/${type=7}">디저트</a>
-<a href="/eatclipse/customer/shopList/${type=8}">패스트푸드</a>
+<div style="text-align:center; padding: 40px;">
+   <a class="main" href="/eatclipse/customer/shopList/${type=2}">한식</a>
+   <a class="main" href="/eatclipse/customer/shopList/${type=3}">양식</a>
+   <a class="main" href="/eatclipse/customer/shopList/${type=4}">분식</a>
+   <a class="main" href="/eatclipse/customer/shopList/${type=5}">중식</a>
+</div>
+<div style="text-align:center; padding: 40px;">
+   <a class="main" href="/eatclipse/customer/shopList/${type=6}">일식</a>
+   <a class="main" href="/eatclipse/customer/shopList/${type=7}">디저트</a>
+   <a class="main" href="/eatclipse/customer/shopList/${type=8}">패스트푸드</a>
+</div>
+<div style="text-align: center;">
+   <a href=""><img src="../images/menu_e.png" alt="메뉴월드컵"/></a>
+   <a style="cursor:pointer;" onclick="gogogo()"><img src="../images/menu_r.png" alt="메뉴추천받기"/></a>
 </div>
 
-
-<p style="text-align:center">---------------------------------------------------</p>
-
-<h3 style="text-align:center">[ 최근 주문한 가게]</h3>
-
-<h3 style="text-align:center">[메뉴추천받기]</h3>
-
- <input type="button"  onclick="gogogo()" value="추천받기">
+<br>
+<h3 style="text-align: center;">[ 최근 주문한 가게]</h3>
+<div class="center">
+<table style="background-color:white;">
+<tr>
+<td><img class="recent" src="/eatclipse/images/크림치즈볼.jpg"></td>
+<td><img class="recent" src="/eatclipse/images/크림치즈볼.jpg"></td>
+<td><img class="recent" src="/eatclipse/images/크림치즈볼.jpg"></td>
+<td><img class="recent" src="/eatclipse/images/크림치즈볼.jpg"></td>
+<td><img class="recent" src="/eatclipse/images/크림치즈볼.jpg"></td>
+</tr>
+<tr>
+<td>f</td>
+<td>f</td>
+<td>f</td>
+<td>f</td>
+<td>f</td>
+</tr>
+</table>
+</div>
 <script>
 function gogogo(){
-	window.open("/eatclipse/customer/recommendon","_blank","toolber=yes,menubar=yes,width=500,height=400").focus();	
+   window.open("/eatclipse/customer/recommendon","_blank","toolber=yes,menubar=yes,width=500,height=400").focus();   
 }
 </script>
 </body>

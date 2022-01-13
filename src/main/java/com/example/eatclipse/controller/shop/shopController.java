@@ -73,10 +73,10 @@ public class shopController {
 		    dto.setImage(filename); //첨부파일 이름 저장
 			dto.setShop_name((String) session.getAttribute("name")); //dto의 Shop_name에 세션의 name을 전달
 			productdao.menu_insert(dto);
-			mav.setViewName("shop/menu_do");
+			mav.setViewName("redirect:/shop/main.do");
 			mav.addObject("message", "success");
 	     }else {
-	    	mav.setViewName("shop/menu_register");
+	    	mav.setViewName("redirect:/shop/menu_register");
 			mav.addObject("message", "error");
 	     }
 		return mav;

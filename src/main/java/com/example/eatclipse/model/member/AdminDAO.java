@@ -26,4 +26,6 @@ public interface AdminDAO {
 		List<LogDTO> loglist();
 	
 		List<productDTO> productlist();
+
+		Object online();
 }

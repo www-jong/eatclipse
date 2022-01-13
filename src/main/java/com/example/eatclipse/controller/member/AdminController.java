@@ -23,6 +23,7 @@ public class AdminController {
 	
 	@RequestMapping("main.do")
 	   public String main() {
+		
 	      return "admin/main";
 	   }
 	
@@ -33,7 +34,7 @@ public class AdminController {
 
 	@RequestMapping("list/{type}") //type을 전해받아 그 type의 
 	   public ModelAndView list(@PathVariable("type") int type,ModelAndView mav) {
-	 
+		mav.addObject("online",adminDao.online());
 		mav.setViewName("/admin/mem_list");
 		if(type>=2)mav.addObject("list", adminDao.shoplist(type));
 		else if(type==1)mav.addObject("list", adminDao.riderlist(type));

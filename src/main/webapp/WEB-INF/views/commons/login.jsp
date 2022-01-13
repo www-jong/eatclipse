@@ -57,7 +57,6 @@ $(document).ready(function(){
 </head>
 <body>
 	<header>
-	<a href="/eatclipse">홈으로</a>
 		<%@ include file="../include/menu.jsp" %>
 		<h1>
 			<a href="/eatclipse">

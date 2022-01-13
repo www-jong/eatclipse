@@ -110,6 +110,7 @@ public class CommonsController {
 		 String id=commonsDao.search_id(dto);
 		 int t=dto.getType();
 		 if(id==null) { //중복되는 이름이 없다면
+			 dto.setMoney(100000);
 			 	commonsDao.insert(dto);  // 계정등록
 				mav.setViewName("commons/login"); 
 				mav.addObject("message", "success");
