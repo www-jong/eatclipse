@@ -5,9 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/eatclipse/resources/css/HomeCss.css">
-<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
-<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
+<<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/table_center.css">
 <title>Join</title>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -45,12 +44,19 @@
 </script>
 </head>
 <body>
-	<h2>회원가입</h2>
+
+<h2>회원가입</h2>
+
+	<div class = "center">
+	<br>
+	
+	
+
 	<form class="form1" name="form1" method="post">
-		<table border="1" width="400px">
+		<table>
 			<tr>
 				<td>아이디</td>
-				<td><input id="userid" name="userid"></td>
+				<td><input type="text"  id="userid" name="userid"></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
@@ -73,7 +79,7 @@
 			<input type="hidden" value="0" name="type"></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
+				<td  colspan="2" align="center">
 					<button type="button" id="btnLogin">회원가입</button>
 					<c:if test="${message == 'error' }">
 					<div style="color:red">
@@ -88,5 +94,6 @@
 			</tr>
 		</table>
 		</form>
+		</div>
 	</body>
 </html>

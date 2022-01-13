@@ -6,9 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/eatclipse/resources/css/HomeCss.css">
-<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/table_center.css">
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
@@ -45,8 +44,9 @@
 		</h1>
 	<h2>회원가입</h2>
 	</header>
+
 	
-	<div>
+	<div class = "center">
 	<form name="form1" method="post">
 		<a class="main" href="/eatclipse/commons/jointo/0">손님</a>
 		<a class="main" href="/eatclipse/commons/jointo/1">라이더</a>

@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/eatclipse/resources/css/HomeCss.css">
-<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
+
 <link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/table_center.css">
+
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -54,6 +55,7 @@ $(document).ready(function(){
 	});
 </script>
 </head>
+
 <body>
 	<header>
 		<%@ include file="../include/menu.jsp" %>
@@ -69,10 +71,10 @@ $(document).ready(function(){
 		
 	</header>
 	
-
+	<div class = "center">
 	<br>
 	<form name="form1" method="post">
-		<table border="1" width="400px">
+		<table>
 			<tr>
 				<td>아이디</td>
 				<td><input type="text" id="userid" name="userid"></td>
@@ -104,5 +106,6 @@ $(document).ready(function(){
 			</tr>
 		</table>
 		</form>
+		</div>
 	</body>
 </html>
