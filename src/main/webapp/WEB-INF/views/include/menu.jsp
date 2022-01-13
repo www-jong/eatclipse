@@ -4,16 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="/eatclipse/resources/css/include.css">
-<header>
-	<h1>
-		<a href="/eatclipse/admin/main.do">
+<header style="text-align: center;">
+		<a href="/eatclipse">
 			<span class="title_color_white">{</span>
 			<span class="title_color_yellow">Eat</span>
 			<span class="title_color_blue">Clipse</span>
 			<span class="title_color_white">};</span>
 		</a>
-	</h1>
-	
 	<nav>
 	 	<c:choose>
 			<c:when test="${sessionScope.userid != null}"> <!-- 로그인상태. -->

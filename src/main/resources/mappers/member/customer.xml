@@ -57,6 +57,13 @@
 	<select id = "product_no" resultType="com.example.eatclipse.model.shop.productDTO">
 	select * from product
 	</select>
+	<select id = "getrecent" resultType="com.example.eatclipse.model.shop.productDTO">
+   select shop_name, image from product where shop_name=#{shop_name} and product_name=#{product_name}
+   </select>
+   
+     <select id = "getshopname" resultType="String">
+   	select name from member where userid=#{shop_name}
+   </select>
 </mapper>
 
 

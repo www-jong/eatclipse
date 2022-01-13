@@ -5,8 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/eatclipse/resources/css/home.css">
+<title>EATCLIPSE|로그인</title>
 <link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/main.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/table_center.css">
@@ -56,21 +55,9 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<header>
-		<%@ include file="../include/menu.jsp" %>
-		<h1>
-			<a href="/eatclipse">
-				<span class="title_color_white">{</span>
-				<span class="title_color_yellow">Eat</span>
-				<span class="title_color_blue">Clipse</span>
-				<span class="title_color_white">};</span>
-			</a>
-		</h1>
-		<h2>로그인</h2>
-		
-	</header>
+	<%@ include file="../include/menu.jsp" %>
+	<h2 style="text-align: center; margin:30px">로그인</h2>
 	<div class = "center">
-	<br>
 	<form name="form1" method="post">
 		<table>
 			<tr>

@@ -5,10 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>텅!</title>
+<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/table_shop.css">
 </head>
 <body>
 <%@ include file="../include/menu_cust.jsp" %>
-<h1>텅! 비었어요!</h1>
+<br>
+<h2>텅! 비었어요!</h2>
 </body>
 </html>
