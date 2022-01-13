@@ -10,13 +10,7 @@
 <link rel="stylesheet" href="/eatclipse/resources/css/main.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/home.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/table_shop.css">
-<style type="text/css">
-img {
-  width: 300px;
-  height: 150px;
-  object-fit: cover;
-}
-</style>
+
 </head>
 <body>
 <%@ include file="../include/menu_cust.jsp" %>
@@ -36,8 +30,8 @@ img {
 	<a style="cursor:pointer;" onclick="gogogo()"><img src="../images/menu_r.png" alt="메뉴추천받기"/></a>
 </div>
 
-
-<h3>[ 최근 주문한 가게]</h3>
+<h3 style="text-align: center;">[ 최근 주문한 가게]</h3>
+<div class="center">
 <table>
 <tr>
 <td>f</td>
@@ -47,7 +41,7 @@ img {
 <td>f</td>
 </tr>
 </table>
-
+</div>
 <script>
 function gogogo(){
 	window.open("/eatclipse/customer/recommendon","_blank","toolber=yes,menubar=yes,width=500,height=400").focus();	
