@@ -43,7 +43,7 @@ a.main {
 	box-sizing: border-box;
 	color: white;
 	font-size: 30px;
-	padding: 50px;
+	padding: 30px;
 }
 
 a.main:hover{
@@ -52,7 +52,7 @@ a.main:hover{
     padding: 1px 1px 0;
     box-shadow: 0 10px 30px -15px #333;
     transition: .3s;
-    padding: 60px;
+    padding: 40px;
 }
 a:link {
     text-decoration: none;

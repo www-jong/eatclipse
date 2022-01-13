@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+.eatclipse{
+	font-weight: bold;
+}
 .title_color_white {
 	font-size: 50px;
 	color: white;
@@ -15,16 +17,16 @@
 	color: #00B0F0;
 }
 
-header {
+header{
+	margin-top: 0;
 	background-image: url("../images/main.png");
 	background-repeat: no-repeat;
-	background-size: cover;
+    background-size: cover;
 	height: 150px;
 }
 
 nav ul li {
 	display: inline-flex;
-	justify-content: flex-end;
 	color: white;
 }
 

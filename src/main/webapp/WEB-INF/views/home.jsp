@@ -23,6 +23,5 @@
       <a class="main" href="/eatclipse/commons/login.do">로그인</a> 
       <a class="main" href="/eatclipse/commons/join.do">회원가입</a>
    </div>
-   
 </body>
 </html>
