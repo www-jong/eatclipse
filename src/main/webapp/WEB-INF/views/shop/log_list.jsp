@@ -6,21 +6,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주문 목록</title>
+<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/table_shop.css">
 </head>
 <body>
 	<!-- 주문 목록 -->
-	<h4>주문목록</h4>
+	<section style="text-align: center"><h4>주문목록</h4></section>
+	
+	<div>
 	<table>
 		<tr>
-			<th>주문번호</th>
-			<th>주문시간</th>
-			<th>메뉴이름</th>
-			<th>수량</th>
-			<th>결제금액</th>
-			<th>주문자명</th>
-			<th>주소</th>
-			<th>주문상태</th>
+			<td>주문번호</td>
+			<td>주문시간</td>
+			<td>메뉴이름</td>
+			<td>수량</td>
+			<td>결제금액</td>
+			<td>주문자명</td>
+			<td>주소</td>
+			<td>주문상태</td>
 		</tr>
 		<c:forEach var="log" items="${loglist}">
 			<tr>
@@ -31,7 +36,7 @@
 				<td>${log.totalmoney}</td>
 				<td>${log.order_name}</td>
 				<td>${log.location}</td>
-				<td>
+				<td  style="text-align: left">
 					<c:if test="${log.status==0}">
 						주문요청
 						<input type="button" value="주문수락" onclick="location.href='/eatclipse/shop/status_update/${log.no}'">
@@ -62,5 +67,6 @@
 			</tr>
 		</c:forEach>
 	</table>
+	</div>
 </body>
 </html>
