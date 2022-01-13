@@ -1,5 +1,27 @@
 @charset "UTF-8";
+.title_color_white{
+	color: white;
+}
+.title_color_yellow{
+	color: #FFC000;
+}
+.title_color_blue{
+	color: #00B0F0;
+}
 
+div{
+	font-weight: bold;
+	text-align: center;
+	margin: 1px;
+}
+
+body{
+	height: 100vh;
+	background-image: url("../images/main.png");
+	background-repeat : no-repeat;
+    background-size : cover;
+}
+	
 h1, h2{
 	text-align: center;
 	width: 100%;
@@ -17,7 +39,7 @@ h1, h2{
 	color: white;
 }
 a.main {
-	background-color: #FFC000;
+	background-color: #52331C;
 	box-sizing: border-box;
 	color: white;
 	font-size: 30px;
@@ -25,7 +47,7 @@ a.main {
 }
 
 a.main:hover{
-	background-color: #00B0F0;
+	background-color: #EB9350;
     box-sizing: border-box;
     padding: 1px 1px 0;
     box-shadow: 0 10px 30px -15px #333;
@@ -34,22 +56,4 @@ a.main:hover{
 }
 a:link {
     text-decoration: none;
-}
-.title_color_white{
-	color: white;
-}
-.title_color_yellow{
-	color: #FFC000;
-}
-.title_color_blue{
-	color: #00B0F0;
-}
-div{
-	font-weight: bold;
-	text-align: center;
-	margin: 1px;
-}
-body{
-	height: 100hv;
-	background-image: url("../images/ocean_platter.jpg");
 }

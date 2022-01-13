@@ -14,15 +14,20 @@
 
 <script>
 $(function(){
-	$("#btnUpdate").click(function(){
-		document.form1.action="/eatclipse/customer/update.do";  // 경로가 맞나???
+	$("#btnOn").click(function(){
+		document.form1.action="/eatclipse/customer/myPageon.do";  // 경로가 맞나???
 		document.form1.submit();
 	});
-	
+	$("#btnUpdate").click(function(){
+		if(confirm("수정하시겠습니까?")){
+			document.form3.action="/eatclipse/customer/update.do";  // 경로가 맞나???
+			document.form3.submit();
+		}
+	});
 	$("#btnDelete").click(function(){
 		if(confirm("삭제하시겠습니까?")){
-			document.form1.action="/eatclipse/customer/delete.do";  // 경로가 맞나???
-			document.form1.submit();
+			document.form3.action="/eatclipse/customer/delete.do";  // 경로가 맞나???
+			document.form3.submit();
 		}
 	});
 	$("#btnCashCharge").click(function(){
@@ -36,6 +41,8 @@ $(function(){
 <body>
 <%@ include file="../include/menu_cust.jsp" %>
 
+<c:choose>
+ <c:when test="${a==1}">
 <form name="form1" method="post">
 	<table border="1" width="500px" align="right">
 	<caption>회원 정보</caption>
@@ -74,8 +81,7 @@ $(function(){
 		<tr>
 			<td colspan="2" align="center">
 				<input type="button" value="캐시 충전" id="btnCashCharge">  <!-- 돈 충전 -->
-				<input type="button" value="정보수정" id="btnUpdate">
-				<input type="button" value="계정삭제" id="btnDelete">
+				<input type="button" value="정보수정" id="btnOn">
 				
 			</td>
 		</tr>
@@ -83,36 +89,100 @@ $(function(){
 	<div style="color:red;">${message}</div>
 </form>
 
+ </c:when>
+ <c:otherwise>
+ <form name="form3" method="post">
+	<table border="1" width="500px" align="right">
+	<caption>회원 정보</caption>
+		<tr>
+			<td>아이디</td>
+			<td>${dto.userid}</td>
+			<input type="hidden" name="userid" value="${sessionScope.userid}">
+		</tr>
+
+		<tr>
+			<td>이름</td>
+			<td><input type="text" name="name"value="${sessionScope.name}" ></td>
+		</tr>
+		
+		<tr>
+			<td>이메일</td>
+			<td><input type="text" name="email" value="${sessionScope.email}"></td>
+		</tr>
+		
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name="passwd" value="${sessionScope.passwd}"></td>
+		</tr>
+		<tr>
+			<td>가입일자</td>
+			<td>
+				<fmt:formatDate value="${dto.join_date}" pattern="yyyy-MM-dd HH:mm:s"/>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>주소</td>
+			<td><input type="text" name="location" value="${sessionScope.location}"></td>
+		</tr>
+		
+		<tr>
+			<td>잔액</td>
+			<td>${dto.money}원</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2" align="center">
+				<input type="button" value="캐시 충전" id="btnCashCharge">  <!-- 돈 충전 -->
+				<input type="button" value="수정하기" id="btnUpdate">
+				<input type="button" value="계정삭제" id="btnDelete">
+				
+			</td>
+		</tr>
+	</table>
+	<div style="color:red;">${message}</div>
+</form>
+</c:otherwise>
+ </c:choose>
+ 
 <form name="form2" method="post">
 	<table border="1" width="700px" align="left">
-	<caption>주문 내역</caption>
+	<h6>주문 내역</h6>
 		<tr>
-			<th>번호</th>
 			<th>주문일</th>
 			<th>가게</th>
 			<th>메뉴</th>
 			<th>결제금액</th>
 			<th>상태</th>
+			<th>리뷰</th>
 		</tr>
-
-		<tr>
-			<td>2_모양만</td>
-			<td>2022-01-08_모양만</td>
-			<td>한식당1_모양만</td>
-			<td>김치찌개_모양만</td>
-			<td>6,000_모양만</td>
-			<td>배달 중_모양만</td>
-		</tr>
-		
-		<tr>
-			<td>1_모양만</td>
-			<td>2022-01-07_모양만</td>
-			<td>중식당1_모양만</td>
-			<td>짬뽕_모양만</td>
-			<td>5,000_모양만</td>
-			<td>배달 완료_모양만</td>
-		</tr>
-	
+ <c:forEach var="row" items="${list}"><!-- status가 2인 log들만 올라옴 -->
+   <tr>
+      <td>${row.start_date}</td>
+      <td>${row.shop_name}</td>
+       <td><input type="button"  onclick="order_detail(no=${row.no})" value="상세보기"></td>
+      <td>${row.totalmoney}</td>
+      <td>  <c:if test="${row.status==0}">주문</c:if>
+      <c:if test="${row.status==1}">주문접수</c:if>
+      <c:if test="${row.status==2}">조리완료</c:if>
+      <c:if test="${row.status==3}">배달중</c:if>
+      <c:if test="${row.status==4}">배달완료</td>
+      <td><c:if test="${row.review==null}"><input type="button"  onclick="review_write(no=${row.no})" value="리뷰쓰기"></c:if>
+      	  <c:if test="${row.review!=null}"><input type="button"  onclick="review_view(no=${row.no})" value="상세보기"></c:if></td></c:if>
+      </td>
+   </tr>
+    <script>
+function order_detail(no){
+	window.open("/eatclipse/customer/detail/"+no,"_blank","toolber=yes,menubar=yes,width=500,height=400").focus();
+}
+function review_write(no){
+	window.open("/eatclipse/customer/review_write/"+no,"_blank","toolber=yes,menubar=yes,width=500,height=400").focus();
+}
+function review_view(no){
+	window.open("/eatclipse/customer/review_view/"+no,"_blank","toolber=yes,menubar=yes,width=500,height=400").focus();
+}
+</script>
+</c:forEach>  	
 	</table>
 </form>
 

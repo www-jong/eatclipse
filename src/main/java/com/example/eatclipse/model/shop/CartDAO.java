@@ -26,4 +26,5 @@ public interface CartDAO {
 	int getmaxno();
 	String getshopid(String shop_name);
 	void loginsert(LogDTO dto);
+	void moneyupdate(Map<String, Object> map);
 }

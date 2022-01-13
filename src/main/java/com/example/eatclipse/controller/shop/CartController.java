@@ -50,7 +50,7 @@ public class CartController {
 		
 		String shop_name=(String) dto.getShop_name();
 		String name=URLEncoder.encode(shop_name,"utf-8");
-		String message=URLEncoder.encode("success","utf-8");
+		String message=URLEncoder.encode(dto.getProduct_name(),"utf-8");
 		//mav.addObject("map",map);
 		mav.setViewName("redirect:/customer/shopInfo.do?shop_name="+name+"&message="+message);
 		//mav.addObject("message","success");
@@ -161,6 +161,11 @@ public class CartController {
 		dto.setTotalmoney(totalmoney);
 		System.out.println("로그인서트 확인용");
 		cartDAO.loginsert(dto);
+		session.setAttribute("money",mymoney-totalmoney);
+		Map<String,Object> map=new HashMap<>(); // 장바구니의 총금액 계산
+		map.put("money",mymoney-totalmoney);
+		map.put("userid", session.getAttribute("userid"));
+		cartDAO.moneyupdate(map);
 		}
 		cartDAO.cartdeleteall((String) session.getAttribute("userid"));
 		mav.setViewName("cart/order_complete");

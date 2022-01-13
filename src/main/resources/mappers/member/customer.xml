@@ -5,7 +5,7 @@
  <mapper namespace="customer">
 
  	<update id="update">
-		update member set passwd=#{passwd}, name=#{name}, email=#{email}
+		update member set passwd=#{passwd}, name=#{name}, email=#{email},location=#{location}
 		where userid=#{userid}
 	</update>
 
@@ -37,8 +37,26 @@
 		select * from product where shop_name=#{shop_name} order by no
 	</select>
 
-
+	<select id = "userlog" resultType="com.example.eatclipse.model.commons.LogDTO">
+		select * from log where order_name=#{userid} group by no order by no desc
+	</select>
 		
+		<!-- 해당 no의 상세주문정보를 보여줌 -->
+	<select id = "detail" resultType="com.example.eatclipse.model.commons.LogDTO">
+	select * from Log where no=#{no};
+	</select>
+	
+	<update id="review_set">
+		update log set review=#{review} where no=#{no}
+	</update>
+	
+	<select id = "review_get" resultType="String">
+	select review from Log where no=#{no} group by no;
+	</select>
+	
+	<select id = "product_no" resultType="com.example.eatclipse.model.shop.productDTO">
+	select * from product;
+	</select>
 </mapper>
 
 

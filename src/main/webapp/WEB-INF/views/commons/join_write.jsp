@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/eatclipse/resources/css/main.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/table_center.css">
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
@@ -34,11 +35,12 @@
 </head>
 <body>
 	<h2>회원가입</h2>
+	<div class = "center">
 	<form name="form1" method="post">
-		<table border="1" width="400px">
+		<table>
 			<tr>
 				<td>아이디</td>
-				<td><input id="userid" name="userid"></td>
+				<td><input type="text" id="userid" name="userid"></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
@@ -53,7 +55,7 @@
 				<td><input type="text" id="email" name="email"></td>
 			</tr>
 				<tr>
-				<td>지역</td>
+				<td>주소</td>
 				<td><input type="text" id="location" name="location"></td>
 			</tr>
 			<tr>
@@ -90,5 +92,6 @@
 			</tr>
 		</table>
 		</form>
+		</div>
 	</body>
 </html>

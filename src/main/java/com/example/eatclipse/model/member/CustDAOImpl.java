@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.example.eatclipse.model.commons.CommonsDTO;
+import com.example.eatclipse.model.commons.LogDTO;
 import com.example.eatclipse.model.shop.productDTO;
 
 
@@ -61,8 +62,32 @@ public class CustDAOImpl implements CustDAO {
 		return sqlSession.selectList("customer.menuList",shop_name);
 	}
 	
-	// [식당 이름] 눌러서 메뉴 확인. - 식당 이름을 이용해, 등록된 모든 메뉴를 가져오는 작업 : 메뉴 목록
 	
-	
+	@Override
+	public List<LogDTO> userlog(String userid){
+		
+		return sqlSession.selectList("customer.userlog",userid);
+	}
 
+	@Override
+	public List<LogDTO> detail(int no) {
+		
+		return sqlSession.selectList("rider.detail",no);
+	}
+
+	@Override
+	public void review_set(LogDTO dto) {
+
+		sqlSession.update("customer.review_set", dto);
+	}
+	
+	@Override
+	public String review_get(int no) {
+		return sqlSession.selectOne("customer.review_get", no);
+	}
+	
+	public List<productDTO> product_no(){
+		
+		return sqlSession.selectList("customer.product_no");
+	}
 }

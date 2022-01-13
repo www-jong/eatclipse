@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>고객 메인 페이지</title>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 <body>
 <%-- <%@ include file="../include/menu.jsp" %> --%>
@@ -35,9 +34,15 @@
 
 <p style="text-align:center">---------------------------------------------------</p>
 
-<h3 style="text-align:center">[여기는 최근 본 가게 들어갈 자리]</h3>
+<h3 style="text-align:center">[ 최근 주문한 가게]</h3>
 
+<h3 style="text-align:center">[메뉴추천받기]</h3>
 
-
+ <input type="button"  onclick="gogogo()" value="추천받기">
+<script>
+function gogogo(){
+	window.open("/eatclipse/customer/recommendon","_blank","toolber=yes,menubar=yes,width=500,height=400").focus();	
+}
+</script>
 </body>
 </html>

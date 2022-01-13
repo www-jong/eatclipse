@@ -59,6 +59,7 @@ public class rideController {
 		map.put("userid",session.getAttribute("userid"));
 	map.put("money",dto.getTotalmoney()/10);
 	riderdao.addmoney(map); // 라이더에게 10%지급
+	session.setAttribute("money",(int) session.getAttribute("money")+(int) dto.getTotalmoney()/10);
 		map.put("userid",dto.getShop_name());
 		map.put("money",dto.getTotalmoney()*9/10);
 		riderdao.addmoney(map);  //가게에게 90% 지급
@@ -95,8 +96,6 @@ public class rideController {
 	  @RequestMapping("update.do") 
 	  public ModelAndView update(@ModelAttribute CommonsDTO dto, HttpSession session,ModelAndView mav) {
 	   riderdao.update(dto); //수정처리 
-	   //Map<String,Object> map=new HashMap<>(); // 기존name과 바뀐name을 담기위해 생성
-	   //riderdao.logtoupdate(map);  // 기존name을 바뀐name으로 바꿔주는 dao
 	  session.invalidate(); //세션 초기화
 	 	mav.setViewName("commons/login");
 	 	mav.addObject("message", "update_success");

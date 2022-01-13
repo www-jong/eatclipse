@@ -14,18 +14,18 @@
 <table border="1" width="500px">
 
    <tr>
-      <th>주문자명</th>
-      <th>가게명</th>
+    <!--   <th>주문자명</th> -->
+     <!--  <th>가게명</th> -->
       <th>음식명</th>
-      <th>지역</th>
+      <!-- <th>지역</th> -->
       <th>수량</th><!-- 이거누르면 같은log명을 가진 제품들 alert로 뜨게 -->
    </tr>
    <c:forEach var="row" items="${list}"><!-- status가 2인 log들만 올라옴 -->
    <tr>
-      <td>${row.order_name}</td>
-      <td>${row.shop_name}</td>
+     <%--  <td>${row.order_name}</td> --%>
+     <%--  <td>${row.shop_name}</td> --%>
       <td>${row.product_name}</td>
-      <td>${row.location}</td>
+     <%--  <td>${row.location}</td> --%>
       <td>${row.amount}</td>
    </tr>
 </c:forEach>   

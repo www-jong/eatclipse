@@ -63,4 +63,8 @@
 		insert into log(no,order_name, shop_name, product_name, amount, location, status,start_date,totalmoney) 
 		values(#{no}, #{order_name}, #{shop_name}, #{product_name}, #{amount}, #{location},#{status},now(),#{totalmoney})
 	</insert>
+	
+	<update id="moneyupdate">
+		update member set money=#{money} where userid=#{userid}
+	</update>
 </mapper>

@@ -81,4 +81,9 @@ public class CartDAOImpl implements CartDAO {
 
 	}
 	
+	@Override
+	public void moneyupdate(Map<String, Object> map) {
+		sqlSession.update("cart.moneyupdate", map);
+
+	}
 }

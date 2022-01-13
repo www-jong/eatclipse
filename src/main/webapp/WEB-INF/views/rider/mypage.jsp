@@ -42,7 +42,8 @@ $(function(){
 	<caption>회원정보</caption>
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="userid" value="${sessionScope.userid}" readonly></td>
+			<td>${sessionScope.userid}</td>
+			<input type="hidden" name="userid" value="${sessionScope.userid}" readonly>
 		</tr>
 		<tr>
 			<td>비밀번호</td>

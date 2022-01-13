@@ -11,7 +11,12 @@
 <script>
 	$(function(){
 	$("#btnCashCharge").click(function(){
-		
+		var cash=$("#cash").val();
+		if(cash<="0"){
+			alert("0원이하는 충전이 불가합니다.");
+			$("#cash").focus();
+			return;
+		}
 		document.form1.action="/eatclipse/customer/cashCharge_logic.do";
 		document.form1.submit();
 		});		

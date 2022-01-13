@@ -8,7 +8,7 @@
 	</select>
 	
 	<select id="review" resultType="com.example.eatclipse.model.commons.LogDTO">
-		select * from log where status=4 group by no having shop_name=#{userid} order by start_date desc
+		select * from log where status=4 and review!=null group by no having shop_name=#{userid} order by start_date desc
 	</select>
 	
 	<update id="status">

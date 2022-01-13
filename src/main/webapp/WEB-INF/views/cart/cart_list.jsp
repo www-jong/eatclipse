@@ -74,10 +74,8 @@ $(function(){
          </c:forEach>
          <tr>
             <td colspan="5" align="center">
-               장바구니 금액 합계 : 
-               <fmt:formatNumber value="${map.cart_total_price}" pattern="#,###,###" /><br>
-               배달료: 는 결제금액에 포함되있습니다.<br>
-               최종 결제 금액: <fmt:formatNumber value="${map.cart_total_price}" pattern="#,###,###" />
+               최종 결제 금액: <fmt:formatNumber value="${map.cart_total_price}" pattern="#,###,###" /><br>
+               배달비는 결제금액에 포함되어 있습니다.
             </td>
          </tr>
       </table>

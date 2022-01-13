@@ -24,9 +24,15 @@ public interface CustDAO {
 	// [식당 이름] 눌러서 메뉴 확인. - 식당 이름을 이용해, 등록된 모든 메뉴를 가져오는 작업 : 메뉴 목록
 	List<productDTO> menuList(String shop_name);
 
+	List<LogDTO> userlog(String userid);
 	
-	
-	
+	List<LogDTO> detail(int no);
+
+	void review_set(LogDTO dto);
+
+	String review_get(int no);
+
+	List<productDTO> product_no();
 	
 	
 	
