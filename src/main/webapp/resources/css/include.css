@@ -24,6 +24,7 @@ header {
 
 nav ul li {
 	display: inline-flex;
+	justify-content: flex-end;
 	color: white;
 }
 
