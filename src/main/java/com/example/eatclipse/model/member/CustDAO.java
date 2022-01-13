@@ -34,6 +34,12 @@ public interface CustDAO {
 
 	List<productDTO> product_no();
 	
+	List<productDTO> getrecent(LogDTO list);
+	
+	String getshopname(String shop_name);
+	
+	
+	
 	
 	
 	

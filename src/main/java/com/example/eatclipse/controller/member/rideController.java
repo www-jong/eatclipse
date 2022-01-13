@@ -27,21 +27,25 @@ public class rideController {
 	RiderDAO riderdao;
 	
 	@RequestMapping("main.do")
-	public String maindo() {
-		 return "rider/main";
-	 }
-	
-	@RequestMapping("list.do")
-	   public ModelAndView list(ModelAndView mav,HttpSession session) {// 현재 배달요청들어온 log와 배달수락한 log들을 다 보여줌
+	public ModelAndView maindo(ModelAndView mav,HttpSession session) {// 현재 배달요청들어온 log와 배달수락한 log들을 다 보여줌
 		//log의 status가 2인 목록을  불러오는 dao
 		mav.addObject("delivery_list", riderdao.delivery_list());
 		//수락한 배달목록을 불러오는 dao
 		String name=(String) session.getAttribute("userid");
 		System.out.println(name);
 		mav.addObject("accept_list", riderdao.accept_list(name));
-		mav.setViewName("/rider/list");
-	      return mav;
-	   }
+		mav.setViewName("/rider/main");
+		return mav;
+	 }
+	
+		/*
+		 * @RequestMapping("list.do") public ModelAndView list(ModelAndView
+		 * mav,HttpSession session) {// 현재 배달요청들어온 log와 배달수락한 log들을 다 보여줌 //log의 status가
+		 * 2인 목록을 불러오는 dao mav.addObject("delivery_list", riderdao.delivery_list());
+		 * //수락한 배달목록을 불러오는 dao String name=(String) session.getAttribute("userid");
+		 * System.out.println(name); mav.addObject("accept_list",
+		 * riderdao.accept_list(name)); mav.setViewName("/rider/list"); return mav; }
+		 */
 	
 	@RequestMapping("accept/{no}")
 	public String acceptdo(@PathVariable("no") int no,HttpSession session) {
@@ -49,7 +53,7 @@ public class rideController {
 		dto.setNo(no);
 		dto.setRider_name((String) session.getAttribute("userid"));
 		 riderdao.accept(dto);
-		 return "redirect:/rider/list.do";
+		 return "redirect:/rider/main.do";
 	 }
 	
 	@RequestMapping("complete/{no}")
@@ -64,7 +68,7 @@ public class rideController {
 		map.put("money",dto.getTotalmoney()*9/10);
 		riderdao.addmoney(map);  //가게에게 90% 지급
 	  	riderdao.complete(no);
-		 return "redirect:/rider/list.do";
+		 return "redirect:/rider/main.do";
 
 		
 		

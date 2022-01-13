@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/eatclipse/resources/css/main.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/table_shop.css">
 <title>마이페이지</title>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -40,12 +41,14 @@ $(function(){
 
 <body>
 <%@ include file="../include/menu_cust.jsp" %>
-
+<br>
+	<h2>회원 정보</h2>
+	<br>
 <c:choose>
  <c:when test="${a==1}">
+ <div class="center">
 <form name="form1" method="post">
 	<table border="1" width="500px" align="right">
-	<caption>회원 정보</caption>
 		<tr>
 			<td>아이디</td>
 			<td>${dto.userid}</td>
@@ -88,12 +91,13 @@ $(function(){
 	</table>
 	<div style="color:red;">${message}</div>
 </form>
-
+ </div>
  </c:when>
+
  <c:otherwise>
+ <div class="center">
  <form name="form3" method="post">
 	<table border="1" width="500px" align="right">
-	<caption>회원 정보</caption>
 		<tr>
 			<td>아이디</td>
 			<td>${dto.userid}</td>
@@ -142,12 +146,14 @@ $(function(){
 	</table>
 	<div style="color:red;">${message}</div>
 </form>
+</div>
 </c:otherwise>
  </c:choose>
- 
+ <h2>주문 내역</h2>
+ <div class="center">
 <form name="form2" method="post">
 	<table border="1" width="700px" align="left">
-	<h6>주문 내역</h6>
+	
 		<tr>
 			<th>주문일</th>
 			<th>가게</th>
@@ -185,8 +191,7 @@ function review_view(no){
 </c:forEach>  	
 	</table>
 </form>
-
-
+</div>
 </body>
 </html>
 

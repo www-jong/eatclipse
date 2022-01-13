@@ -6,8 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/table_center.css">
-<title>Join</title>
+<title>EATCLIPSE|회원가입</title>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
@@ -44,8 +45,8 @@
 </script>
 </head>
 <body>
-	<h2>회원가입</h2>
-	
+	<%@ include file="../include/menu.jsp" %>
+	<h2 style="text-align: center; margin:30px">회원가입</h2>
 	<div class = "center">
 	<br>
 	<form class="form1" name="form1" method="post">

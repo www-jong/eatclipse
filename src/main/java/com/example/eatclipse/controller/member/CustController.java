@@ -1,5 +1,6 @@
 package com.example.eatclipse.controller.member;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,23 +38,23 @@ public class CustController {
 	------------------------------------------------------------------*/
 
 	@RequestMapping("main.do")
-	public ModelAndView main(ModelAndView mav, HttpSession session) {
-		mav.setViewName("customer/main");
-
-		
-		/*
-		 * List<LogDTO> list= custDAO.userlog((String) session.getAttribute("userid"));
-		 * List<String> plist=new ArrayList<>();
-		 * for(LogDTO list:list) {
-		 * 	plist.add(custDAO.get
-		 * } 
-		 * 
-		 * mav.addObject("recent_shoplist", custDAO.recent_shop);
-		 */
-		 
-
-		return mav;
-	}
+	   public ModelAndView main(ModelAndView mav, HttpSession session) {
+	      mav.setViewName("customer/main");
+	         //자기가 주문했던 log 들고옴
+	        List<LogDTO> loglist= custDAO.userlog((String) session.getAttribute("userid"));
+	        List<productDTO> plist=new ArrayList<productDTO>();
+	        List<String> imagelist=new ArrayList<String>();
+	        int count=0;
+	        for(LogDTO list:loglist) {
+	           //shop_name이 id로 되어있으므로 이를 name으로 대체해줌
+	           list.setShop_name(custDAO.getshopname(list.getShop_name()));
+	           plist.addAll(custDAO.getrecent(list));
+	           count++;
+	           if(count>=5||count>=loglist.size())break;
+	        } 
+	        mav.addObject("recent_shoplist",plist);
+	      return mav;
+	   }
 
 	/*-----------------------------------------------------------------
 	회원이 main에서 [마이페이지] 버튼 누르면, 
@@ -64,7 +65,7 @@ public class CustController {
 	------------------------------------------------------------------*/
 
 	@RequestMapping("myPage.do")
-	public String myPage(Model model, HttpSession	9 session) {
+	public String myPage(Model model, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
 		model.addAttribute("dto", custDAO.view(userid));
 		model.addAttribute("a", 1);

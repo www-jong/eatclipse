@@ -7,7 +7,8 @@
 	;
 
 table {
-	width: 1000px;
+	width: 720px;
+	padding: 10px;
 }
 
 div.center {
@@ -15,3 +16,7 @@ div.center {
 	display: flex;
 	justify-content: center;
 }
+
+h2{
+	text-align: center;
+	}

@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/eatclipse/resources/css/main.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
-<title>Insert title here</title>
+<link rel="stylesheet" href="/eatclipse/resources/css/include.css">
+<title>EATCLIPSE|라이더</title>
 <style type="text/css">
 
 </style>
@@ -15,7 +16,9 @@
 <body>
 <%@ include file="../include/menu_rider.jsp" %>
 <h2>라이더 메인페이지</h2>
-<a href="/eatclipse/rider/list.do">배달목록</a>
+<br>
+
+<%@ include file="../rider/list.jsp" %>
 
 </body>
 </html>

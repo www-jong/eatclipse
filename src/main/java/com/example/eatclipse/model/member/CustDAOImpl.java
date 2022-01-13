@@ -90,4 +90,14 @@ public class CustDAOImpl implements CustDAO {
 		
 		return sqlSession.selectList("customer.product_no");
 	}
+
+	@Override
+	public List<productDTO> getrecent(LogDTO dto) {
+		return sqlSession.selectList("customer.getrecent",dto);
+	}
+
+	@Override
+	public String getshopname(String shop_name) {
+		return sqlSession.selectOne("customer.getshopname", shop_name);
+	}
 }
