@@ -6,10 +6,7 @@
 <head>
 <title>Eatclipse</title>
 <link rel="stylesheet" href="/eatclipse/resources/css/HomeCss.css">
-<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-.css">
-<style type="text/css">
-
-</style>
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
 </head>
 <body>
 	<header>

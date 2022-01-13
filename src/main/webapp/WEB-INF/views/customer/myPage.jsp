@@ -84,8 +84,8 @@ $(function(){
 </form>
 
 <form name="form2" method="post">
+	<h6>주문 내역</h6>
 	<table border="1" width="700px" align="left">
-	<caption>주문 내역</caption>
 		<tr>
 			<th>번호</th>
 			<th>주문일</th>
