@@ -24,17 +24,13 @@
 <table border="1" width="1000px">
    <tr>
       <th width="200px">가게이름</th>
-      <th width="200px">이메일</th>
   	  <th width="200px">위치</th>
-  	  <th width="400px">EatClips 가입날짜</th>
    </tr>
 
 		<c:forEach var="row" items="${list}">
 			<tr>
 				<td><a href="/eatclipse/customer/shopInfo.do?shop_name=${row.name}">${row.name}</a></td>  <!-- 이거 수정해야 -->
-				<td>${row.email}</td>
 				<td>${row.location}</td>
-				<td>${row.join_date}</td>
 			</tr>
 		</c:forEach>
 </table>

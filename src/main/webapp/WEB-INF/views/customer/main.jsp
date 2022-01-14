@@ -67,7 +67,7 @@ function gogogo(){
    window.open("/eatclipse/customer/recommendon","_blank","toolber=yes,menubar=yes,width=600px,height=600px").focus();   
 }
 function gogogogo(){
-	   window.open("/eatclipse/customer/worldcupon","_blank","toolber=yes,menubar=yes,width=600px,height=600px").focus();   
+	   window.open("/eatclipse/customer/worldcupon","_blank","toolber=yes,menubar=yes,width=700px,height=700px").focus();   
 	}
 </script>
 </body>

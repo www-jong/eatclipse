@@ -7,12 +7,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>EATCLIPSE | 관리자</title>
+<link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/home_cust.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/table_shop.css">
 </head>
 <body>
 <%@ include file="../include/menu.jsp" %>
-<h2>전체메뉴목록</h2>
- <a href="/eatclipse/admin/main.do">[메인화면]</a>
+  <div style="text-align: right;">
+  <button type="button" id="btnBack" onclick="location='/eatclipse/admin/main.do'">back</button>
+   </div>
+   <h2 style="color:gray">전체사용자 목록</h2>
+   <div class="center">
 <table border="1" width="700px">
    <tr>
       <th>no</th>
@@ -31,5 +38,6 @@
    </tr>
 </c:forEach>   
 </table>
+</div>
 </body>
 </html>

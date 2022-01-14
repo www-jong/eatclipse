@@ -11,18 +11,11 @@
 <link rel="stylesheet" href="/eatclipse/resources/css/main.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/home_cust.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/table_shop.css">
-<script>
-   $(function() {
-	   $("#btnBack").click(function() {
-	         location.href = "/eatclipse/admin/main.do";
-	      });
-   });
-</script>
 </head>
 <body>
    <%@ include file="../include/menu.jsp"%>
    <div style="text-align: right;">
-        <button type="button" id="btnBack">back</button>
+ <button type="button" id="btnBack" onclick="location='/eatclipse/admin/main.do'">back</button>ton>
    </div>
    <h2 style="color:gray">전체로그 목록</h2>
    <div class="center">
