@@ -279,7 +279,7 @@ public class CustController {
 				count++;
 				if(newlist.size()>=16)break;
 			}
-			mav.addObject("worldcuplist",newlist);
+			session.setAttribute("worldcuplist",newlist);
 			mav.addObject("list_num",productlist);
 			mav.setViewName("customer/worldcup");
 			mav.addObject("count",0);
@@ -288,8 +288,13 @@ public class CustController {
 
 // worldcuplist 객체를 html에서 콘트롤러로 다시 전달받기 어떻게..?
 	@RequestMapping("worldcup.do")
-	public ModelAndView worldcup(HttpServletRequest request,@RequestParam("count") int count,@RequestParam("worldcuplist") List<productDTO> worldcuplist, ModelAndView mav, HttpSession session) {
+	public ModelAndView worldcup(HttpServletRequest request,@RequestParam("count") int count, ModelAndView mav, HttpSession session) {
+		List<productDTO> worldcuplist=(List<productDTO>) session.getAttribute("worldcuplist");
+		for(productDTO list:worldcuplist) {
+			System.out.println(list.getShop_name() +"+"+list.getProduct_name());
+		}
 		String num = request.getParameter("num");
+		System.out.println(num);
 		mav.setViewName("customer/worldcup");
 		mav.addObject("count", count);
 		if(count==1) { // 처음 실행했을때,
@@ -298,10 +303,12 @@ public class CustController {
 			for (productDTO list : worldcuplist) {
 				if(c==1) {mav.addObject("first_image",list.getImage());
 				mav.addObject("first_product_name",list.getProduct_name());
+				mav.addObject("first_shop_name",list.getShop_name());
 				mav.addObject("first",list.getNo());
 				}
 				else if(c==2) {mav.addObject("second_image",list.getImage());
 				mav.addObject("second_product_name",list.getProduct_name());
+				mav.addObject("second_shop_name",list.getShop_name());
 				mav.addObject("second",list.getNo());
 				break;
 				}
@@ -309,16 +316,19 @@ public class CustController {
 			}
 		}
 		else { // 이후, 선택값제외 제거
+			System.out.println("화가가긴");
 			int c=1;
 			if(num.equals("1"))worldcuplist.remove(1); // 1번골랐으면 2번을 지움
 			else if(num.equals("2"))worldcuplist.remove(0); // 2번골랐으면 1번을 지움
 			for (productDTO list : worldcuplist) {
 				if(c==1) {mav.addObject("first_image",list.getImage());
 				mav.addObject("first_product_name",list.getProduct_name());
+				mav.addObject("first_shop_name",list.getShop_name());
 				mav.addObject("first",list.getNo());
 				}
 				else if(c==2) {mav.addObject("second_image",list.getImage());
 				mav.addObject("second_product_name",list.getProduct_name());
+				mav.addObject("second_shop_name",list.getShop_name());
 				mav.addObject("second",list.getNo());
 				break;
 				}
@@ -329,6 +339,8 @@ public class CustController {
 			for (productDTO list : worldcuplist) {
 			mav.addObject("first_image",list.getImage());
 			mav.addObject("first_product_name",list.getProduct_name());
+			mav.addObject("first_shop_name",list.getShop_name());
+			mav.addObject("count", 3);
 			break;
 			}
 		}

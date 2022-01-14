@@ -43,29 +43,31 @@ img.recent {
    <a style="cursor:pointer;" onclick="gogogo()"><img src="../images/menu_r.png" alt="메뉴추천받기"/></a>
 </div>
 
-<h3 style="text-align: center;">[ 최근 주문한 가게]</h3>
-		<table>
-			<tr>
-				<c:forEach var="row" items="${recent_shoplist}">
-					<td><a
-						href="/eatclipse/customer/shopInfo.do?shop_name=${row.shop_name}">
-							<img class="recent" src="/eatclipse/images/${row.image}">
-					</a></td>
-				</c:forEach>
-			</tr>
-			<tr>
-				<c:forEach var="row" items="${recent_shoplist}">
-					<td>${row.shop_name}</td>
-				</c:forEach>
-			</tr>
-		</table>
-	</div>
+<h2 style="color: gray; font-size: 20px">[ 최근 주문한 가게]</h2>
+<br>
+<div class="center">
+      <table>
+         <tr>
+            <c:forEach var="row" items="${recent_shoplist}">
+               <td><a href="/eatclipse/customer/shopInfo.do?shop_name=${row.shop_name}">
+                     <img class="recent" src="/eatclipse/images/${row.image}">
+               </a></td>
+            </c:forEach>
+         </tr>
+         <tr>
+            <c:forEach var="row" items="${recent_shoplist}">
+               <td>${row.shop_name}</td>
+            </c:forEach>
+         </tr>
+      </table>
+   </div>
+
 <script>
 function gogogo(){
-   window.open("/eatclipse/customer/recommendon","_blank","toolber=yes,menubar=yes,width=500,height=400").focus();   
+   window.open("/eatclipse/customer/recommendon","_blank","toolber=yes,menubar=yes,width=600px,height=600px").focus();   
 }
 function gogogogo(){
-	   window.open("/eatclipse/customer/worldcupon","_blank","toolber=yes,menubar=yes,width=500,height=400").focus();   
+	   window.open("/eatclipse/customer/worldcupon","_blank","toolber=yes,menubar=yes,width=600px,height=600px").focus();   
 	}
 </script>
 </body>

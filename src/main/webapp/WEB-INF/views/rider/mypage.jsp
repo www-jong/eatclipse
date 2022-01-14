@@ -7,9 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
 <link rel="stylesheet" href="/eatclipse/resources/css/fontawesome-all.min.css">
-<title>Insert title here</title>
+<link rel="stylesheet" href="/eatclipse/resources/css/main.css">
+<link rel="stylesheet" href="/eatclipse/resources/css/table_shop.css">
+<title>EATCLIPSE|라이더</title>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(function(){
@@ -129,7 +130,7 @@ $(function(){
 <form name="form3" method="post">
 	<table border="1" width="700px" align="left">
 	<caption>배달내역</caption>
-		<tr>
+	<tr>
       <th>주문자명</th>
       <th>가게명</th>
       <th>지역</th>
@@ -143,14 +144,12 @@ $(function(){
       <td>${row.shop_name}</td>
       <td>${row.location}</td>
       <td><input type="button"  onclick="order_detail(no=${row.no})" value="상세보기"></td>
-      <td>${row.end_date}</td>
-      <td>${row.totalmoney}</td>
+       <td><fmt:formatDate value="${row.end_date}" pattern="yyyy-MM-dd HH:mm:s"/></td>
+      <td>${row.totalmoney/10}</td>
    </tr>
    <script>
 function order_detail(no){
-		window.open("/eatclipse/rider/detail/"+no,"_blank","toolber=yes,menubar=yes,width=700,height=500").focus();
-		
-
+		window.open("/eatclipse/rider/detail/"+no,"_blank","toolber=yes,menubar=yes,width=700,height=500").focus();	
 }
 </script>
 </c:forEach>   

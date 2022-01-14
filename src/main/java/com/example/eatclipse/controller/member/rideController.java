@@ -38,15 +38,6 @@ public class rideController {
 		return mav;
 	 }
 	
-		/*
-		 * @RequestMapping("list.do") public ModelAndView list(ModelAndView
-		 * mav,HttpSession session) {// 현재 배달요청들어온 log와 배달수락한 log들을 다 보여줌 //log의 status가
-		 * 2인 목록을 불러오는 dao mav.addObject("delivery_list", riderdao.delivery_list());
-		 * //수락한 배달목록을 불러오는 dao String name=(String) session.getAttribute("userid");
-		 * System.out.println(name); mav.addObject("accept_list",
-		 * riderdao.accept_list(name)); mav.setViewName("/rider/list"); return mav; }
-		 */
-	
 	@RequestMapping("accept/{no}")
 	public String acceptdo(@PathVariable("no") int no,HttpSession session) {
 		LogDTO dto=new LogDTO();
@@ -69,9 +60,7 @@ public class rideController {
 		riderdao.addmoney(map);  //가게에게 90% 지급
 	  	riderdao.complete(no);
 		 return "redirect:/rider/main.do";
-
-		
-		
+	
 	 }
 	
 	@RequestMapping("detail/{no}")

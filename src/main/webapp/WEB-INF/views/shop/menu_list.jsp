@@ -10,7 +10,7 @@
 </head>
 <body>
    <!-- 가게 메뉴 -->
-   <h4>가게 메뉴</h4>
+   <h2 style="color: gray">가게 메뉴</h2>
    <a href="/eatclipse/shop/menu_register.do">메뉴 등록</a>
    <table class="box highlight">
       <tr>
@@ -27,17 +27,17 @@
             <td>${row.price}</td>
             <td>
                <c:if test="${row.type == 0}">
-             	  판매중
-             	  <input type="button" value="판매중지" onclick="location.href='/eatclipse/shop/typeto1/${row.no}'">
+                  판매중
+                  <input type="button" value="판매중지" onclick="location.href='/eatclipse/shop/typeto1/${row.no}'">
                </c:if>
                
                <c:if test="${row.type == 1}">
-            	   품절
-            	   <input type="button" value="판매재개" onclick="location.href='/eatclipse/shop/typeto0/${row.no}'">
+                  품절
+                  <input type="button" value="판매재개" onclick="location.href='/eatclipse/shop/typeto0/${row.no}'">
                </c:if>
             </td>
             <td>
-            	<button onclick="location.href='/eatclipse/shop/menu_edit/${row.no}'">수정</button>
+               <button onclick="location.href='/eatclipse/shop/menu_edit/${row.no}'">수정</button>
             </td>
          </tr>
       </c:forEach>

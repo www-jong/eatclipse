@@ -4,7 +4,7 @@
 
 <header>
 	<h1>
-		<a href="/eatclipse/customer/main.do">
+		<a href="/eatclipse/rider/main.do">
 			<span class="title_color_white">{</span>
 			<span class="title_color_yellow">Eat</span>
 			<span class="title_color_blue">Clipse</span>

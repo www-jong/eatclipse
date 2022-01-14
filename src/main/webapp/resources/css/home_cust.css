@@ -8,18 +8,15 @@
 .title_color_blue{
 	color: #00B0F0;
 }
-body{
-   height: 100vh;
-   background-image: url("../images/main.png");
-   background-repeat : no-repeat;
-    background-size : cover;
-}
+
 div{
 	font-weight: bold;
 	text-align: center;
 	margin: 1px;
 }
 
+
+	
 h1, h2{
 	text-align: center;
 	width: 100%;

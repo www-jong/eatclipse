@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/eatclipse/resources/css/include.css">
 
 <header>
-	<h1>
+	<h1 "margin:0;">
 		<a href="/eatclipse/customer/main.do">
 			<span class="title_color_white">{</span>
 			<span class="title_color_yellow">Eat</span>
