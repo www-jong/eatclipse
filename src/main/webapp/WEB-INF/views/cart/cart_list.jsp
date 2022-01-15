@@ -66,17 +66,20 @@ $(function(){
             <th>총금액</th>
             <th>&nbsp;</th>
          </tr>
+         
          <c:forEach var="row" items="${list}">
-         <tr>
-            <td>${row.product_name}</td>
-            <td>대충 단가</td>  <%-- ${row.price} --%>  
-            <td>
-              ${row.amount}
-               <input type="hidden" name="product_no" value="${row.product_no}">
-            </td>
-            <td>${row.total_price}</td>
-            <td><a href="/eatclipse/cart/delete.do?product_no=${row.product_no}">삭제</a></td>
-         </tr>
+         <c:set var="total_price" value="${row.total_price}"/>
+         <c:set var="amount" value="${row.amount}"/>
+	         <tr>
+	            <td>${row.product_name}</td>
+	            <td><c:set var="dan" value="${total_price/amount}"/><c:out value="${dan}"/></td>  <%-- ${row.price} --%>  
+	            <td>
+	              ${row.amount}
+	               <input type="hidden" name="product_no" value="${row.product_no}">
+	            </td>
+	            <td>${row.total_price}</td>
+	            <td><a href="/eatclipse/cart/delete.do?product_no=${row.product_no}">삭제</a></td>
+	         </tr>
          </c:forEach>
          <tr>
             <td colspan="5" align="center">
