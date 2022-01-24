@@ -15,7 +15,7 @@
 		<property name="driverClassName"
 			value="com.mysql.cj.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://121.175.81.240:3306/eatclipse?serverTimezone=Asia/Seoul">
+			value="jdbc:mysql://youip:3306/eatclipse?serverTimezone=Asia/Seoul">
 		</property>
 		<property name="username" value="eatclipse" />
 		<property name="password" value="123456789!" />
